@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+// Import Bootstrap
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+// Import base style
+@import "./assets/base/common";
+
+//Import variable style
+@import "./assets/abstracts/variable.scss";
+
+// Import component style
+@import "./assets/components/home.scss";
+@import "./assets/components/header.scss";
+@import "./assets/components/login.scss"
+

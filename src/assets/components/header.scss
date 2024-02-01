@@ -1,0 +1,39 @@
+.app-header {
+    background-color: $black-color;
+    height: $header-height;
+    .header-list {
+        height: $header-height;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        a {
+            text-decoration: none;
+            color: $white-color;
+            font-size: 18px;
+            padding: 0 12px;
+        }
+    }
+
+    .header-nav-login {
+        text-decoration: none;
+        color: #ffffffb6;
+        font-size: 18px;
+        line-height: $header-height;
+    }
+
+    .header-search-container {
+        margin-top: 10px;
+        .mat-mdc-form-field {
+            position: relative;
+            width: 230px;
+        }
+        .header-search__icon {
+            z-index: 100;
+            position: absolute;
+            right: 0;
+            bottom: 15px;
+            color: #000;
+        }
+    }
+}

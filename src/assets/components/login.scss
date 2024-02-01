@@ -1,0 +1,20 @@
+.login-form-container {
+    display: flex;
+    flex-direction: column;
+    .login-logo {
+        width: 300px;
+        height: 300px;
+    }
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+    .mdc-button {
+        margin-top: 20px;
+        background-color: $black-color!important;
+        color: $white-color!important;
+    }
+    .no-account-container {
+        margin-top: 8px;
+    }
+}

@@ -14,10 +14,10 @@ export const routes: Routes = [
         {
         path: '',
         pathMatch: 'full',
-        redirectTo: '/home'
+        redirectTo: '/Home'
         },
         {
-            path: 'home',
+            path: 'Home',
             component: HomeComponent
         }
 ]

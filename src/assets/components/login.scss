@@ -1,6 +1,8 @@
 .login-form-container {
+    height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     .login-logo {
         width: 300px;
         height: 300px;
@@ -8,13 +10,33 @@
     .form-group {
         display: flex;
         flex-direction: column;
+        input {
+            padding: 16px 10px;
+        }
+        input:first-child {
+           margin-bottom: 16px;
+        }
     }
-    .mdc-button {
+    .login__button{
         margin-top: 20px;
-        background-color: $black-color!important;
-        color: $white-color!important;
+        .p-button {
+            width: 100%;
+            background-color: $black-color;
+            color: $white-color;
+            border: $black-color;
+            box-shadow: none;
+        }
     }
     .no-account-container {
         margin-top: 8px;
+    }
+    .remember-pass {
+        margin-top: 16px;
+        .remember-pass_checkbox {
+            margin-right: 8px;
+        }
+        label {
+            user-select: none;
+        }
     }
 }

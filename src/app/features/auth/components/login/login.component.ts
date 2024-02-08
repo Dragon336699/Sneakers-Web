@@ -1,49 +1,58 @@
-import { Component } from '@angular/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { AfterViewInit, Component } from '@angular/core';
 import { BaseComponent } from '../../../../core/commonComponent/base.component';
 import { FormBuilder, FormGroup, Validators, FormsModule,ReactiveFormsModule  } from '@angular/forms';
-import { CustomRequiredDirective } from '../../../../core/directives/custom-required.directive';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
-
+import { RouterModule } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { ToastService } from '../../../../core/services/toast.service';
+import { Subject, filter } from 'rxjs';
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
-    MatFormFieldModule,
-    MatInputModule,
     FormsModule,
     ReactiveFormsModule,
     ToastModule,
     ButtonModule,
     InputTextModule,
-    CheckboxModule
+    CheckboxModule,
+    RouterModule,
   ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
   providers: [
     MessageService,
-  ]
+    ToastService
+  ],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.scss'
 })
-export class LoginComponent extends BaseComponent{
-  public loginForm : FormGroup
+export class LoginComponent extends BaseComponent implements AfterViewInit{
+  public loginForm : FormGroup;
+  public formSubmitSubject = new Subject<void>();
+  public formSubmit$ = this.formSubmitSubject.asObservable();
   constructor(
     private readonly fb : FormBuilder,
-    private messageService: MessageService
+    private readonly messageService : MessageService,
+    private toastService : ToastService
   ) {
     super();
     this.loginForm = this.fb.group({
-      userName: [,CustomRequiredDirective.required],
-      password: [,CustomRequiredDirective.required]
+      userName: [,Validators.required],
+      password: [,Validators.required]
     })
   }
 
-  show(){
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
+  ngAfterViewInit(): void {
+    this.formSubmit$.pipe(
+      filter(() => {
+        if (this.loginForm.invalid){
+          this.toastService.fail("Vui lòng kiểm tra lại thông tin");
+          return false;
+        }
+        return true;
+      })
+    ).subscribe();
   }
-
 }

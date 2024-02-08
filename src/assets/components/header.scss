@@ -1,39 +1,72 @@
 .app-header {
     background-color: $black-color;
+    color: $white-color;
     height: $header-height;
-    .header-list {
-        height: $header-height;
-        padding: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        a {
-            text-decoration: none;
-            color: $white-color;
-            font-size: 18px;
-            padding: 0 12px;
-        }
-    }
 
     .header-nav-login {
         text-decoration: none;
         color: #ffffffb6;
         font-size: 18px;
         line-height: $header-height;
+        &:hover {
+            color: $white-color;
+        }
+    }
+
+    .app-logo-header {
+        display: flex;
+        align-self: center;
+        font-size: 16px;
     }
 
     .header-search-container {
-        margin-top: 10px;
-        .mat-mdc-form-field {
-            position: relative;
-            width: 230px;
-        }
-        .header-search__icon {
+        position: relative;
+        i {
             z-index: 100;
+            margin-right: 24px;
+            margin-top: calc($header-height/2);
+            transform: translateY(-50%);
+            color:#ffffffaf;
+            font-size: 18px;
+            font-weight: 600;
+            float: right;
+            cursor: pointer;
+            &:hover {
+                color: $white-color;
+            }
+        }
+        .line-right {
             position: absolute;
-            right: 0;
-            bottom: 15px;
-            color: #000;
+            right: 8px;
+            width: 0;
+            border-right: 1px solid #ffffff71;
+            height: 32px;
+            margin-top: calc($header-height/2);
+            transform: translateY(-50%);
+        }
+    }
+
+    .header-cart-container {
+        font-size: 14px;
+        text-transform: uppercase;
+        color:#ffffffaf;
+        margin-top: calc($header-height/2);
+        transform: translateY(-50%);
+        width: fit-content;
+        cursor: pointer;
+        display: flex;
+        .header-cart-text {
+            display: flex;
+            align-self: center;
+            width: fit-content;
+            margin-right: 20px;
+        }
+        i {
+            margin-top: 6px;
+            font-size: 30px;
+        }
+        &:hover {
+            color: $white-color;
         }
     }
 }

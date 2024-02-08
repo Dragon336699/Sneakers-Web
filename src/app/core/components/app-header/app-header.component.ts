@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatIconModule} from '@angular/material/icon'
+import { InputTextModule } from 'primeng/inputtext';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-app-header',
   standalone: true,
-  imports: [MatInputModule,MatFormFieldModule,MatIconModule],
+  imports: [
+    InputTextModule,
+    RouterModule
+  ],
   templateUrl: './app-header.component.html',
   styleUrl: './app-header.component.scss'
 })

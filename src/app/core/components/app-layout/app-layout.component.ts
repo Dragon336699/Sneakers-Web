@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AppHeaderComponent } from '../app-header/app-header.component';
 import {MatInputModule} from '@angular/material/input';
+import { AppNavbarComponent } from '../app-navbar/app-navbar.component';
 
 @Component({
   selector: 'app-app-layout',
@@ -9,7 +10,8 @@ import {MatInputModule} from '@angular/material/input';
   imports: [
     RouterOutlet,
     AppHeaderComponent,
-    MatInputModule
+    MatInputModule,
+    AppNavbarComponent
   ],
   templateUrl: './app-layout.component.html',
   styleUrl: './app-layout.component.scss'

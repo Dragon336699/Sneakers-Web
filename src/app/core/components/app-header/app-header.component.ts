@@ -9,7 +9,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
   imports: [
     InputTextModule,
     RouterModule,
-    OverlayPanelModule
+    OverlayPanelModule,
   ],
   templateUrl: './app-header.component.html',
   styleUrl: './app-header.component.scss'

@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { AppHeaderComponent } from '../app-header/app-header.component';
 import {MatInputModule} from '@angular/material/input';
 import { AppNavbarComponent } from '../app-navbar/app-navbar.component';
+import { AppFooterComponent } from '../app-footer/app-footer.component';
 
 @Component({
   selector: 'app-app-layout',
@@ -11,7 +12,8 @@ import { AppNavbarComponent } from '../app-navbar/app-navbar.component';
     RouterOutlet,
     AppHeaderComponent,
     MatInputModule,
-    AppNavbarComponent
+    AppNavbarComponent,
+    AppFooterComponent
   ],
   templateUrl: './app-layout.component.html',
   styleUrl: './app-layout.component.scss'

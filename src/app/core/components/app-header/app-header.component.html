@@ -1,24 +1,35 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-1 offset-1 header-login-container">
-            <a class="header-nav-login" [routerLink]="['/auth-login']">Đăng nhập</a>
-        </div>
-        <div class="col-lg-1 offset-3 app-logo-header">
-            MY LOGO
-        </div>
-        <div class="col-lg-1 offset-2 header-search-container">
-            <i (click)="op.toggle($event)" class="pi pi-search"></i>
-            <p-overlayPanel #op>
-                <span class="p-input-icon-right">
-                    <i class="pi pi-search"></i>
-                    <input type="text" pInputText/>
-                </span>
-            </p-overlayPanel>
-            <div class="line-right"></div>
-        </div>
-        <div class="col-lg-2 header-cart-container">
-            <p class="header-cart-text">Giỏ hàng</p>
-            <i class="pi pi-shopping-bag"></i>
-        </div>
+  <div class="row">
+    <div class="col-lg-4 col-md-3 col-sm-4 col-6 offset-lg-1 offset-md-1 offset-sm-1">
+      <div class="header-login-container">
+        <a class="header-nav-login" [routerLink]="['/auth-login']">Đăng nhập</a>
+        <span class="ml-2 mr-2" style="margin-left: 5px; margin-right: 5px; ">|</span>
+        <a class="header-nav-login" [routerLink]="['/register']">Đăng kí</a>
+      </div>
     </div>
+
+    <div class="col-lg-2 col-md-2 col-sm-2 col-6 text-center">
+      <div class="app-logo-header justify-content-center"> MY LOGO</div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-5 col-12">
+      <div class="header-search-container">
+        <i (click)="op.toggle($event)" class="pi pi-search"></i>
+        <p-overlayPanel #op>
+          <span class="p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <input type="text" pInputText />
+          </span>
+        </p-overlayPanel>
+        <div class="line-right"></div>
+      </div>
+
+    </div>
+    <div class="col-lg-1 col-md-2 col-sm-1 col-6 text-right">
+      <div class="header-cart-container">
+        <p class="header-cart-text">Giỏ hàng</p>
+        <i class="pi pi-shopping-bag"></i>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,0 +1,75 @@
+// .nav-bar-container {
+//   background-color: $nav-bar-color;
+//   margin-top: -12px;
+//   height: $nav-bar-height;
+//   font-size: 16px;
+
+//   .nav-bar-list {
+//     height: $nav-bar-height;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     height: 100%;
+
+//     .nav-bar-item {
+//       padding: 0 24px;
+//       position: relative;
+
+//       a {
+//         display: block;
+//         height: 100%;
+//         line-height: $nav-bar-height;
+//         text-decoration: none;
+//         color: $black-color;
+//         text-transform: uppercase;
+//         font-weight: 600;
+//         border-bottom: 3px solid transparent;
+
+//         &:hover {
+//           border-bottom: 3px solid #ca2024;
+//         }
+//       }
+//     }
+//   }
+// }
+
+.navbar.navbar-expand-sm.bg-secondary.navbar-dark {
+  background-color: #dbdbdb !important;
+}
+
+.nav-link {
+  color: black !important;
+  font-weight: 600;
+  font-size: 16px;
+  width: auto;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: rgb(145, 39, 39);
+}
+
+.nav-link::after {
+  content: "";
+  height: 5px;
+  width: 80%;
+  background-color: rgb(152, 35, 35);
+  position: absolute;
+  display: block;
+  top: calc(100% + 2px);
+  /* Adjust this value to position the rectangle */
+  transition: height 0.3s ease;
+  opacity: 0;
+}
+
+.nav-link:hover::after {
+  opacity: 1;
+}
+
+.dropdown-menu {
+  display: none;
+}
+
+.dropdown-toggle:hover+.dropdown-menu {
+  display: block;
+}

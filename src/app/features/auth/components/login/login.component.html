@@ -1,24 +1,25 @@
 <div class="container-fluid p-0">
-    <div class="row m-0 d-flex align-items-center">
-        <div class="col-lg-3 col-sm-4 offset-lg-4 offset-sm-2 login-form-container">
-            <!-- <img class="login-logo" src="/src/assets/images/z5126507952479_4523e39e253c486dd6fd48597dcf5a49.jpg" alt="#"> -->
-            <h2 class="login-title">Đăng nhập</h2>
-            <div class="form-group-container">
-                <form class="form-group" [formGroup]="loginForm">
-                    <input type="text" placeholder="Tên đăng nhập" pInputText formControlName="userName"/>
-                    <input type="password" placeholder="Mật khẩu" pInputText formControlName="password"/>
-                </form>
-            </div>
-            <div class="remember-pass d-flex">
-                <p-checkbox class="remember-pass_checkbox" [binary]="true" inputId="binary" value="Ghi nhớ tài khoản này" inputId="remember"></p-checkbox>
-                <label for="remember">Ghi nhớ tài khoản này</label>
-            </div>
-            <p-toast></p-toast>
-            <p-button (click)="formSubmitSubject.next()" class="login__button" label="Đăng nhập" type="submit"></p-button>
-            <div class="no-account-container">
-                <span>Chưa có tài khoản <a [routerLink]="['/register']">Đăng ký</a></span>
-            </div>
-            <p>&copy; 2017–2024</p>
-        </div>
+  <div class="row m-0 d-flex align-items-center">
+    <div class="col-lg-3 col-sm-4 offset-lg-4 offset-sm-2 login-form-container">
+      <!-- <img class="login-logo" src="/src/assets/images/z5126507952479_4523e39e253c486dd6fd48597dcf5a49.jpg" alt="#"> -->
+      <h2 class="login-title">Đăng nhập</h2>
+      <div class="form-group-container">
+        <form class="form-group" [formGroup]="loginForm">
+          <input type="text" placeholder="Tên đăng nhập" pInputText formControlName="userName" />
+          <input type="password" placeholder="Mật khẩu" pInputText formControlName="password" />
+        </form>
+      </div>
+      <div class="remember-pass d-flex">
+        <p-checkbox class="remember-pass_checkbox" [binary]="true" inputId="binary" value="Ghi nhớ tài khoản này"
+          inputId="remember"></p-checkbox>
+        <label for="remember">Ghi nhớ tài khoản này</label>
+      </div>
+      <p-toast></p-toast>
+      <p-button (click)="formSubmitSubject.next()" class="login__button" label="Đăng nhập" type="submit"></p-button>
+      <div class="no-account-container">
+        <span>Chưa có tài khoản <a [routerLink]="['/register']">Đăng ký</a></span>
+      </div>
+      <p>&copy; 2017–2024</p>
     </div>
+  </div>
 </div>

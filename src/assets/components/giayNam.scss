@@ -1,31 +1,31 @@
-.women {
+.men {
   margin-top: 100px;
 }
 
-.women-header .container {
+.men-header .container {
   width: 100%;
   margin: 0 auto;
 }
 
-.women-header_right {
+.men-header_right {
   flex-direction: row !important;
   color: rgb(111, 111, 111);
 }
 
-.women-header_order {
+.men-header_order {
   border: 2px rgb(195, 195, 195) solid;
 }
 
-.women-header_order:hover {
+.men-header_order:hover {
   cursor: pointer;
 }
 
-.women-header_order p {
+.men-header_order p {
   line-height: 10px;
   margin-top: 10px;
 }
 
-.women-header_order_arrow {
+.men-header_order_arrow {
   width: 10px;
   height: 10px;
   transform: rotate(45deg);
@@ -37,13 +37,13 @@
 }
 
 // womeo shoes content
-.women-content-filter {
+.men-content-filter {
   justify-content: flex-start;
   margin-right: 40px;
   margin-top: 50px;
 }
 
-.women-content-filter button {
+.men-content-filter button {
   padding: 10px;
   border-radius: 18px;
   background-color: #908f8f;
@@ -110,26 +110,26 @@
   box-shadow: -407px 0 0 400px #f50;
 }
 
-.women-content-product_table,
-.women-content-post_table {
+.men-content-product_table,
+.men-content-post_table {
   border: 1px rgb(195, 195, 195) solid;
 }
 
-.women-content-product_table .container,
-.women-content-post_table .container {
+.men-content-product_table .container,
+.men-content-post_table .container {
   margin: 10px 0 10px 0;
 }
 
-.women-content-product_table-item:hover,
-.women-content-post_table:hover {
+.men-content-product_table-item:hover,
+.men-content-post_table:hover {
   cursor: pointer;
 }
 
-// .woment-content-product_table-item:hover p {
+// .ment-content-product_table-item:hover p {
 //   color: rgb(239, 106, 106);
 // }
 
-.women-content-shoes {
+.men-content-shoes {
   margin-top: -200px !important;
 }
 

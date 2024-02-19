@@ -3,13 +3,14 @@ import { AppLayoutComponent } from './core/components/app-layout/app-layout.comp
 // import { HomeComponent } from './features/components/home/home.component';
 import { LoginComponent } from './features/auth/components/login/login.component';
 import { RegisterComponent } from './features/register/register.component';
-// import { IntroductionComponent } from './features/components/introduction/introduction.component';
-// import { GiayNuComponent } from './features/components/giay-nu/giay-nu.component';
-// import { PhuKienComponent } from './features/components/phu-kien/phu-kien.component';
-// import { GiayNamComponent } from './features/components/giay-nam/giay-nam.component';
-// import { TreEmComponent } from './features/components/tre-em/tre-em.component';
-// import { NewsComponent } from './features/components/news/news.component';
+import { IntroductionComponent } from './features/components/introduction/introduction.component';
+import { GiayNuComponent } from './features/components/giay-nu/giay-nu.component';
+import { PhuKienComponent } from './features/components/phu-kien/phu-kien.component';
+import { GiayNamComponent } from './features/components/giay-nam/giay-nam.component';
+import { TreEmComponent } from './features/components/tre-em/tre-em.component';
+import { NewsComponent } from './features/components/news/news.component';
 import { ShoppingCartComponent } from './features/components/shopping-cart/shopping-cart.component';
+import { DetailProductComponent } from './features/components/detail-product/detail-product.component';
 
 export const routes: Routes = [
   {
@@ -92,14 +93,24 @@ export const routes: Routes = [
       //   component: NewsComponent
       // },
 
+      // {
+      //   path: '',
+      //   pathMatch: 'full',
+      //   redirectTo: '/shoppingCart'
+      // },
+      // {
+      //   path: 'shoppingCart',
+      //   component: ShoppingCartComponent
+      // },
+
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: '/shoppingCart'
+        redirectTo: '/detailProduct'
       },
       {
-        path: 'shoppingCart',
-        component: ShoppingCartComponent
+        path: 'detailProduct',
+        component: DetailProductComponent
       },
     ]
   }

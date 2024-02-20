@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { AppLayoutComponent } from './core/components/app-layout/app-layout.component';
-// import { HomeComponent } from './features/components/home/home.component';
+import { HomeComponent } from './features/components/home/home.component';
 import { LoginComponent } from './features/auth/components/login/login.component';
 import { RegisterComponent } from './features/register/register.component';
 import { IntroductionComponent } from './features/components/introduction/introduction.component';
@@ -23,90 +23,42 @@ export const routes: Routes = [
     path: '',
     component: AppLayoutComponent,
     children: [
-      // {
-      // path: '',
-      // pathMatch: 'full',
-      // redirectTo: '/Home'
-      // },
-      // {
-      //     path: 'Home',
-      //     component: HomeComponent
-      // },
-
-      // {
-      //   path: '',
-      //   pathMatch: 'full',
-      //   redirectTo: '/Intro'
-      // },
-      // {
-      //   path: 'Intro',
-      //   component: IntroductionComponent
-      // },
-
-      // {
-      //   path: '',
-      //   pathMatch: 'full',
-      //   redirectTo: '/giayNu'
-      // },
-      // {
-      //   path: 'giayNu',
-      //   component: GiayNuComponent
-      // },
-
-      // {
-      //   path: '',
-      //   pathMatch: 'full',
-      //   redirectTo: '/phuKien'
-      // },
-      // {
-      //   path: 'phuKien',
-      //   component: PhuKienComponent
-      // },
-
-      // {
-      //   path: '',
-      //   pathMatch: 'full',
-      //   redirectTo: '/giayNam'
-      // },
-      // {
-      //   path: 'giayNam',
-      //   component: GiayNamComponent
-      // },
-
-      // {
-      //   path: '',
-      //   pathMatch: 'full',
-      //   redirectTo: '/treEm'
-      // },
-      // {
-      //   path: 'treEm',
-      //   component: TreEmComponent
-      // },
-
-      // {
-      //   path: '',
-      //   pathMatch: 'full',
-      //   redirectTo: '/news'
-      // },
-      // {
-      //   path: 'news',
-      //   component: NewsComponent
-      // },
-
-      // {
-      //   path: '',
-      //   pathMatch: 'full',
-      //   redirectTo: '/shoppingCart'
-      // },
-      // {
-      //   path: 'shoppingCart',
-      //   component: ShoppingCartComponent
-      // },
-
       {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: '/detailProduct'
+      path: '',
+      pathMatch: 'full',
+      redirectTo: '/Home'
+      },
+      {
+          path: 'Home',
+          component: HomeComponent
+      },
+      {
+        path: 'Intro',
+        component: IntroductionComponent
+      },
+      {
+        path: 'giayNu',
+        component: GiayNuComponent
+      },
+      {
+        path: 'phuKien',
+        component: PhuKienComponent
+      },
+      {
+        path: 'giayNam',
+        component: GiayNamComponent
+      },
+      {
+        path: 'treEm',
+        component: TreEmComponent
+      },
+      {
+        path: 'news',
+        component: NewsComponent
+      },
+      {
+        path: 'shoppingCart',
+        component: ShoppingCartComponent
       },
       {
         path: 'detailProduct',

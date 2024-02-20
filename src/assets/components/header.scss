@@ -1,5 +1,4 @@
 .app-header {
-<<<<<<< HEAD
   background-color: $black-color;
   color: $white-color;
   // height: calc($header-height + 20px);
@@ -41,19 +40,6 @@
       &:hover {
         color: $white-color;
       }
-=======
-    background-color: $black-color;
-    color: $white-color;
-    // height: $header-height;
-    .header-nav-login {
-        text-decoration: none;
-        color: #ffffffb6;
-        font-size: 18px;
-        line-height: $header-height;
-        &:hover {
-            color: $white-color;
-        }
->>>>>>> 0e6c2719fa1a5c75b389a2b331fa3d08a8b3535d
     }
 
     .line-right {

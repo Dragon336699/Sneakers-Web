@@ -1,6 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { BaseComponent } from '../../../../core/commonComponent/base.component';
-import { FormBuilder, FormGroup, Validators, FormsModule,ReactiveFormsModule  } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -28,26 +28,26 @@ import { Subject, filter } from 'rxjs';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent extends BaseComponent implements AfterViewInit{
-  public loginForm : FormGroup;
+export class LoginComponent extends BaseComponent implements AfterViewInit {
+  public loginForm: FormGroup;
   public formSubmitSubject = new Subject<void>();
   public formSubmit$ = this.formSubmitSubject.asObservable();
   constructor(
-    private readonly fb : FormBuilder,
-    private readonly messageService : MessageService,
-    private toastService : ToastService
+    private readonly fb: FormBuilder,
+    private readonly messageService: MessageService,
+    private toastService: ToastService
   ) {
     super();
     this.loginForm = this.fb.group({
-      userName: [,Validators.required],
-      password: [,Validators.required]
+      userName: [, Validators.required],
+      password: [, Validators.required]
     })
   }
 
   ngAfterViewInit(): void {
     this.formSubmit$.pipe(
       filter(() => {
-        if (this.loginForm.invalid){
+        if (this.loginForm.invalid) {
           this.toastService.fail("Vui lòng kiểm tra lại thông tin");
           return false;
         }

@@ -73,6 +73,14 @@ label.radio {
   margin: 10px;
 }
 
+label.radio:hover {
+  background-color: red;
+}
+
+label.radio:hover span {
+  color: white;
+}
+
 label.radio input {
   position: absolute;
   top: 0;
@@ -109,6 +117,14 @@ label.radio input:checked+span {
 
 .product-actions button {
   margin-right: 10px;
+}
+
+.product-actions i {
+  margin-left: 10px;
+  margin-top: 5px;
+  font-size: 32px;
+  color: red;
+  cursor: pointer;
 }
 
 .border-wrapper {

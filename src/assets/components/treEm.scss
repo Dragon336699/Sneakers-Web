@@ -10,6 +10,9 @@
 .child-header_right {
   flex-direction: row !important;
   color: rgb(111, 111, 111);
+  width: 450px !important;
+  display: flex;
+  justify-content: space-around;
 }
 
 .child-header_order {
@@ -25,18 +28,7 @@
   margin-top: 10px;
 }
 
-.child-header_order_arrow {
-  width: 10px;
-  height: 10px;
-  transform: rotate(45deg);
-  border: solid black;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 3px;
-  margin-bottom: 7px;
-}
-
-// womeo shoes content
+//content
 .child-content-filter {
   justify-content: flex-start;
   margin-right: 40px;
@@ -48,15 +40,36 @@
   border-radius: 18px;
   background-color: #908f8f;
   color: white;
-  width: 80px;
-  height: 40px;
+  width: 60px;
+  height: 30px;
   border: none;
   font-size: large;
+}
+
+.child-content-filter button:hover {
+  background-color: rgb(191, 46, 36);
+}
+
+.child-content-post-item:hover {
+  color: rgb(145, 15, 15) !important;
 }
 
 .card:hover {
   cursor: pointer;
   transform: scale(1.1);
+}
+
+.card-footer>p {
+  font-size: 18px;
+}
+
+.card-title {
+  font-size: 15px !important;
+  font-weight: 500 !important;
+}
+
+.card-footer .card-title {
+  font-size: 14px !important;
 }
 
 #btn-addCart {
@@ -147,5 +160,5 @@
 .page-item a:hover {
   opacity: 0.8;
   background-color: red;
-  color: white;
+  color: white !important;
 }

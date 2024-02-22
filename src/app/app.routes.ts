@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { AppLayoutComponent } from './core/components/app-layout/app-layout.component';
-// import { HomeComponent } from './features/components/home/home.component';
+import { HomeComponent } from './features/components/home/home.component';
 import { LoginComponent } from './features/auth/components/login/login.component';
 import { RegisterComponent } from './features/register/register.component';
 import { IntroductionComponent } from './features/components/introduction/introduction.component';
@@ -11,6 +11,7 @@ import { TreEmComponent } from './features/components/tre-em/tre-em.component';
 import { NewsComponent } from './features/components/news/news.component';
 import { ShoppingCartComponent } from './features/components/shopping-cart/shopping-cart.component';
 import { DetailProductComponent } from './features/components/detail-product/detail-product.component';
+import { ContactComponent } from './features/components/contact/contact.component';
 
 export const routes: Routes = [
   {
@@ -23,15 +24,15 @@ export const routes: Routes = [
     path: '',
     component: AppLayoutComponent,
     children: [
-      // {
-      // path: '',
-      // pathMatch: 'full',
-      // redirectTo: '/Home'
-      // },
-      // {
-      //     path: 'Home',
-      //     component: HomeComponent
-      // },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: '/Home'
+      },
+      {
+        path: 'Home',
+        component: HomeComponent
+      },
 
       // {
       //   path: '',
@@ -103,15 +104,25 @@ export const routes: Routes = [
       //   component: ShoppingCartComponent
       // },
 
-      {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: '/detailProduct'
-      },
-      {
-        path: 'detailProduct',
-        component: DetailProductComponent
-      },
+      // {
+      //   path: '',
+      //   pathMatch: 'full',
+      //   redirectTo: '/detailProduct'
+      // },
+      // {
+      //   path: 'detailProduct',
+      //   component: DetailProductComponent
+      // },
+
+      // {
+      //   path: '',
+      //   pathMatch: 'full',
+      //   redirectTo: '/contact'
+      // },
+      // {
+      //   path: 'contact',
+      //   component: ContactComponent
+      // },
     ]
   }
 ];

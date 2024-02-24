@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ToastService } from '../../../../core/services/toast.service';
 import { Subject, filter } from 'rxjs';
+import { PasswordModule } from 'primeng/password';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -20,6 +21,7 @@ import { Subject, filter } from 'rxjs';
     InputTextModule,
     CheckboxModule,
     RouterModule,
+    PasswordModule
   ],
   providers: [
     MessageService,

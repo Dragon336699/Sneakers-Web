@@ -9,6 +9,7 @@ import { MessageService } from 'primeng/api';
 import { ToastService } from '../../core/services/toast.service';
 import { ToastModule } from 'primeng/toast';
 import { Subject, filter } from 'rxjs';
+import { PasswordModule } from 'primeng/password';
 
 
 @Component({
@@ -19,7 +20,8 @@ import { Subject, filter } from 'rxjs';
     ReactiveFormsModule,
     RouterModule,
     InputTextModule,
-    ToastModule
+    ToastModule,
+    PasswordModule
   ],
   providers: [
     MessageService,
@@ -38,8 +40,12 @@ export class RegisterComponent extends BaseComponent implements AfterViewInit {
   ) {
     super();
     this.registerForm = this.fb.group({
-      userName: [,Validators.required],
-      password: [,Validators.required]
+      phoneNumber: [,Validators.required],
+      password: [,Validators.required],
+      retypePassword: [,Validators.required],
+      fullName: [,Validators.required],
+      date: [,Validators.required],
+      address: [,Validators.required],
     })
   }
 
@@ -48,6 +54,9 @@ export class RegisterComponent extends BaseComponent implements AfterViewInit {
         filter(() => {
           if (this.registerForm.invalid){
             this.toastService.fail("Vui lòng kiểm tra lại thông tin");
+            return false;
+          } else if (this.registerForm.value.password != this.registerForm.value.retypePassword){
+            this.toastService.fail("Mật khẩu chưa khớp với nhau, vui lòng kiểm tra lại");
             return false;
           }
           return true;

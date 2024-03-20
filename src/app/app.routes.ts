@@ -13,13 +13,18 @@ import { ShoppingCartComponent } from './features/components/shopping-cart/shopp
 import { DetailProductComponent } from './features/components/detail-product/detail-product.component';
 import { AuthGuard } from './features/auth/authInterceptor/auth.guard';
 import { ContactComponent } from './features/components/contact/contact.component';
+import { loginGuard } from './features/auth/authInterceptor/login.guard';
 
 export const routes: Routes = [
   {
-    path: 'auth-login', component: LoginComponent
+    path: 'auth-login',
+    component: LoginComponent,
+    canActivate: [loginGuard]
   },
   {
-    path: 'register', component: RegisterComponent
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [loginGuard]
   },
   {
     path: '',

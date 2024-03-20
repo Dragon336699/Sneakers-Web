@@ -4,7 +4,7 @@
       <!-- <img class="login-logo" src="/src/assets/images/z5126507952479_4523e39e253c486dd6fd48597dcf5a49.jpg" alt="#"> -->
       <h2 class="login-title">Đăng nhập</h2>
       <div class="form-group-container">
-        <form class="form-group" [formGroup]="loginForm">
+        <form class="form-group" [formGroup]="loginForm" (keydown.enter)="formSubmitSubject.next()">
           <input type="text" placeholder="Tên đăng nhập" pInputText formControlName="userName" />
           <p-password class="login-password" placeholder="Mật khẩu" [toggleMask]="true" formControlName="password" [feedback]="false"></p-password>
         </form>
@@ -15,7 +15,7 @@
         <label for="remember">Ghi nhớ tài khoản này</label>
       </div>
       <p-toast></p-toast>
-      <p-button (click)="formSubmitSubject.next()" class="login__button" label="Đăng nhập" type="submit"></p-button>
+        <p-button (click)="formSubmitSubject.next()" class="login__button" label="Đăng nhập" type="submit"></p-button>
       <div class="no-account-container">
         <span>Chưa có tài khoản <a [routerLink]="['/register']">Đăng ký</a></span>
       </div>

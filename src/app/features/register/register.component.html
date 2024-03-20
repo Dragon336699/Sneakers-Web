@@ -4,11 +4,11 @@
             <!-- <img class="login-logo" src="/src/assets/images/z5126507952479_4523e39e253c486dd6fd48597dcf5a49.jpg" alt="#"> -->
             <h2 class="login-title">Đăng ký</h2>
             <div class="form-group-container">
-                <form class="form-group" [formGroup]="registerForm">
-                    <input type="text" placeholder="Tên đăng nhập" pInputText formControlName="phoneNumber"/>
+                <form class="form-group" [formGroup]="registerForm" (keydown.enter)="formGroupSubmitSubject.next()">
+                    <input type="text" placeholder="Tên đầy đủ" pInputText formControlName="fullName"/>
+                    <input type="text" placeholder="Số điện thoại" pInputText formControlName="phoneNumber"/>
                     <p-password placeholder="Mật khẩu" [toggleMask]="true" formControlName="password"></p-password>
                     <p-password placeholder="Nhập lại mật khẩu" [toggleMask]="true" formControlName="retypePassword"></p-password>
-                    <input type="text" placeholder="Tên đầy đủ" pInputText formControlName="fullName"/>
                     <input type="date" placeholder="Ngày sinh" pInputText formControlName="date"/>
                     <input type="text" placeholder="Địa chỉ" pInputText formControlName="address"/>
                 </form>

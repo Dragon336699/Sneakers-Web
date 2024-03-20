@@ -24,15 +24,15 @@ export const routes: Routes = [
     path: '',
     component: AppLayoutComponent,
     children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: '/Home'
-      },
-      {
-        path: 'Home',
-        component: HomeComponent
-      },
+      // {
+      //   path: '',
+      //   pathMatch: 'full',
+      //   redirectTo: '/Home'
+      // },
+      // {
+      //   path: 'Home',
+      //   component: HomeComponent
+      // },
 
       // {
       //   path: '',
@@ -44,15 +44,15 @@ export const routes: Routes = [
       //   component: IntroductionComponent
       // },
 
-      // {
-      //   path: '',
-      //   pathMatch: 'full',
-      //   redirectTo: '/giayNu'
-      // },
-      // {
-      //   path: 'giayNu',
-      //   component: GiayNuComponent
-      // },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: '/giayNu'
+      },
+      {
+        path: 'giayNu',
+        component: GiayNuComponent
+      },
 
       // {
       //   path: '',

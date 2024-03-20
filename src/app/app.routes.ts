@@ -11,6 +11,7 @@ import { TreEmComponent } from './features/components/tre-em/tre-em.component';
 import { NewsComponent } from './features/components/news/news.component';
 import { ShoppingCartComponent } from './features/components/shopping-cart/shopping-cart.component';
 import { DetailProductComponent } from './features/components/detail-product/detail-product.component';
+import { AuthGuard } from './features/auth/authInterceptor/auth.guard';
 import { ContactComponent } from './features/components/contact/contact.component';
 
 export const routes: Routes = [
@@ -24,105 +25,52 @@ export const routes: Routes = [
     path: '',
     component: AppLayoutComponent,
     children: [
-      // {
-      //   path: '',
-      //   pathMatch: 'full',
-      //   redirectTo: '/Home'
-      // },
-      // {
-      //   path: 'Home',
-      //   component: HomeComponent
-      // },
-
-      // {
-      //   path: '',
-      //   pathMatch: 'full',
-      //   redirectTo: '/Intro'
-      // },
-      // {
-      //   path: 'Intro',
-      //   component: IntroductionComponent
-      // },
-
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: '/giayNu'
+        redirectTo: '/Home'
+      },
+      {
+        path: 'Home',
+        component: HomeComponent
+      },
+      {
+        path: 'Intro',
+        component: IntroductionComponent
       },
       {
         path: 'giayNu',
         component: GiayNuComponent
       },
-
-      // {
-      //   path: '',
-      //   pathMatch: 'full',
-      //   redirectTo: '/phuKien'
-      // },
-      // {
-      //   path: 'phuKien',
-      //   component: PhuKienComponent
-      // },
-
-      // {
-      //   path: '',
-      //   pathMatch: 'full',
-      //   redirectTo: '/giayNam'
-      // },
-      // {
-      //   path: 'giayNam',
-      //   component: GiayNamComponent
-      // },
-
-      // {
-      //   path: '',
-      //   pathMatch: 'full',
-      //   redirectTo: '/treEm'
-      // },
-      // {
-      //   path: 'treEm',
-      //   component: TreEmComponent
-      // },
-
-      // {
-      //   path: '',
-      //   pathMatch: 'full',
-      //   redirectTo: '/news'
-      // },
-      // {
-      //   path: 'news',
-      //   component: NewsComponent
-      // },
-
-      // {
-      //   path: '',
-      //   pathMatch: 'full',
-      //   redirectTo: '/shoppingCart'
-      // },
-      // {
-      //   path: 'shoppingCart',
-      //   component: ShoppingCartComponent
-      // },
-
-      // {
-      //   path: '',
-      //   pathMatch: 'full',
-      //   redirectTo: '/detailProduct'
-      // },
-      // {
-      //   path: 'detailProduct',
-      //   component: DetailProductComponent
-      // },
-
-      // {
-      //   path: '',
-      //   pathMatch: 'full',
-      //   redirectTo: '/contact'
-      // },
-      // {
-      //   path: 'contact',
-      //   component: ContactComponent
-      // },
+      {
+        path: 'phuKien',
+        component: PhuKienComponent
+      },
+      {
+        path: 'giayNam',
+        component: GiayNamComponent
+      },
+      {
+        path: 'treEm',
+        component: TreEmComponent
+      },
+      {
+        path: 'news',
+        component: NewsComponent
+      },
+      {
+        path: 'shoppingCart',
+        component: ShoppingCartComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'detailProduct',
+        component: DetailProductComponent
+      },
+      {
+        path: 'contact',
+        component: ContactComponent
+      }
     ]
   }
 ];

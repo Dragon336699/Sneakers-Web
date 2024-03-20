@@ -5,10 +5,14 @@ import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ToastService } from '../../../../core/services/toast.service';
-import { Subject, filter } from 'rxjs';
+import { Subject, catchError, filter, of, switchMap, takeUntil, tap } from 'rxjs';
+import { PasswordModule } from 'primeng/password';
+import { UserService } from '../../../../core/services/user.service';
+import { loginDetailDto } from '../../../../core/dtos/login.dto';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -20,6 +24,7 @@ import { Subject, filter } from 'rxjs';
     InputTextModule,
     CheckboxModule,
     RouterModule,
+    PasswordModule,
   ],
   providers: [
     MessageService,
@@ -35,7 +40,9 @@ export class LoginComponent extends BaseComponent implements AfterViewInit {
   constructor(
     private readonly fb: FormBuilder,
     private readonly messageService: MessageService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private userSerivce: UserService,
+    private router: Router
   ) {
     super();
     this.loginForm = this.fb.group({
@@ -52,7 +59,24 @@ export class LoginComponent extends BaseComponent implements AfterViewInit {
           return false;
         }
         return true;
-      })
+      }),
+      switchMap(() => {
+        return this.userSerivce.login({
+          phone_number : this.loginForm.value.userName,
+          password : this.loginForm.value.password,
+        }).pipe(
+          tap((loginVal : loginDetailDto) => {
+            this.toastService.success(loginVal.message);
+            localStorage.setItem("token",loginVal.token);
+            this.router.navigateByUrl("/Home");
+          }),
+          catchError((error) => {
+            this.toastService.fail(error.error.message);
+            return of();
+          })
+        )
+      }),
+      takeUntil(this.destroyed$)
     ).subscribe();
   }
 }

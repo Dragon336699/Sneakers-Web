@@ -12,9 +12,7 @@
         flex-direction: column;
         input {
             padding: 16px 10px;
-        }
-        input:first-child {
-           margin-bottom: 16px;
+            margin-bottom: 16px;
         }
     }
     .login__button{
@@ -26,6 +24,12 @@
             border: $black-color;
             box-shadow: none;
         }
+    }
+    .p-password {
+        width: 100%;
+        input {
+            width: 100%;
+        } 
     }
     .no-account-container {
         margin-top: 8px;

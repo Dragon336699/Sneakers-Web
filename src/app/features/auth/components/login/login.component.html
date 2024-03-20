@@ -6,7 +6,7 @@
       <div class="form-group-container">
         <form class="form-group" [formGroup]="loginForm">
           <input type="text" placeholder="Tên đăng nhập" pInputText formControlName="userName" />
-          <input type="password" placeholder="Mật khẩu" pInputText formControlName="password" />
+          <p-password class="login-password" placeholder="Mật khẩu" [toggleMask]="true" formControlName="password" [feedback]="false"></p-password>
         </form>
       </div>
       <div class="remember-pass d-flex">

@@ -11,6 +11,7 @@ import { TreEmComponent } from './features/components/tre-em/tre-em.component';
 import { NewsComponent } from './features/components/news/news.component';
 import { ShoppingCartComponent } from './features/components/shopping-cart/shopping-cart.component';
 import { DetailProductComponent } from './features/components/detail-product/detail-product.component';
+import { AuthGuard } from './features/auth/authInterceptor/auth.guard';
 
 export const routes: Routes = [
   {
@@ -58,7 +59,8 @@ export const routes: Routes = [
       },
       {
         path: 'shoppingCart',
-        component: ShoppingCartComponent
+        component: ShoppingCartComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'detailProduct',

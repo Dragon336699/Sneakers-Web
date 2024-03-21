@@ -42,11 +42,6 @@
         </li>
 
         <li class="nav-item mx-3">
-          <div class="nav-link" (click)="menu.toggle($event)">Danh mục</div>
-          <p-menu #menu [model]="categories" [popup]="true"></p-menu>
-        </li>
-
-        <li class="nav-item mx-3">
           <a class="nav-link" href="" [routerLink]="['/phuKien']">Phụ kiện khác</a>
         </li>
 
@@ -56,6 +51,11 @@
 
         <li class="nav-item mx-3">
           <a class="nav-link" href="#">Liên hệ</a>
+        </li>
+
+        <li class="nav-item mx-3">
+          <div class="nav-link" (click)="menu.toggle($event)">Tất cả sản phẩm</div>
+          <p-menu #menu [model]="categories" [popup]="true"></p-menu>
         </li>
       </ul>
     </div>

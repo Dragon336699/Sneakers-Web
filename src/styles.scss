@@ -14,6 +14,7 @@
 @import "./assets/components/home.scss";
 @import "./assets/components/header.scss";
 @import "./assets/components/login.scss";
+@import "./assets/components/register.scss";
 @import "./assets/components/nav-bar.scss";
 @import "./assets/components/nav-bar.scss";
 @import "./assets/components/introduction.scss";
@@ -29,20 +30,20 @@
 
 
 // Base
-html { 
-    font-size: 14px; 
-    height: 100%;
-} 
- 
-body { 
-    height: 100%;
-    // font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji'; 
-    font-family: var(--font-family);
-    line-height: 1.5; 
-    margin: 0; 
-    box-sizing: content-box; 
-    padding: 0;
-} 
+html {
+  font-size: 14px;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  // font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+  font-family: var(--font-family);
+  line-height: 1.5;
+  margin: 0;
+  box-sizing: content-box;
+  padding: 0;
+}
 
 body {
   height: 100%;

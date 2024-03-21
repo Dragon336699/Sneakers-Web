@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ButtonModule } from 'primeng/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-app-navbar',
@@ -8,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
   imports: [
     OverlayPanelModule,
     ButtonModule,
+    RouterLink
   ],
   templateUrl: './app-navbar.component.html',
   styleUrl: './app-navbar.component.scss'

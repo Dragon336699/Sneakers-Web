@@ -1,72 +1,40 @@
-<!-- <div class="container-fluid nav-bar-container">
-  <div class="row">
-    <div class="col-lg-8 offset-lg-2">
-      <ul class="nav-bar-list">
-        <li class="nav-bar-item">
-          <a href="">Trang chủ</a>
-        </li>
-        <li class="nav-bar-item">
-          <a href="">Giới thiệu</a>
-        </li>
-        <li class="nav-bar-item">
-          <a href="">Nữ</a>
-        </li>
-        <li class="nav-bar-item">
-          <a href="">Nam</a>
-        </li>
-        <li class="nav-bar-item">
-          <a href="">Trẻ em</a>
-        </li>
-        <li class="nav-bar-item">
-          <a href="">Tin tức</a>
-        </li>
-        <li class="nav-bar-item">
-          <a href="">Liên hệ</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div> -->
-
 <nav class="navbar navbar-expand-sm bg-secondary navbar-dark">
   <div class="container-fluid">
-    <div class="navbar-collapse justify-content-center" id="collapsibleNavbar">
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
       <ul class="navbar-nav">
+        <!-- <div class="navbar-collapse d-flex justify-content-center align-items-center"
+                    id="collapsibleNavbar">
+                    <ul class="navbar-nav text-uppercase fw-bold"> -->
 
         <li class="nav-item mx-3">
-          <a class="nav-link" href="#">Trang chủ</a>
+          <a class="nav-link" aria-current="true" href="#">Trang chủ</a>
         </li>
 
         <li class="nav-item mx-3">
           <a class="nav-link" href="" [routerLink]="['/Intro']">Giới thiệu</a>
         </li>
 
-        <li class="nav-item dropdown mx-3" ngbDropdown>
-          <a class="nav-link dropdown-toggle" href="" id="navbarScrollingDropdown" role="button" [routerLink]="['/giayNu']"
-            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle tabindex="1">Nữ</a>
-          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="navbarScrollingDropdown">
-            <li><a class="dropdown-item" href="#">Áo</a></li>
-            <li><a class="dropdown-item" href="#">Váy</a></li>
-            <li><a class="dropdown-item" href="#">Giày nữ</a></li>
+        <li class="nav-item dropdown mx-3">
+          <a class="nav-link nav-link-drop dropdown-toggle" href="" id="navbarScrollingDropdown" role="button"
+            [routerLink]="['/giayNu']" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nữ</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Classic</a></li>
+            <li><a class="dropdown-item" href="#">Sunbaked</a></li>
+            <li><a class="dropdown-item" href="#">Chucks 70s</a></li>
+            <li><a class="dropdown-item" href="#">One Star</a></li>
+            <li><a class="dropdown-item" href="#">PSY-Kicks</a></li>
           </ul>
-          <!-- <div class="dropdown">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-              Dropdown button
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Link 1</a></li>
-              <li><a class="dropdown-item" href="#">Link 2</a></li>
-              <li><a class="dropdown-item" href="#">Link 3</a></li>
-            </ul>
-          </div> -->
         </li>
 
         <li class="nav-item dropdown mx-3">
-          <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" [routerLink]="['/giayNam']">Nam</a>
+          <a class="nav-link nav-link-drop dropdown-toggle" href="" role="button" data-bs-toggle="dropdown"
+            [routerLink]="['/giayNam']">Nam</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Mũ</a></li>
-            <li><a class="dropdown-item" href="#">Cà vạt</a></li>
-            <li><a class="dropdown-item" href="#">Giày nam</a></li>
+            <li><a class="dropdown-item" href="#">Classic</a></li>
+            <li><a class="dropdown-item" href="#">Sunbaked</a></li>
+            <li><a class="dropdown-item" href="#">Chucks 70s</a></li>
+            <li><a class="dropdown-item" href="#">One Star</a></li>
+            <li><a class="dropdown-item" href="#">PSY-Kicks</a></li>
           </ul>
         </li>
 

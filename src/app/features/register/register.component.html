@@ -1,24 +1,34 @@
 <div class="container-fluid p-0">
-    <div class="row m-0 d-flex align-items-center">
-        <div class="col-lg-3 col-sm-4 offset-lg-4 offset-sm-2 login-form-container">
-            <!-- <img class="login-logo" src="/src/assets/images/z5126507952479_4523e39e253c486dd6fd48597dcf5a49.jpg" alt="#"> -->
-            <h2 class="login-title">Đăng ký</h2>
-            <div class="form-group-container">
-                <form class="form-group" [formGroup]="registerForm">
-                    <input type="text" placeholder="Tên đăng nhập" pInputText formControlName="phoneNumber"/>
-                    <p-password placeholder="Mật khẩu" [toggleMask]="true" formControlName="password"></p-password>
-                    <p-password placeholder="Nhập lại mật khẩu" [toggleMask]="true" formControlName="retypePassword"></p-password>
-                    <input type="text" placeholder="Tên đầy đủ" pInputText formControlName="fullName"/>
-                    <input type="date" placeholder="Ngày sinh" pInputText formControlName="date"/>
-                    <input type="text" placeholder="Địa chỉ" pInputText formControlName="address"/>
-                </form>
-            </div>
-            <p-toast></p-toast>
-            <p-button (click)="formGroupSubmitSubject.next()" class="login__button" label="Đăng ký" type="submit"></p-button>
-            <div class="no-account-container">
-                <span>Đã có tài khoản <a [routerLink]="['/auth-login']">Đăng nhập</a></span>
-            </div>
-            <p>&copy; 2017–2024</p>
+  <div class="row m-0 d-flex align-items-center">
+    <div class="col-lg-3 col-sm-4 offset-lg-4 offset-sm-2 register-form-container">
+      <div class="register-form-container-content">
+        <h2 class="register-title">Đăng ký</h2>
+        <div class="form-group-container">
+          <form class="form-group" [formGroup]="registerForm">
+            <input type="text" placeholder="Tên đăng nhập" pInputText formControlName="phoneNumber" />
+            <p-password placeholder="Mật khẩu" [toggleMask]="true" formControlName="password"></p-password>
+            <p-password placeholder="Nhập lại mật khẩu" [toggleMask]="true"
+              formControlName="retypePassword"></p-password>
+            <input type="text" placeholder="Tên đầy đủ" pInputText formControlName="fullName" />
+            <input type="date" placeholder="Ngày sinh" pInputText formControlName="date" />
+            <input type="text" placeholder="Địa chỉ" pInputText formControlName="address" />
+          </form>
         </div>
+        <p-toast></p-toast>
+        <p-button (click)="formGroupSubmitSubject.next()" class="register__button" label="Đăng ký"
+          type="submit"></p-button>
+        <div class="no-account-container">
+          <span>Đã có tài khoản <a [routerLink]="['/auth-login']">Đăng nhập</a></span>
+        </div>
+        <p>&copy; 2017–2024</p>
+      </div>
+
+      <div class="register-form-container-back">
+        <a [routerLink]="['/Home']">
+          <p>Xem sản phẩm</p>
+          <i class="pi pi-arrow-left"></i>
+        </a>
+      </div>
     </div>
+  </div>
 </div>

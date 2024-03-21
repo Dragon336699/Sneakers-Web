@@ -31,13 +31,13 @@ export const routes: Routes = [
     component: AppLayoutComponent,
     children: [
       {
-      path: '',
-      pathMatch: 'full',
-      redirectTo: '/Home'
+        path: '',
+        pathMatch: 'full',
+        redirectTo: '/Home'
       },
       {
-          path: 'Home',
-          component: HomeComponent
+        path: 'Home',
+        component: HomeComponent
       },
       {
         path: 'Intro',
@@ -72,6 +72,10 @@ export const routes: Routes = [
         path: 'detailProduct',
         component: DetailProductComponent
       },
+      {
+        path: 'contact',
+        component: ContactComponent
+      }
     ]
   }
 ];

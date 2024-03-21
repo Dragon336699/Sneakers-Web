@@ -3,12 +3,14 @@ import { BaseComponent } from '../../core/commonComponent/base.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CustomRequiredDirective } from '../../core/directives/custom-required.directive';
 import { ButtonModule } from 'primeng/button';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageService } from 'primeng/api';
 import { ToastService } from '../../core/services/toast.service';
 import { ToastModule } from 'primeng/toast';
-import { Subject, filter } from 'rxjs';
+import { Subject, catchError, delay, filter, of, switchMap, takeUntil, tap } from 'rxjs';
+import { PasswordModule } from 'primeng/password';
+import { UserService } from '../../core/services/user.service';
 
 
 @Component({
@@ -19,7 +21,8 @@ import { Subject, filter } from 'rxjs';
     ReactiveFormsModule,
     RouterModule,
     InputTextModule,
-    ToastModule
+    ToastModule,
+    PasswordModule
   ],
   providers: [
     MessageService,
@@ -34,12 +37,18 @@ export class RegisterComponent extends BaseComponent implements AfterViewInit {
   public formGroup$ = this.formGroupSubmitSubject.asObservable();
   constructor(
     private readonly fb : FormBuilder,
-    private readonly toastService : ToastService
+    private readonly toastService : ToastService,
+    private readonly userService : UserService,
+    private router : Router
   ) {
     super();
     this.registerForm = this.fb.group({
-      userName: [,Validators.required],
-      password: [,Validators.required]
+      fullName: [,Validators.required],
+      phoneNumber: [,Validators.required],
+      password: [,Validators.required],
+      retypePassword: [,Validators.required],
+      date: [,Validators.required],
+      address: [,Validators.required],
     })
   }
 
@@ -47,11 +56,37 @@ export class RegisterComponent extends BaseComponent implements AfterViewInit {
       this.formGroup$.pipe(
         filter(() => {
           if (this.registerForm.invalid){
-            this.toastService.fail("Vui lòng kiểm tra lại thông tin");
+            this.toastService.fail("Vui lòng điền đầy đủ thông tin");
+            return false;
+          } else if (this.registerForm.value.password != this.registerForm.value.retypePassword){
+            this.toastService.fail("Mật khẩu chưa khớp với nhau, vui lòng kiểm tra lại");
             return false;
           }
           return true;
-        })
+        }),
+        switchMap(() => {
+          return this.userService.register({
+            fullname: this.registerForm.value.fullName,
+            phone_number: this.registerForm.value.phoneNumber,
+            address: this.registerForm.value.address,
+            password: this.registerForm.value.password,
+            retype_password: this.registerForm.value.retypePassword,
+            date_of_birth: this.registerForm.value.date,
+          }).pipe(
+            tap(() => {
+              this.toastService.success("Đăng ký thành công");
+            }),
+            delay(1500),
+            tap(() => {
+              this.router.navigateByUrl('/auth-login')
+            }),
+            catchError((registerError) => {
+              this.toastService.fail(registerError.error.message)
+              return of();
+            })
+          )
+        }),
+        takeUntil(this.destroyed$)
       ).subscribe();
   }
 }

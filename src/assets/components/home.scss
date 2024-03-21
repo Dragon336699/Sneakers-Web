@@ -32,7 +32,12 @@
 
 .card:hover {
   cursor: pointer;
-  transform: scale(1.1);
+  // transform: scale(2);
+}
+
+.card-body span {
+  height: 30px;
+  width: 30px;
 }
 
 .card-footer {
@@ -40,10 +45,32 @@
 }
 
 .card-footer>p {
-  font-size: 20px;
+  font-size: 18px;
+}
+
+.card-title {
+  font-size: 16px !important;
+  font-weight: 500 !important;
 }
 
 .discout-banner {
+  margin: 0 auto;
+  width: 95%;
+  height: 600px;
+}
+
+.discout-banner {
+  position: relative;
+  background: url("../images/discountBanner.jpg") no-repeat;
+  background-size: 100%;
+}
+
+.discount-banner-wrap {
+  background-color: rgba(67, 55, 55, 0.6);
+  position: relative;
+  height: 100%;
+  font-size: 60px;
+  color: white;
   position: relative;
 }
 
@@ -70,7 +97,6 @@
   border-radius: 5px;
   color: #FFFFFF;
   text-align: center;
-  font-size: 17px;
   padding: 16px;
   transition: all 0.5s;
   width: 165px;
@@ -84,29 +110,4 @@
   color: rgb(185, 31, 31);
   background-color: #ffdada;
 
-}
-
-.discount-btn h4 {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 1s;
-}
-
-.discount-btn h4:after {
-  content: '»';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -15px;
-  transition: 0.5s;
-}
-
-.discount-btn:hover h4 {
-  padding-right: 15px;
-}
-
-.discount-btn:hover h4:after {
-  opacity: 1;
-  right: 0;
 }

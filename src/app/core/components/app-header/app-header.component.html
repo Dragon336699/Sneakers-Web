@@ -1,15 +1,25 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-4 col-md-3 col-sm-4 col-6 offset-lg-1 offset-md-1 offset-sm-1">
-      <div class="header-login-container">
-        <a class="header-nav-login" [routerLink]="['/auth-login']">Đăng nhập</a>
-        <span class="ml-2 mr-2" style="margin-left: 5px; margin-right: 5px; ">|</span>
-        <a class="header-nav-login" [routerLink]="['/register']">Đăng kí</a>
-      </div>
+      @if(token == null){
+        <div class="header-login-container">
+          <a class="header-nav-login" [routerLink]="['/auth-login']">Đăng nhập</a>
+          <span class="ml-2 mr-2" style="margin-left: 5px; margin-right: 5px; ">|</span>
+          <a class="header-nav-login" [routerLink]="['/register']">Đăng kí</a>
+        </div>
+      }
+      @else {
+        <div class="header-avtar-container">
+          <p-avatar (click)="menu.toggle($event)" image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" styleClass="mr-2" size="xlarge" shape="circle"></p-avatar>
+          <p-menu #menu [model]="itemsMenuAvatar" [popup]="true"></p-menu>
+        </div>
+      }
     </div>
 
     <div class="col-lg-2 col-md-2 col-sm-2 col-6 text-center">
-      <div class="app-logo-header justify-content-center"> MY LOGO</div>
+      <div class="app-logo-header justify-content-center">
+        <a href="#">MY LOGO</a>
+      </div>
     </div>
 
     <div class="col-lg-4 col-md-4 col-sm-5 col-12">
@@ -23,13 +33,12 @@
         </p-overlayPanel>
         <div class="line-right"></div>
       </div>
-
     </div>
     <div class="col-lg-1 col-md-2 col-sm-1 col-6 text-right">
-      <div class="header-cart-container">
+      <a class="header-cart-container" href="" [routerLink]="['/shoppingCart']">
         <p class="header-cart-text">Giỏ hàng</p>
         <i class="pi pi-shopping-bag"></i>
-      </div>
+      </a>
     </div>
   </div>
 </div>

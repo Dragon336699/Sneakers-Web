@@ -9,9 +9,6 @@ body {
     font-family: var(--font-family);
     line-height: 1.5; 
     margin: 0; 
-} 
- 
-body { 
     box-sizing: content-box; 
     margin: 0;
     padding: 0;
@@ -22,3 +19,11 @@ ul, li {
     margin: 0; 
     padding: 0; 
 } 
+
+a {
+    text-decoration: none;
+}
+
+.text-align-center {
+    text-align: center;
+}

@@ -35,6 +35,7 @@
 
 .navbar.navbar-expand-sm.bg-secondary.navbar-dark {
   background-color: #dbdbdb !important;
+  z-index: 2;
 }
 
 .nav-link {
@@ -46,7 +47,7 @@
 }
 
 .nav-link:hover {
-  color: rgb(145, 39, 39);
+  color: rgb(145, 39, 39) !important;
 }
 
 .nav-link::after {
@@ -66,10 +67,20 @@
   opacity: 1;
 }
 
+.nav-link-nu::after {
+  position: absolute;
+  left: 0px;
+}
+
+.nav-link-nam::after {
+  position: absolute;
+  left: 0px;
+}
+
 .dropdown-menu {
   display: none;
 }
 
-.dropdown-toggle:hover+.dropdown-menu {
-  display: block;
-}
+// .dropdown-toggle:hover+.dropdown-menu {
+//   display: block;
+// }

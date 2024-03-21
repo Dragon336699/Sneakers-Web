@@ -5,7 +5,7 @@
       <div class="login-form-container-content">
         <h2 class="login-title">Đăng nhập</h2>
         <div class="form-group-container">
-          <form class="form-group" [formGroup]="loginForm">
+          <form (keydown.enter)="formSubmitSubject.next()" class="form-group" [formGroup]="loginForm">
             <input type="text" required="" placeholder="Tên đăng nhập" pInputText formControlName="userName" />
             <p-password class="login-password" required="" placeholder="Mật khẩu" [toggleMask]="true"
               formControlName="password" [feedback]="false"></p-password>
@@ -28,11 +28,6 @@
           <p>Xem sản phẩm</p>
           <i class="pi pi-arrow-left"></i>
         </a>
-      </div>
-      <p-toast></p-toast>
-        <p-button (click)="formSubmitSubject.next()" class="login__button" label="Đăng nhập" type="submit"></p-button>
-      <div class="no-account-container">
-        <span>Chưa có tài khoản <a [routerLink]="['/register']">Đăng ký</a></span>
       </div>
       <p>&copy; 2017–2024</p>
     </div>

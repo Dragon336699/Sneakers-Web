@@ -46,7 +46,7 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
           this.signOut();
         }
       }
-    ]
+    ]   
   }
 
   ngAfterViewInit(): void {

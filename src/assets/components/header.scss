@@ -16,14 +16,36 @@
   }
 
   .header-avtar-container {
+
+    p-avatar {
+      position: relative;
+      display: block;
+      height: 50px;
+
+      .p-avatar {
+        background-color: black !important;
+        position: absolute;
+        top: 50%;
+      }
+    }
+
     ul {
       padding-left: 0;
       margin-bottom: 0;
+
       li {
         margin: 4px 0;
+
         a {
           text-decoration: none;
         }
+      }
+    }
+
+    .header-avtar-icon {
+      span {
+        font-size: 23px;
+        cursor: pointer;
       }
     }
   }
@@ -140,3 +162,70 @@
 
   }
 }
+
+@media only screen and (max-width: 575px) {
+
+  .app-logo-header a {
+    margin-top: 0px;
+    margin-left: -200px;
+  }
+
+  .header-right {
+    position: absolute;
+  }
+
+  .header-search-container {
+    position: absolute;
+  }
+
+  .header-search-container i {
+    transform: translate(-110px, -5px) !important;
+  }
+
+  .line-right {
+    display: none;
+  }
+
+  .header-cart-container {
+    position: absolute !important;
+    top: 0px;
+    right: 15px;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .header-login-container {
+    margin-left: -10px;
+  }
+
+  .app-logo-header a {
+    margin-top: -16px;
+  }
+
+  .header-search-container i {
+    transform: translate(-110px, -5px) !important;
+  }
+
+  .line-right {
+    display: none;
+  }
+
+  .header-cart-container {
+    position: absolute !important;
+    top: 0px;
+    right: 15px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .app-logo-header {
+    margin-top: 0 !important;
+    margin-left: 120px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+
+@media only screen and (min-width: 1200px) and (max-width: 1400px) {}
+
+@media only screen and (min-width: 1401px) and (max-width: 1899px) {}

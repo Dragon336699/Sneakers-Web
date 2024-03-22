@@ -14,34 +14,6 @@
           <a class="nav-link" href="" [routerLink]="['/Intro']">Giới thiệu</a>
         </li>
 
-        <li class="nav-item dropdown mx-3">
-          <a class="nav-link nav-link-drop dropdown-toggle" href="" id="navbarScrollingDropdown" role="button"
-            [routerLink]="['/giayNu']" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nữ</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Classic</a></li>
-            <li><a class="dropdown-item" href="#">Sunbaked</a></li>
-            <li><a class="dropdown-item" href="#">Chucks 70s</a></li>
-            <li><a class="dropdown-item" href="#">One Star</a></li>
-            <li><a class="dropdown-item" href="#">PSY-Kicks</a></li>
-          </ul>
-        </li>
-
-        <li class="nav-item dropdown mx-3">
-          <a class="nav-link nav-link-drop dropdown-toggle" href="" role="button" data-bs-toggle="dropdown"
-            [routerLink]="['/giayNam']">Nam</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Classic</a></li>
-            <li><a class="dropdown-item" href="#">Sunbaked</a></li>
-            <li><a class="dropdown-item" href="#">Chucks 70s</a></li>
-            <li><a class="dropdown-item" href="#">One Star</a></li>
-            <li><a class="dropdown-item" href="#">PSY-Kicks</a></li>
-          </ul>
-        </li>
-
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="" [routerLink]="['/treEm']">Trẻ em</a>
-        </li>
-
         <li class="nav-item mx-3">
           <a class="nav-link" href="" [routerLink]="['/phuKien']">Phụ kiện khác</a>
         </li>
@@ -52,6 +24,11 @@
 
         <li class="nav-item mx-3">
           <a class="nav-link" href="#">Liên hệ</a>
+        </li>
+
+        <li class="nav-item mx-3">
+          <div class="nav-link" (click)="menu.toggle($event)">Tất cả sản phẩm</div>
+          <p-menu #menu [model]="categories" [popup]="true"></p-menu>
         </li>
       </ul>
     </div>

@@ -20,6 +20,7 @@
 
 .nav-link:hover {
   color: rgb(145, 39, 39) !important;
+  cursor: pointer;
 }
 
 .nav-link.active {
@@ -132,3 +133,19 @@
     opacity: 1;
   }
 }
+
+@media only screen and (max-width: 575px) {}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {}
+
+@media only screen and (min-width: 768px) and (max-width: 850px) {
+  nav {
+    margin-top: -20px;
+  }
+}
+
+@media only screen and (min-width: 851px) and (max-width: 1199px) {}
+
+@media only screen and (min-width: 1200px) and (max-width: 1400px) {}
+
+@media only screen and (min-width: 1401px) and (max-width: 1899px) {}

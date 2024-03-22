@@ -44,26 +44,6 @@ export const routes: Routes = [
         component: IntroductionComponent
       },
       {
-        path: 'giayNu',
-        component: GiayNuComponent
-      },
-      {
-        path: 'phuKien',
-        component: PhuKienComponent
-      },
-      {
-        path: 'giayNam',
-        component: GiayNamComponent
-      },
-      {
-        path: 'treEm',
-        component: TreEmComponent
-      },
-      {
-        path: 'news',
-        component: NewsComponent
-      },
-      {
         path: 'shoppingCart',
         component: ShoppingCartComponent,
         canActivate: [AuthGuard]

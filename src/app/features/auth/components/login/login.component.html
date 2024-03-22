@@ -6,7 +6,7 @@
         <h2 class="login-title">Đăng nhập</h2>
         <div class="form-group-container">
           <form (keydown.enter)="formSubmitSubject.next()" class="form-group" [formGroup]="loginForm">
-            <input type="text" required="" placeholder="Tên đăng nhập" pInputText formControlName="userName" />
+            <input pInputText pKeyFilter="int" required="" placeholder="Số điện thoại" formControlName="userName" />
             <p-password class="login-password" required="" placeholder="Mật khẩu" [toggleMask]="true"
               formControlName="password" [feedback]="false"></p-password>
           </form>

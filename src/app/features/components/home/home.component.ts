@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CarouselModule } from 'primeng/carousel';
+import { BaseComponent } from '../../../core/commonComponent/base.component';
 
 @Component({
   selector: 'app-home',

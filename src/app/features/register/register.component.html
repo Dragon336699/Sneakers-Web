@@ -5,7 +5,7 @@
         <h2 class="register-title">Đăng ký</h2>
         <div class="form-group-container">
           <form (keydown.enter)="formGroupSubmitSubject.next()" class="form-group" [formGroup]="registerForm">
-            <input type="text" placeholder="Tên đăng nhập" pInputText formControlName="phoneNumber" />
+            <input pKeyFilter="int" type="text" placeholder="Số điện thoại" pInputText formControlName="phoneNumber" />
             <p-password placeholder="Mật khẩu" [toggleMask]="true" formControlName="password"></p-password>
             <p-password placeholder="Nhập lại mật khẩu" [toggleMask]="true"
               formControlName="retypePassword"></p-password>

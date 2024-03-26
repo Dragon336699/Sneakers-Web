@@ -10,7 +10,10 @@
       }
       @else {
       <div class="header-avtar-container">
-        <span (click)="menu.toggle($event)" (ngModel)="userName">{{userName}}</span>
+        <p-avatar (click)="menu.toggle($event)">
+          <div class="header-avtar-icon"><span class="pi pi-user"></span></div>
+          <div class="header-avtar-name"></div>
+        </p-avatar>
         <p-menu #menu [model]="itemsMenuAvatar" [popup]="true"></p-menu>
       </div>
       }
@@ -22,7 +25,7 @@
       </div>
     </div>
 
-    <div class="col-lg-3 col-md-4 col-sm-5 col-12">
+    <div class="col-lg-3 col-md-4 col-sm-5 col-12 header-right">
       <div class="header-search-container">
         <i (click)="op.toggle($event)" class="pi pi-search"></i>
         <p-overlayPanel #op>

@@ -23,18 +23,18 @@ import { CategoriesDto } from '../../dtos/categories.dto';
 })
 export class AppNavbarComponent extends BaseComponent implements OnInit {
   categories: MenuItem[] = [];
-constructor(
-  private categoriesService : CategoriesService,
-  private readonly router : Router
-) {
-  super();
-}
+  constructor(
+    private categoriesService: CategoriesService,
+    private readonly router: Router
+  ) {
+    super();
+  }
 
-ngOnInit(): void {
+  ngOnInit(): void {
     this.categoriesService.getCategories().pipe(
-      filter((categoriesVal : CategoriesDto[]) => !!categoriesVal),
-      tap((categoriesVal : CategoriesDto[]) => {
-        categoriesVal.forEach((element : CategoriesDto) => {
+      filter((categoriesVal: CategoriesDto[]) => !!categoriesVal),
+      tap((categoriesVal: CategoriesDto[]) => {
+        categoriesVal.forEach((element: CategoriesDto) => {
           this.categories?.push({
             label: `${element.name}`,
             command: () => {
@@ -48,9 +48,9 @@ ngOnInit(): void {
       }),
       takeUntil(this.destroyed$)
     ).subscribe()
-}
+  }
 
-  navigateToCategory(categoryName : string){
+  navigateToCategory(categoryName: string) {
     this.router.navigateByUrl(`/Category/${categoryName}`)
   }
 }

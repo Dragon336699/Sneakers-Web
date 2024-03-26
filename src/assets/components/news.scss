@@ -58,9 +58,18 @@
   background-color: #e9e9e9;
 }
 
+.card {
+  border: none !important;
+}
+
 .card:hover {
   cursor: pointer;
+  border: 1px solid rgb(214, 214, 214) !important;
   transform: scale(1.1);
+}
+
+.card:hover .card-footer p {
+  color: rgb(132, 13, 13) !important;
 }
 
 .card-body__date {
@@ -140,6 +149,7 @@
 .news-content-post_table:hover {
   cursor: pointer;
 }
+
 
 // .newst-content-product_table-item:hover p {
 //   color: rgb(239, 106, 106);

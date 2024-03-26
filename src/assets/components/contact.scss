@@ -90,7 +90,7 @@
   line-height: 40px;
   font-size: 16px;
   padding-left: 15px;
-  width: 308px;
+  width: 100%;
 }
 
 .footer-letter-info-note textarea {
@@ -110,3 +110,23 @@
   font-size: 20px;
   line-height: 25px;
 }
+
+@media only screen and (max-width: 575px) {
+  // .footer-letter-info div input {
+  //   width: 265px !important;
+  // }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .contact-content div .row .footer-address-container {
+    margin-left: 190px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+
+@media only screen and (min-width: 1200px) and (max-width: 1400px) {}
+
+@media only screen and (min-width: 1401px) and (max-width: 1899px) {}

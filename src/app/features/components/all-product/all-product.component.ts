@@ -7,6 +7,8 @@ import { DataViewModule } from 'primeng/dataview';
 import { DropdownModule } from 'primeng/dropdown';
 import { MenuItem } from 'primeng/api';
 import { FormsModule } from "@angular/forms"; 
+import { DetailProductService } from '../../../core/services/detail-product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-product',
@@ -26,7 +28,9 @@ export class AllProductComponent extends BaseComponent implements OnInit{
   public sortField!: string;
   
   constructor(
-    private productService : ProductService
+    private productService : ProductService,
+    private detailProductService : DetailProductService,
+    private router : Router
   ) {
     super();
   }
@@ -54,6 +58,10 @@ export class AllProductComponent extends BaseComponent implements OnInit{
       this.sortOrder = 1;
       this.sortField = value;
     }
-    
+  }
+
+  navigateToDetail(productId : number){
+    this.detailProductService.setId(productId);
+    this.router.navigateByUrl(`/detailProduct/${productId}`);
   }
 }

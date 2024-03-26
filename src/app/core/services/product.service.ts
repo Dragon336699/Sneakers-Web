@@ -16,4 +16,8 @@ export class ProductService {
   getAllProduct(){
     return this.httpClient.get<{ products: ProductDto[], totalPage: number }>(`${this.apiUrl}products`);
   }
+
+  getProductById(id : string){
+    return this.httpClient.get<ProductDto>(`${this.apiUrl}products/${id}`);
+  }
 }

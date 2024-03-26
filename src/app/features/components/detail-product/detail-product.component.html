@@ -1,6 +1,6 @@
 <div class="container">
   <div class="intro-section">
-    <h4><span class="text-secondary">Giày | Basas | </span> Workaday - High Top</h4>
+    <h4><span class="text-secondary">Giày | Basas | </span> {{mainProduct.name}}</h4>
     <div style="width: 100%; height: 2.5px; background-color: black;"></div>
   </div>
   <div class=" row">
@@ -8,83 +8,29 @@
 
       <!-- main image -->
       <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="square-image">
-              <img src="../../../../assets/images/bl2.jpg" alt="balo" class="product-image">
+        <p-galleria [value]="images" [numVisible]="5" [circular]="true" [showItemNavigators]="true" [responsiveOptions]="responsiveOptions" [containerStyle]="{ 'max-width': '640px' }">
+          <ng-template pTemplate="item" let-item>
+              <img [src]="'http://localhost:8089/api/v1/products/images/' + item.imageUrl" style="width: 100%; display: block;" />
+          </ng-template>
+          <ng-template pTemplate="thumbnail" let-item>
+            <div class="grid grid-nogutter justify-content-center">
+                <img [src]="'http://localhost:8089/api/v1/products/images/' + item.imageUrl" style="display: block; width: 80%" />
             </div>
-          </div>
-
-          <div class="carousel-item">
-            <div class="square-image">
-              <img src="../../../../assets/images/bl2.jpg" alt="balo" class="product-image">
-            </div>
-          </div>
-
-          <div class="carousel-item">
-            <div class="square-image">
-              <img src="../../../../assets/images/bl2.jpg" alt="balo" class="product-image">
-            </div>
-          </div>
-
-          <div class="carousel-item">
-            <div class="square-image">
-              <img src="../../../../assets/images/bl2.jpg" alt="balo" class="product-image">
-            </div>
-          </div>
-
-          <div class="carousel-item">
-            <div class="square-image">
-              <img src="../../../../assets/images/bl2.jpg" alt="balo" class="product-image">
-            </div>
-          </div>
-        </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-ride="#carouselExample" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-ride="#carouselExample" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+        </ng-template>
+      </p-galleria>
       </div>
-
-      <!-- small images -->
-      <div class="row my-3">
-        <div class="thumbnail-container">
-          <div class="thumbnail-item active">
-            <img src="../../../../assets/images/bl2.jpg" alt="balo" class="thumbnail-image">
-          </div>
-
-          <div class="thumbnail-item">
-            <img src="../../../../assets/images/bl1.jpg" alt="balo" class="thumbnail-image">
-          </div>
-
-          <div class="thumbnail-item">
-            <img src="../../../../assets/images/bl2.jpg" alt="balo" class="thumbnail-image">
-          </div>
-
-          <div class="thumbnail-item">
-            <img src="../../../../assets/images/bl3.jpg" alt="balo" class="thumbnail-image">
-          </div>
-
-          <div class="thumbnail-item">
-            <img src="../../../../assets/images/bl2.jpg" alt="balo" class="thumbnail-image">
-          </div>
-        </div>
-      </div>
+      
     </div>
 
     <!-- details -->
     <div class="col-md-6">
       <div class="mt-4 mb-3 position-relative">
-        <h2 class="text-uppercase fw-bold my-4">BASAS WORKADAY - HIGH TOP - BLACK</h2>
+        <h2 class="text-uppercase fw-bold my-4">{{mainProduct.name}}</h2>
         <p class="my-4">Mã sản phẩm: <span class="text-dark fw-bold">AV00152</span></p>
         <p class="my-4 position-absolute" style="top:27%; left: 60%">Tình trạng:
           <span class="text-dark fw-bold">New Arival</span>
         </p>
-        <h2 class="text-danger my-4">740.000 VND</h2>
+        <h2 class="text-danger my-4">{{mainProduct.price}}</h2>
       </div>
 
       <hr>
@@ -99,18 +45,7 @@
       <hr>
 
       <h2 class="my-4">Thông tin chi tiết sản phẩm</h2>
-      <p class="about mb-4" style="font-size: 16px;">Shop from a wide range of t-shirt from orianz. Pefect for your
-        everyday
-        use, you could
-        pair it
-        with a stylish pair of jeans or trousers complete the look.Lorem ipsum dolor sit amet consectetur
-        adipisicing
-        elit. Ab facere explicabo enim ea soluta laborum aperiam tempore.
-        pair it
-        with a stylish pair of jeans or trousers complete the look.Lorem ipsum dolor sit amet consectetur
-        adipisicing
-        elit. Ab facere explicabo enim ea soluta laborum aperiam tempore.
-      </p>
+      <p class="about mb-4" style="font-size: 16px;">{{mainProduct.description}}</p>
 
       <hr>
 
@@ -148,9 +83,8 @@
         <h5>Số lượng</h5>
         <div class="product-quantity">
           <div class="border-wrapper">
-            <button>-</button>
-            <input type="text" value="1">
-            <button>+</button>
+            <p-inputNumber [min]="1" [(ngModel)]="quantity" buttonLayout="horizontal" inputId="horizontal" [showButtons]="true" decrementButtonClass="p-button-secondary"
+            incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
           </div>
         </div>
         <div class="product-actions">

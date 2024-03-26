@@ -14,6 +14,7 @@ import { DetailProductComponent } from './features/components/detail-product/det
 import { AuthGuard } from './features/auth/authInterceptor/auth.guard';
 import { ContactComponent } from './features/components/contact/contact.component';
 import { loginGuard } from './features/auth/authInterceptor/login.guard';
+import { AllProductComponent } from './features/components/all-product/all-product.component';
 
 export const routes: Routes = [
   {
@@ -44,6 +45,26 @@ export const routes: Routes = [
         component: IntroductionComponent
       },
       {
+        path: 'giayNu',
+        component: GiayNuComponent
+      },
+      {
+        path: 'phuKien',
+        component: PhuKienComponent
+      },
+      {
+        path: 'giayNam',
+        component: GiayNamComponent
+      },
+      {
+        path: 'treEm',
+        component: TreEmComponent
+      },
+      {
+        path: 'news',
+        component: NewsComponent
+      },
+      {
         path: 'shoppingCart',
         component: ShoppingCartComponent,
         canActivate: [AuthGuard]
@@ -51,6 +72,10 @@ export const routes: Routes = [
       {
         path: 'detailProduct',
         component: DetailProductComponent
+      },
+      {
+        path: 'allProduct',
+        component: AllProductComponent
       },
       {
         path: 'contact',

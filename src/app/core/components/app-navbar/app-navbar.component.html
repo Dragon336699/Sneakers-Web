@@ -19,11 +19,11 @@
         </li>
 
         <li class="nav-item mx-3">
-          <a class="nav-link" href="#">Liên hệ</a>
+          <a class="nav-link" href="" [routerLink]="['/contact']">Liên hệ</a>
         </li>
 
         <li class="nav-item mx-3">
-          <div class="nav-link" (click)="menu.toggle($event)">Tất cả sản phẩm</div>
+          <a class="nav-link" href="" [routerLink]="['/allProduct']" (click)="menu.toggle($event)">Tất cả sản phẩm</a>
           <p-menu #menu [model]="categories" [popup]="true"></p-menu>
         </li>
       </ul>

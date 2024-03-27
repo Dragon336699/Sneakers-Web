@@ -47,7 +47,7 @@
                   <p-dataView #dv [value]="productsHighlight">
                     <ng-template pTemplate="list" let-products>
                       @for(item of productsHighlight;track item){
-                        <div class="row align-items-center justify-content-center men-content-product_table-item">
+                        <div (click)="navigateToDetail(item.id)" class="row align-items-center justify-content-center men-content-product_table-item">
                           <div class="col-4">
                             <img [src]="'http://localhost:8089/api/v1/products/images/' + item.thumbnail" alt="giaycv" class="img-fluid"
                               style="margin-left: 10px;">

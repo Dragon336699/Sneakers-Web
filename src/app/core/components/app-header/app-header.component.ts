@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { BaseComponent } from '../../commonComponent/base.component';
 import { AvatarModule } from 'primeng/avatar';
@@ -8,6 +8,9 @@ import { MenuItem } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
 import { UserService } from '../../services/user.service';
 import { filter, takeUntil, tap } from 'rxjs';
+import { MessageService } from 'primeng/api';
+import { ToastService } from '../../services/toast.service';
+
 @Component({
   selector: 'app-app-header',
   standalone: true,
@@ -18,6 +21,10 @@ import { filter, takeUntil, tap } from 'rxjs';
     AvatarModule,
     MenuModule
   ],
+  providers: [
+    MessageService,
+    ToastService
+  ],
   templateUrl: './app-header.component.html',
   styleUrl: './app-header.component.scss'
 })
@@ -26,7 +33,10 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
   public itemsMenuAvatar: MenuItem[] | undefined;
   public userName : string | undefined;
   constructor(
-    private userService : UserService
+    private userService : UserService,
+    private router : Router,
+    private readonly messageService: MessageService,
+    private toastService: ToastService,
   ) {
     super();
     if (typeof localStorage !== 'undefined') {
@@ -71,5 +81,9 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
   signOut(){
     localStorage.removeItem("token");
     window.location.reload();
+  }
+
+  goToCart(){
+    
   }
 }

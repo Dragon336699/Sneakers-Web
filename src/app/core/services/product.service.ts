@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { ProductDto } from '../dtos/product.dto';
+import { ProductPageDto } from '../dtos/productPageDto.dto';
+import { AllProductDto } from '../dtos/AllProduct.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +15,8 @@ export class ProductService {
     private httpClient : HttpClient
   ) { }
 
-  getAllProduct(){
-    return this.httpClient.get<{ products: ProductDto[], totalPage: number }>(`${this.apiUrl}products`);
+  getAllProduct(pageALimit : ProductPageDto){
+    return this.httpClient.get<AllProductDto>(`${this.apiUrl}products?page=${pageALimit.page}&limit=${pageALimit.limit}`);
   }
 
   getProductById(id : string){

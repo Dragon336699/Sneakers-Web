@@ -9,6 +9,9 @@ import { MenuItem } from 'primeng/api';
 import { FormsModule } from "@angular/forms"; 
 import { DetailProductService } from '../../../core/services/detail-product.service';
 import { Router } from '@angular/router';
+import { PaginatorModule } from 'primeng/paginator';
+import { AllProductDto } from '../../../core/dtos/AllProduct.dto';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-all-product',
@@ -17,6 +20,8 @@ import { Router } from '@angular/router';
     DataViewModule,
     DropdownModule,
     FormsModule,
+    PaginatorModule,
+    CurrencyPipe
   ],
   templateUrl: './all-product.component.html',
   styleUrl: './all-product.component.scss'
@@ -24,6 +29,8 @@ import { Router } from '@angular/router';
 export class AllProductComponent extends BaseComponent implements OnInit{
   public products : ProductDto[] = [];
   public sortOptions : MenuItem[] = [];
+  public productsHighlight : ProductDto[] = [];
+  public totalRecord !: number;
   public sortOrder!: number;
   public sortField!: string;
   
@@ -40,10 +47,16 @@ export class AllProductComponent extends BaseComponent implements OnInit{
         {label : 'Giá từ thấp đến cao' , value: 'price'},
         {label : 'Giá từ cao đến thấp' , value: '!price'},
       ]
-      this.productService.getAllProduct().pipe(
-        filter((product : { products: ProductDto[], totalPage: number }) => !!product),
-        tap((product : { products: ProductDto[], totalPage: number }) => {
+
+      this.productService.getAllProduct({
+        page: 1,
+        limit : 12
+      }).pipe(
+        filter((product : AllProductDto) => !!product),
+        tap((product : AllProductDto) => {
           this.products = product.products;
+          this.productsHighlight = product.products.slice(0,5);
+          this.totalRecord = product.totalProducts;
         }),
         takeUntil(this.destroyed$)
       ).subscribe()
@@ -63,5 +76,22 @@ export class AllProductComponent extends BaseComponent implements OnInit{
   navigateToDetail(productId : number){
     this.detailProductService.setId(productId);
     this.router.navigateByUrl(`/detailProduct/${productId}`);
+  }
+
+  addToCart(event : Event){
+    event.stopPropagation();
+  }
+
+  onPageChange(event : any){
+    this.productService.getAllProduct({
+      page: (event.page) + 1,
+      limit : 12
+    }).pipe(
+      filter((product : AllProductDto) => !!product),
+      tap((product : AllProductDto) => {
+        this.products = product.products;
+      }),
+      takeUntil(this.destroyed$)
+    ).subscribe()
   }
 }

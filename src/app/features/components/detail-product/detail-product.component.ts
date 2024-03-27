@@ -7,6 +7,7 @@ import { ProductDto } from '../../../core/dtos/product.dto';
 import { GalleriaModule } from 'primeng/galleria';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FormsModule } from '@angular/forms';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-detail-product',
@@ -14,7 +15,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     GalleriaModule,
     InputNumberModule,
-    FormsModule
+    FormsModule,
+    CurrencyPipe
   ],
   templateUrl: './detail-product.component.html',
   styleUrl: './detail-product.component.scss'
@@ -53,7 +55,6 @@ export class DetailProductComponent extends BaseComponent implements OnInit {
       this.productService.getProductById(this.id).pipe(
         filter((product : ProductDto) => !!product),
         tap((product : ProductDto) => {
-          console.log(product);
           this.mainProduct = product;
           this.images = product.product_images;
         }),

@@ -1,13 +1,13 @@
-.child {
+.allProduct {
   margin-top: 100px;
 }
 
-.child-header .container {
+.allProduct-header .container {
   width: 100%;
   margin: 0 auto;
 }
 
-.child-header_right {
+.allProduct-header_right {
   flex-direction: row !important;
   color: rgb(111, 111, 111);
   width: 450px !important;
@@ -15,27 +15,28 @@
   justify-content: space-around;
 }
 
-.child-header_order {
-  border: 2px rgb(195, 195, 195) solid;
+.allProduct-header_order {
+  border: 1px rgb(195, 195, 195) solid;
+  padding: 5px 0px;
 }
 
-.child-header_order:hover {
+.allProduct-header_order:hover {
   cursor: pointer;
 }
 
-.child-header_order p {
+.allProduct-header_order p {
   line-height: 10px;
   margin-top: 10px;
 }
 
-//content
-.child-content-filter {
+// allProduct shoes content
+.allProduct-content-filter {
   justify-content: flex-start;
   margin-right: 40px;
   margin-top: 50px;
 }
 
-.child-content-filter button {
+.allProduct-content-filter button {
   padding: 10px;
   border-radius: 18px;
   background-color: #908f8f;
@@ -46,11 +47,11 @@
   font-size: large;
 }
 
-.child-content-filter button:hover {
+.allProduct-content-filter button:hover {
   background-color: rgb(191, 46, 36);
 }
 
-.child-content-post-item:hover {
+.allProduct-content-post-item:hover {
   color: rgb(145, 15, 15) !important;
 }
 
@@ -123,26 +124,26 @@
   box-shadow: -407px 0 0 400px #f50;
 }
 
-.child-content-product_table,
-.child-content-post_table {
+.allProduct-content-product_table,
+.allProduct-content-post_table {
   border: 1px rgb(195, 195, 195) solid;
 }
 
-.child-content-product_table .container,
-.child-content-post_table .container {
+.allProduct-content-product_table .container,
+.allProduct-content-post_table .container {
   margin: 10px 0 10px 0;
 }
 
-.child-content-product_table-item:hover,
-.child-content-post_table:hover {
+.allProduct-content-product_table-item:hover,
+.allProduct-content-post_table:hover {
   cursor: pointer;
 }
 
-// .childt-content-product_table-item:hover p {
-//   color: rgb(239, 106, 106);
-// }
+.allProduct-content-product_table-item:hover .col-8 p {
+  color: rgb(151, 22, 22) !important;
+}
 
-.child-content-shoes {
+.allProduct-content-shoes {
   margin-top: -200px !important;
 }
 

@@ -11,6 +11,7 @@ import { ToastModule } from 'primeng/toast';
 import { Subject, catchError, delay, filter, of, switchMap, takeUntil, tap } from 'rxjs';
 import { PasswordModule } from 'primeng/password';
 import { UserService } from '../../core/services/user.service';
+import { KeyFilterModule } from 'primeng/keyfilter';
 
 
 @Component({
@@ -22,7 +23,8 @@ import { UserService } from '../../core/services/user.service';
     RouterModule,
     InputTextModule,
     ToastModule,
-    PasswordModule
+    PasswordModule,
+    KeyFilterModule
   ],
   providers: [
     MessageService,

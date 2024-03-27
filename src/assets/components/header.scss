@@ -56,6 +56,14 @@
     margin-top: 18px;
     font-size: 25px;
     cursor: pointer;
+
+    a img {
+      z-index: 3;
+      display: block;
+      position: relative;
+      transform: translateX(10px);
+      width: 300px;
+    }
   }
 
   .header-search-container {
@@ -190,6 +198,11 @@
     position: absolute !important;
     top: 0px;
     right: 15px;
+  }
+
+  .img-fluid {
+    width: 130px !important;
+    transform: translateX(-40px) !important;
   }
 }
 

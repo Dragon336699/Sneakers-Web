@@ -1,11 +1,16 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { BaseComponent } from '../../commonComponent/base.component';
 import { AvatarModule } from 'primeng/avatar';
 import { MenuItem } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
+import { UserService } from '../../services/user.service';
+import { filter, takeUntil, tap } from 'rxjs';
+import { MessageService } from 'primeng/api';
+import { ToastService } from '../../services/toast.service';
+
 @Component({
   selector: 'app-app-header',
   standalone: true,
@@ -16,13 +21,23 @@ import { MenuModule } from 'primeng/menu';
     AvatarModule,
     MenuModule
   ],
+  providers: [
+    MessageService,
+    ToastService
+  ],
   templateUrl: './app-header.component.html',
   styleUrl: './app-header.component.scss'
 })
 export class AppHeaderComponent extends BaseComponent implements AfterViewInit,OnInit{
   public token: string | null = null;
   public itemsMenuAvatar: MenuItem[] | undefined;
-  constructor() {
+  public userName : string | undefined;
+  constructor(
+    private userService : UserService,
+    private router : Router,
+    private readonly messageService: MessageService,
+    private toastService: ToastService,
+  ) {
     super();
     if (typeof localStorage !== 'undefined') {
       this.token = localStorage.getItem('token');
@@ -30,6 +45,16 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
   }
 
   ngOnInit(): void {
+    if (this.token != null){
+      this.userService.getInforUser(this.token).pipe(
+        filter((userInfo) => !!userInfo),
+        tap((userInfo) => {
+          this.userName = userInfo.fullname;
+        }),
+        takeUntil(this.destroyed$)
+      ).subscribe()
+    }
+
     this.itemsMenuAvatar = [
       {
         label: 'Your Profile',
@@ -56,5 +81,9 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
   signOut(){
     localStorage.removeItem("token");
     window.location.reload();
+  }
+
+  goToCart(){
+    
   }
 }

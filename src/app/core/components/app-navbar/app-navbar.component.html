@@ -1,40 +1,13 @@
-<!-- <div class="container-fluid nav-bar-container">
-  <div class="row">
-    <div class="col-lg-8 offset-lg-2">
-      <ul class="nav-bar-list">
-        <li class="nav-bar-item">
-          <a href="">Trang chủ</a>
-        </li>
-        <li class="nav-bar-item">
-          <a href="">Giới thiệu</a>
-        </li>
-        <li class="nav-bar-item">
-          <a href="">Nữ</a>
-        </li>
-        <li class="nav-bar-item">
-          <a href="">Nam</a>
-        </li>
-        <li class="nav-bar-item">
-          <a href="">Trẻ em</a>
-        </li>
-        <li class="nav-bar-item">
-          <a href="">Tin tức</a>
-        </li>
-        <li class="nav-bar-item">
-          <a href="">Liên hệ</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div> -->
-
 <nav class="navbar navbar-expand-sm bg-secondary navbar-dark">
   <div class="container-fluid">
-    <div class="navbar-collapse justify-content-center" id="collapsibleNavbar">
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
       <ul class="navbar-nav">
+        <!-- <div class="navbar-collapse d-flex justify-content-center align-items-center"
+                    id="collapsibleNavbar">
+                    <ul class="navbar-nav text-uppercase fw-bold"> -->
 
         <li class="nav-item mx-3">
-          <a class="nav-link" href="#">Trang chủ</a>
+          <a class="nav-link" aria-current="true" href="#">Trang chủ</a>
         </li>
 
         <li class="nav-item mx-3">
@@ -42,20 +15,16 @@
         </li>
 
         <li class="nav-item mx-3">
-          <div class="nav-link" (click)="menu.toggle($event)">Danh mục</div>
-          <p-menu #menu [model]="categories" [popup]="true"></p-menu>
-        </li>
-
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="" [routerLink]="['/phuKien']">Phụ kiện khác</a>
-        </li>
-
-        <li class="nav-item mx-3">
           <a class="nav-link" href="" [routerLink]="['/news']">Tin tức</a>
         </li>
 
         <li class="nav-item mx-3">
-          <a class="nav-link" href="#">Liên hệ</a>
+          <a class="nav-link" href="" [routerLink]="['/contact']">Liên hệ</a>
+        </li>
+
+        <li class="nav-item mx-3">
+          <a class="nav-link" href="" [routerLink]="['/allProduct']" (click)="menu.toggle($event)">Tất cả sản phẩm</a>
+          <p-menu #menu [model]="categories" [popup]="true" class="allProduct"></p-menu>
         </li>
       </ul>
     </div>

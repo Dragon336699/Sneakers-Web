@@ -1,223 +1,159 @@
-<div class="container">
-  <div class="intro-section">
-    <h4><span class="text-secondary">Giày | Basas | </span> Workaday - High Top</h4>
-    <div style="width: 100%; height: 2.5px; background-color: black;"></div>
-  </div>
-  <div class=" row">
-    <div class="col-md-6">
-
-      <!-- main image -->
-      <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="square-image">
-              <img src="../../../../assets/images/bl2.jpg" alt="balo" class="product-image">
-            </div>
-          </div>
-
-          <div class="carousel-item">
-            <div class="square-image">
-              <img src="../../../../assets/images/bl2.jpg" alt="balo" class="product-image">
-            </div>
-          </div>
-
-          <div class="carousel-item">
-            <div class="square-image">
-              <img src="../../../../assets/images/bl2.jpg" alt="balo" class="product-image">
-            </div>
-          </div>
-
-          <div class="carousel-item">
-            <div class="square-image">
-              <img src="../../../../assets/images/bl2.jpg" alt="balo" class="product-image">
-            </div>
-          </div>
-
-          <div class="carousel-item">
-            <div class="square-image">
-              <img src="../../../../assets/images/bl2.jpg" alt="balo" class="product-image">
-            </div>
-          </div>
+@if (mainProduct){
+  <div class="container">
+    <div class="intro-section">
+      <h4><span class="text-secondary">Giày | Basas | </span>{{mainProduct.name}}</h4>
+      <div style="width: 100%; height: 2.5px; background-color: black;"></div>
+    </div>
+    <div class=" row">
+      <div class="col-md-6">
+  
+        <!-- main image -->
+        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+          <p-galleria [value]="images" [numVisible]="5" [circular]="true" [showItemNavigators]="true" [responsiveOptions]="responsiveOptions" [containerStyle]="{ 'max-width': '640px' }">
+            <ng-template pTemplate="item" let-item>
+                <img [src]="'http://localhost:8089/api/v1/products/images/' + item.image_url" style="width: 100%; display: block;" />
+            </ng-template>
+            <ng-template pTemplate="thumbnail" let-item>
+              <div class="grid grid-nogutter justify-content-center">
+                  <img [src]="'http://localhost:8089/api/v1/products/images/' + item.image_url" style="display: block; width: 80%" />
+              </div>
+          </ng-template>
+        </p-galleria>
         </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-ride="#carouselExample" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-ride="#carouselExample" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+        
       </div>
-
-      <!-- small images -->
-      <div class="row my-3">
-        <div class="thumbnail-container">
-          <div class="thumbnail-item active">
-            <img src="../../../../assets/images/bl2.jpg" alt="balo" class="thumbnail-image">
+  
+      <!-- details -->
+      <div class="col-md-6">
+        <div class="mt-4 mb-3 position-relative">
+          <h2 class="text-uppercase fw-bold my-4">{{mainProduct.name}}</h2>
+          <p class="my-4">Mã sản phẩm: <span class="text-dark fw-bold">AV00152</span></p>
+          <p class="my-4 position-absolute" style="top:27%; left: 60%">Tình trạng:
+            <span class="text-dark fw-bold">New Arival</span>
+          </p>
+          <h2 class="text-danger my-4">{{mainProduct.price | currency:'VND':'symbol':'1.0-0'}}</h2>
+        </div>
+  
+        <hr>
+  
+        <div class="colorRange">
+          <div class="color-item" style="background-color:aqua;"></div>
+          <div class="color-item" style="background-color:black"></div>
+          <div class="color-item" style="background-color:bisque"></div>
+          <div class="color-item" style="background-color:blueviolet;"></div>
+        </div>
+  
+        <hr>
+  
+        <h2 class="my-4">Thông tin chi tiết sản phẩm</h2>
+        <p class="about mb-4" style="font-size: 16px;">{{mainProduct.description}}</p>
+  
+        <hr>
+  
+        <div class="sizes mt-4">
+          <h6 class="text-uppercase" style="margin-left: 10px;">Size</h6>
+          <label class="radio">
+            <input type="radio" name="size" value="S" checked>
+            <span>S</span>
+          </label>
+  
+          <label class="radio">
+            <input type="radio" name="size" value="M">
+            <span>M</span>
+          </label>
+  
+          <label class="radio">
+            <input type="radio" name="size" value="L">
+            <span>L</span>
+          </label>
+  
+          <label class="radio">
+            <input type="radio" name="size" value="XL">
+            <span>XL</span>
+          </label>
+  
+          <label class="radio">
+            <input type="radio" name="size" value="XXL">
+            <span>XXL</span>
+          </label>
+        </div>
+  
+        <hr>
+  
+        <div class="product-details">
+          <h5>Số lượng</h5>
+          <div class="product-quantity">
+            <div class="border-wrapper">
+              <p-inputNumber [min]="1" [(ngModel)]="quantity" buttonLayout="horizontal" inputId="horizontal" [showButtons]="true" decrementButtonClass="p-button-secondary"
+              incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
+            </div>
           </div>
-
-          <div class="thumbnail-item">
-            <img src="../../../../assets/images/bl1.jpg" alt="balo" class="thumbnail-image">
-          </div>
-
-          <div class="thumbnail-item">
-            <img src="../../../../assets/images/bl2.jpg" alt="balo" class="thumbnail-image">
-          </div>
-
-          <div class="thumbnail-item">
-            <img src="../../../../assets/images/bl3.jpg" alt="balo" class="thumbnail-image">
-          </div>
-
-          <div class="thumbnail-item">
-            <img src="../../../../assets/images/bl2.jpg" alt="balo" class="thumbnail-image">
+          <div class="product-actions">
+            <button class="btn btn-dark" style="font-size: 18px;">Thêm vào giỏ hàng</button>
+            <button class="btn btn-danger" style="font-size: 18px;">Mua ngay</button>
+            <i class="pi pi-heart" title="Thêm vào yêu thích"></i>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- details -->
-    <div class="col-md-6">
-      <div class="mt-4 mb-3 position-relative">
-        <h2 class="text-uppercase fw-bold my-4">BASAS WORKADAY - HIGH TOP - BLACK</h2>
-        <p class="my-4">Mã sản phẩm: <span class="text-dark fw-bold">AV00152</span></p>
-        <p class="my-4 position-absolute" style="top:27%; left: 60%">Tình trạng:
-          <span class="text-dark fw-bold">New Arival</span>
-        </p>
-        <h2 class="text-danger my-4">740.000 VND</h2>
-      </div>
-
-      <hr>
-
-      <div class="colorRange">
-        <div class="color-item" style="background-color:aqua;"></div>
-        <div class="color-item" style="background-color:black"></div>
-        <div class="color-item" style="background-color:bisque"></div>
-        <div class="color-item" style="background-color:blueviolet;"></div>
-      </div>
-
-      <hr>
-
-      <h2 class="my-4">Thông tin chi tiết sản phẩm</h2>
-      <p class="about mb-4" style="font-size: 16px;">Shop from a wide range of t-shirt from orianz. Pefect for your
-        everyday
-        use, you could
-        pair it
-        with a stylish pair of jeans or trousers complete the look.Lorem ipsum dolor sit amet consectetur
-        adipisicing
-        elit. Ab facere explicabo enim ea soluta laborum aperiam tempore.
-        pair it
-        with a stylish pair of jeans or trousers complete the look.Lorem ipsum dolor sit amet consectetur
-        adipisicing
-        elit. Ab facere explicabo enim ea soluta laborum aperiam tempore.
-      </p>
-
-      <hr>
-
-      <div class="sizes mt-4">
-        <h6 class="text-uppercase" style="margin-left: 10px;">Size</h6>
-        <label class="radio">
-          <input type="radio" name="size" value="S" checked>
-          <span>S</span>
-        </label>
-
-        <label class="radio">
-          <input type="radio" name="size" value="M">
-          <span>M</span>
-        </label>
-
-        <label class="radio">
-          <input type="radio" name="size" value="L">
-          <span>L</span>
-        </label>
-
-        <label class="radio">
-          <input type="radio" name="size" value="XL">
-          <span>XL</span>
-        </label>
-
-        <label class="radio">
-          <input type="radio" name="size" value="XXL">
-          <span>XXL</span>
-        </label>
-      </div>
-
-      <hr>
-
-      <div class="product-details">
-        <h5>Số lượng</h5>
-        <div class="product-quantity">
-          <div class="border-wrapper">
-            <button>-</button>
-            <input type="text" value="1">
-            <button>+</button>
-          </div>
-        </div>
-        <div class="product-actions">
-          <button class="btn btn-dark" style="font-size: 18px;">Thêm vào giỏ hàng</button>
-          <button class="btn btn-danger" style="font-size: 18px;">Mua ngay</button>
-          <i class="pi pi-heart" title="Thêm vào yêu thích"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <hr class="mt-5">
-  <!-- suggestion -->
-  <div class="suggest my-5 d-none d-md-block">
-    <h3 class="text-center text-uppercase fw-bold">Sản phẩm liên quan</h3>
-
-    <div class="container-lg">
-      <div class="row my-4 align-items-center justify-content-center g-5">
-
-        <div class="col-8 col-lg-3">
-          <div class="card border-0">
-            <div class="card-body py-3">
-              <img src="../../../../assets/images/cv1.jpg" alt="giaycv" class="img-fluid">
-            </div>
-            <div class="card-footer text-center tw-bold border-0">
-              <p class="lead card-title text-secondary">Vintas Public Public - Med Top</p>
-              <p class="my-2 text-danger fw-semibold" style="font-size: 15px;">430.000 VND</p>
+  
+    <hr class="mt-5">
+    <!-- suggestion -->
+    <div class="suggest my-5 d-none d-md-block">
+      <h3 class="text-center text-uppercase fw-bold">Sản phẩm liên quan</h3>
+  
+      <div class="container-lg">
+        <div class="row my-4 align-items-center justify-content-center g-5">
+  
+          <div class="col-8 col-lg-3">
+            <div class="card border-0">
+              <div class="card-body py-3">
+                <img src="../../../../assets/images/cv1.jpg" alt="giaycv" class="img-fluid">
+              </div>
+              <div class="card-footer text-center tw-bold border-0">
+                <p class="lead card-title text-secondary">Vintas Public Public - Med Top</p>
+                <p class="my-2 text-danger fw-semibold" style="font-size: 15px;">430.000 VND</p>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="col-8 col-lg-3">
-          <div class="card border-0">
-            <div class="card-body py-3">
-              <img src="../../../../assets/images/van3.jpg" alt="giaycv" class="img-fluid">
-            </div>
-            <div class="card-footer text-center tw-bold border-0">
-              <p class="lead card-title text-secondary">Vintas Soda Pop - Low Top</p>
-              <p class="my-2 text-danger fw-semibold" style="font-size: 15px;">730.000 VND</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-8 col-lg-3">
-          <div class="card border-0">
-            <div class="card-body py-3">
-              <img src="../../../../assets/images/van2.jpg" alt="giayvan" class="img-fluid">
-            </div>
-            <div class="card-footer text-center tw-bold border-0">
-              <p class="lead card-title text-secondary">Vintas Public 2000s - Low Top</p>
-              <p class="my-2 text-danger fw-semibold" style="font-size: 15px;">980.000 VND</p>
+  
+          <div class="col-8 col-lg-3">
+            <div class="card border-0">
+              <div class="card-body py-3">
+                <img src="../../../../assets/images/van3.jpg" alt="giaycv" class="img-fluid">
+              </div>
+              <div class="card-footer text-center tw-bold border-0">
+                <p class="lead card-title text-secondary">Vintas Soda Pop - Low Top</p>
+                <p class="my-2 text-danger fw-semibold" style="font-size: 15px;">730.000 VND</p>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="col-8 col-lg-3">
-          <div class="card border-0">
-            <div class="card-body py-3">
-              <img src="../../../../assets/images/cv2.jpg" alt="giayvan" class="img-fluid">
+  
+          <div class="col-8 col-lg-3">
+            <div class="card border-0">
+              <div class="card-body py-3">
+                <img src="../../../../assets/images/van2.jpg" alt="giayvan" class="img-fluid">
+              </div>
+              <div class="card-footer text-center tw-bold border-0">
+                <p class="lead card-title text-secondary">Vintas Public 2000s - Low Top</p>
+                <p class="my-2 text-danger fw-semibold" style="font-size: 15px;">980.000 VND</p>
+              </div>
             </div>
-            <div class="card-footer text-center tw-bold border-0">
-              <p class="lead card-title text-secondary">Track 6 2.Blues - Low Top</p>
-              <p class="my-2 text-danger fw-semibold" style="font-size: 15px;">780.000 VND</p>
+          </div>
+  
+          <div class="col-8 col-lg-3">
+            <div class="card border-0">
+              <div class="card-body py-3">
+                <img src="../../../../assets/images/cv2.jpg" alt="giayvan" class="img-fluid">
+              </div>
+              <div class="card-footer text-center tw-bold border-0">
+                <p class="lead card-title text-secondary">Track 6 2.Blues - Low Top</p>
+                <p class="my-2 text-danger fw-semibold" style="font-size: 15px;">780.000 VND</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+}

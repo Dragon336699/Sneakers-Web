@@ -2,6 +2,41 @@
   margin: 100px;
 }
 
+.carousel .carousel-indicators {
+  bottom: 10px;
+  left: 2px;
+}
+
+.carousel .carousel-indicators button {
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  margin-right: 6px;
+  background-color: white;
+  position: relative;
+}
+
+.carousel .carousel-indicators button.active {
+  border: 3px solid white;
+  margin-top: 7px;
+}
+
+.carousel .carousel-indicators button.active:after {
+  background-color: white;
+}
+
+.carousel .carousel-indicators button:after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background-color: black;
+  display: block;
+  border-radius: 100%;
+  position: absolute;
+  top: 1.5px;
+  left: 1.5px;
+}
+
 .product-header,
 .accesories-header,
 .discount-product-header {
@@ -16,8 +51,12 @@
   display: inline-block;
   font-size: 20px;
   font-weight: 700;
-  // margin-bottom: -10px;
   padding: 5px 30px 0px 30px;
+}
+
+.product-header-item.active {
+  background-color: black !important;
+  color: white !important;
 }
 
 .product-header-item:hover {
@@ -30,9 +69,38 @@
   margin-bottom: 2px;
 }
 
-.card:hover {
-  cursor: pointer;
-  // transform: scale(2);
+.banner-content--item .card:hover {
+  border: 1px solid black !important;
+}
+
+.banner-content--item .card:hover div button {
+  display: block;
+  transform: translate(-50%, -50%);
+  animation: buttonShowUp 0.5s ease-in-out;
+}
+
+.banner-content--item .card .card-body button {
+  top: 50%;
+  background-color: black;
+}
+
+.banner-content--item .card .card-body button p {
+  margin-bottom: 5px;
+  font-size: 17px;
+}
+
+@keyframes buttonShowUp {
+  from {
+    opacity: 0;
+    scale: 0;
+    transform-origin: 0% 25%;
+  }
+
+  to {
+    opacity: 1;
+    scale: 1;
+    transform-origin: 0% 20%;
+  }
 }
 
 .card-body span {
@@ -48,9 +116,59 @@
   font-size: 18px;
 }
 
+.card:hover {
+  cursor: pointer;
+  transform: scale(1) !important;
+  border: none !important;
+  position: relative;
+}
+
+.card .card-body button {
+  display: none;
+  padding: 5px 10px;
+  position: absolute;
+  top: calc(100% + 40px);
+  left: 50%;
+  background-color: rgb(217, 4, 4);
+  border: none;
+  border-radius: 5px;
+}
+
+.card .card-body button p {
+  color: white;
+  text-transform: uppercase;
+  font-size: 10px;
+  line-height: 20px;
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+.card:hover div button {
+  display: block;
+  transform: translate(-50%, -50%);
+  animation: buttonShowUp 0.3s ease-in-out;
+}
+
 .card-title {
   font-size: 16px !important;
   font-weight: 500 !important;
+}
+
+.accesories {
+  margin-top: 100px;
+}
+
+.accesories-button {
+  margin-top: 100px;
+}
+
+.accesories-button button {
+  background-color: black;
+  color: white;
+}
+
+.discount-product {
+  margin-bottom: 100px !important;
 }
 
 .discout-banner {
@@ -65,8 +183,23 @@
   background-size: 100%;
 }
 
+.discout-banner h3 {
+  position: absolute;
+  top: 12%;
+  left: 40%;
+  transform: translate(-50%, 0);
+  font-size: 70px;
+  font-weight: 600;
+  color: white;
+  z-index: 3;
+}
+
+.discout-banner h3 span {
+  color: yellow;
+}
+
 .discount-banner-wrap {
-  background-color: rgba(67, 55, 55, 0.6);
+  background-color: rgba(67, 55, 55, 0.8);
   position: relative;
   height: 100%;
   font-size: 60px;
@@ -94,7 +227,7 @@
   background-color: #ff0000;
   border-radius: 4px;
   border: 5px rgb(185, 31, 31) solid;
-  border-radius: 5px;
+  border-radius: 0px !important;
   color: #FFFFFF;
   text-align: center;
   padding: 16px;
@@ -108,6 +241,7 @@
 
 .discount-btn:hover {
   color: rgb(185, 31, 31);
-  background-color: #ffdada;
-
+  background-color: black !important;
+  color: white !important;
+  border: none;
 }

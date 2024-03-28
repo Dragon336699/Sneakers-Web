@@ -12,6 +12,7 @@ import { Subject, catchError, filter, of, switchMap, takeUntil, tap } from 'rxjs
 import { PasswordModule } from 'primeng/password';
 import { UserService } from '../../../../core/services/user.service';
 import { loginDetailDto } from '../../../../core/dtos/login.dto';
+import { KeyFilterModule } from 'primeng/keyfilter';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +26,7 @@ import { loginDetailDto } from '../../../../core/dtos/login.dto';
     CheckboxModule,
     RouterModule,
     PasswordModule,
+    KeyFilterModule
   ],
   providers: [
     MessageService,

@@ -8,11 +8,13 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { Router, RouterModule } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ToastService } from '../../../../core/services/toast.service';
-import { Subject, catchError, filter, of, switchMap, takeUntil, tap } from 'rxjs';
+import { Subject, catchError, delay, filter, of, switchMap, takeUntil, tap } from 'rxjs';
 import { PasswordModule } from 'primeng/password';
 import { UserService } from '../../../../core/services/user.service';
 import { loginDetailDto } from '../../../../core/dtos/login.dto';
 import { KeyFilterModule } from 'primeng/keyfilter';
+import { BlockUIModule } from 'primeng/blockui';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +28,9 @@ import { KeyFilterModule } from 'primeng/keyfilter';
     CheckboxModule,
     RouterModule,
     PasswordModule,
-    KeyFilterModule
+    KeyFilterModule,
+    BlockUIModule,
+    ProgressSpinnerModule
   ],
   providers: [
     MessageService,
@@ -39,6 +43,8 @@ export class LoginComponent extends BaseComponent implements AfterViewInit {
   public loginForm: FormGroup;
   public formSubmitSubject = new Subject<void>();
   public formSubmit$ = this.formSubmitSubject.asObservable();
+  public blockedUi: boolean = false;
+  
   constructor(
     private readonly fb: FormBuilder,
     private readonly messageService: MessageService,
@@ -70,6 +76,10 @@ export class LoginComponent extends BaseComponent implements AfterViewInit {
           tap((loginVal : loginDetailDto) => {
             this.toastService.success(loginVal.message);
             localStorage.setItem("token",loginVal.token);
+            this.blockUi();
+          }),
+          delay(1000),
+          tap(() => {
             this.router.navigateByUrl("/Home");
           }),
           catchError((error) => {
@@ -80,5 +90,12 @@ export class LoginComponent extends BaseComponent implements AfterViewInit {
       }),
       takeUntil(this.destroyed$)
     ).subscribe();
+  }
+
+  blockUi() {
+    this.blockedUi = true;
+    setTimeout(() => {
+        this.blockedUi = false;
+    }, 1000);
   }
 }

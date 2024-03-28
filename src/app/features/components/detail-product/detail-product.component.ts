@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../../core/commonComponent/base.component';
 import { ProductService } from '../../../core/services/product.service';
 import { ActivatedRoute } from '@angular/router';
-import { filter, takeUntil, tap } from 'rxjs';
+import { catchError, filter, of, take, takeUntil, tap } from 'rxjs';
 import { ProductDto } from '../../../core/dtos/product.dto';
 import { GalleriaModule } from 'primeng/galleria';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FormsModule } from '@angular/forms';
 import { CurrencyPipe } from '@angular/common';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { ToastService } from '../../../core/services/toast.service';
 
 @Component({
   selector: 'app-detail-product',
@@ -16,7 +19,12 @@ import { CurrencyPipe } from '@angular/common';
     GalleriaModule,
     InputNumberModule,
     FormsModule,
-    CurrencyPipe
+    CurrencyPipe,
+    ToastModule,
+  ],
+  providers: [
+    MessageService,
+    ToastService
   ],
   templateUrl: './detail-product.component.html',
   styleUrl: './detail-product.component.scss'
@@ -27,9 +35,14 @@ export class DetailProductComponent extends BaseComponent implements OnInit {
   public responsiveOptions : any[] = [];
   public images : {id : number,imageUrl : string}[] = [];
   public quantity : number = 1;
+  public sizes : number[] = [36,37,38,39,40,41,42,43,44];
+  public size : number = this.sizes[0];
+
   constructor(
     private productService : ProductService,
-    private router : ActivatedRoute
+    private router : ActivatedRoute,
+    private readonly messageService: MessageService,
+    private toastService : ToastService
   ) {
     super();
   }
@@ -61,6 +74,22 @@ export class DetailProductComponent extends BaseComponent implements OnInit {
         takeUntil(this.destroyed$)
       ).subscribe();
     }
+  }
 
+  addToCart(){
+    this.productService.addProductToCart({
+      product_id: Number(this.id),
+      quantity: this.quantity,
+      size:  this.size
+    }).pipe(
+      tap(() => {
+        this.toastService.success("Thêm sản phẩm vào giỏ hàng thành công");
+      }),
+      catchError((error) => {
+        this.toastService.fail("Thêm sản phẩm vào giỏ hàng thất bại");
+        return of();
+      }),
+      takeUntil(this.destroyed$)
+    ).subscribe();
   }
 }

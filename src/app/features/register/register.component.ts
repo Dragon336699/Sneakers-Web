@@ -1,7 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { BaseComponent } from '../../core/commonComponent/base.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CustomRequiredDirective } from '../../core/directives/custom-required.directive';
 import { ButtonModule } from 'primeng/button';
 import { Router, RouterModule } from '@angular/router';
 import { InputTextModule } from 'primeng/inputtext';
@@ -12,6 +11,8 @@ import { Subject, catchError, delay, filter, of, switchMap, takeUntil, tap } fro
 import { PasswordModule } from 'primeng/password';
 import { UserService } from '../../core/services/user.service';
 import { KeyFilterModule } from 'primeng/keyfilter';
+import { BlockUIModule } from 'primeng/blockui';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 
 @Component({
@@ -24,7 +25,9 @@ import { KeyFilterModule } from 'primeng/keyfilter';
     InputTextModule,
     ToastModule,
     PasswordModule,
-    KeyFilterModule
+    KeyFilterModule,
+    BlockUIModule,
+    ProgressSpinnerModule
   ],
   providers: [
     MessageService,
@@ -37,11 +40,14 @@ export class RegisterComponent extends BaseComponent implements AfterViewInit {
   public registerForm : FormGroup;
   public formGroupSubmitSubject = new Subject<void>();
   public formGroup$ = this.formGroupSubmitSubject.asObservable();
+  public blockedUi: boolean = false;
+
   constructor(
     private readonly fb : FormBuilder,
     private readonly toastService : ToastService,
     private readonly userService : UserService,
     private router : Router
+    
   ) {
     super();
     this.registerForm = this.fb.group({
@@ -77,8 +83,9 @@ export class RegisterComponent extends BaseComponent implements AfterViewInit {
           }).pipe(
             tap(() => {
               this.toastService.success("Đăng ký thành công");
+              this.blockUi();
             }),
-            delay(1500),
+            delay(1000),
             tap(() => {
               this.router.navigateByUrl('/auth-login')
             }),
@@ -90,5 +97,12 @@ export class RegisterComponent extends BaseComponent implements AfterViewInit {
         }),
         takeUntil(this.destroyed$)
       ).subscribe();
+  }
+
+  blockUi() {
+    this.blockedUi = true;
+    setTimeout(() => {
+        this.blockedUi = false;
+    }, 1000);
   }
 }

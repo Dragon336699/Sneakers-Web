@@ -230,6 +230,11 @@
 //   height: 100%;
 // }
 
+.userName {
+  margin-left: 10px;
+  min-width: 200px;
+}
+
 @media only screen and (max-width: 479px) {
   .allProduct-content>.container {
     max-width: 600px;
@@ -269,6 +274,10 @@
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   .allProduct-content>.container {
     max-width: 600px;
+  }
+
+  .container-fluid .row {
+    transform: translateY(-10px);
   }
 
   .allProduct-content-left {

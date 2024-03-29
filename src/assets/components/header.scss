@@ -178,6 +178,10 @@
     margin-left: -200px;
   }
 
+  .userName {
+    display: none;
+  }
+
   .header-right {
     position: absolute;
   }
@@ -187,7 +191,7 @@
   }
 
   .header-search-container i {
-    transform: translate(-110px, -5px) !important;
+    transform: translate(-110px, -20px) !important;
   }
 
   .line-right {
@@ -196,7 +200,7 @@
 
   .header-cart-container {
     position: absolute !important;
-    top: 0px;
+    top: -15px;
     right: 15px;
   }
 
@@ -204,15 +208,33 @@
     width: 130px !important;
     transform: translateX(-40px) !important;
   }
+
+  .app-header .header-avtar-container p-avatar .p-avatar {
+    left: 20px;
+    top: 30%;
+  }
+
+  // .app-header .app-logo-header a img {
+  //   min-width: 180px !important;
+  //   transform: translate(20px, 25px) !important;
+  // }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
+  .container-fluid .row {
+    transform: translateY(-10px);
+  }
+
   .header-login-container {
     margin-left: -10px;
   }
 
   .app-logo-header a {
     margin-top: -16px;
+  }
+
+  .userName {
+    font-size: 12px;
   }
 
   .header-search-container i {
@@ -228,16 +250,46 @@
     top: 0px;
     right: 15px;
   }
+
+  .app-header .header-avtar-container p-avatar .p-avatar {
+    left: 50px;
+  }
+
+  .app-header .app-logo-header a img {
+    min-width: 180px !important;
+    transform: translate(20px, 25px) !important;
+  }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+  .container-fluid .row {
+    transform: translateY(10px);
+  }
+
   .app-logo-header {
     margin-top: 0 !important;
     margin-left: 120px;
   }
+
+  .app-header .header-avtar-container p-avatar .p-avatar {
+    left: 50px;
+  }
+
+  .app-header .app-logo-header a img {
+    min-width: 200px !important;
+    transform: translate(20px, 25px) !important;
+  }
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .app-header .header-avtar-container p-avatar .p-avatar {
+    left: 50px;
+  }
+
+  .app-header .app-logo-header a img {
+    min-width: 200px !important;
+  }
+}
 
 @media only screen and (min-width: 1200px) and (max-width: 1400px) {}
 

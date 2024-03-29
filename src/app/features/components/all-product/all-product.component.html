@@ -151,11 +151,11 @@
 
         <!-- right -->
         <div class="col-md-8 col-lg-8 allProduct-content-shoes">
-          <p-dataView [value]="products" [paginator]="true" [rows]="1" [sortField]="sortField" [sortOrder]="sortOrder">
+          <p-dataView [value]="products" [paginator]="true" [rows]="12" [sortField]="sortField" [sortOrder]="sortOrder">
             <ng-template let-products pTemplate="list">
               <div class="row my-5 d-flex align-items-start justify-content-start g-5">
                 @for (item of products; track item) {
-                <div (click)="navigateToDetail(item.id)" class="col-lg-3 col-6">
+                <div (click)="navigateToDetail(item.id)" class="col-lg-3 col-6 col-sm-4">
                   <div>
                     <div class="card">
                       <div class="card-body py-3">

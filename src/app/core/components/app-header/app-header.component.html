@@ -43,7 +43,7 @@
       </div>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-1 col-6 text-right">
-      <div (click)="goToCart()" class="header-cart-container">
+      <div (click)="goToCart()" class="header-cart-container" [routerLink]="['/shoppingCart']">
         <p class="header-cart-text">Giỏ hàng</p>
         <div class="header-cart-icon">
           <div class="header-cart-icon--bag">

@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../../core/commonComponent/base.component';
 import { ProductService } from '../../../core/services/product.service';
-import { filter, takeUntil, tap } from 'rxjs';
+import { catchError, filter, of, takeUntil, tap } from 'rxjs';
 import { ProductDto } from '../../../core/dtos/product.dto';
 import { DataViewModule } from 'primeng/dataview';
 import { DropdownModule } from 'primeng/dropdown';
 import { MenuItem } from 'primeng/api';
-import { FormsModule } from "@angular/forms"; 
+import { FormsModule } from "@angular/forms";
 import { DetailProductService } from '../../../core/services/detail-product.service';
 import { Router } from '@angular/router';
 import { PaginatorModule } from 'primeng/paginator';
 import { AllProductDto } from '../../../core/dtos/AllProduct.dto';
 import { CurrencyPipe } from '@angular/common';
+import { SliderModule } from 'primeng/slider';
 
 @Component({
   selector: 'app-all-product',
@@ -21,50 +22,47 @@ import { CurrencyPipe } from '@angular/common';
     DropdownModule,
     FormsModule,
     PaginatorModule,
-    CurrencyPipe
+    CurrencyPipe,
+    SliderModule
   ],
   templateUrl: './all-product.component.html',
   styleUrl: './all-product.component.scss'
 })
-export class AllProductComponent extends BaseComponent implements OnInit{
-  public products : ProductDto[] = [];
-  public sortOptions : MenuItem[] = [];
-  public productsHighlight : ProductDto[] = [];
-  public totalRecord !: number;
+export class AllProductComponent extends BaseComponent implements OnInit {
+  public products: ProductDto[] = [];
+  public sortOptions: MenuItem[] = [];
+  public productsHighlight: ProductDto[] = [];
   public sortOrder!: number;
   public sortField!: string;
-  
+  public priceFilterValue: number[] = [1, 100];
+
   constructor(
-    private productService : ProductService,
-    private detailProductService : DetailProductService,
-    private router : Router
+    private productService: ProductService,
+    private detailProductService: DetailProductService,
+    private router: Router
   ) {
     super();
   }
 
   ngOnInit(): void {
-      this.sortOptions = [
-        {label : 'Giá từ thấp đến cao' , value: 'price'},
-        {label : 'Giá từ cao đến thấp' , value: '!price'},
-      ]
+    this.sortOptions = [
+      { label: 'Giá từ thấp đến cao', value: 'price' },
+      { label: 'Giá từ cao đến thấp', value: '!price' },
+    ]
 
-      this.productService.getAllProduct({
-        page: 1,
-        limit : 12
-      }).pipe(
-        filter((product : AllProductDto) => !!product),
-        tap((product : AllProductDto) => {
-          this.products = product.products;
-          this.productsHighlight = product.products.slice(0,5);
-          this.totalRecord = product.totalProducts;
-        }),
-        takeUntil(this.destroyed$)
-      ).subscribe()
+    this.productService.getAllProduct().pipe(
+      filter((product: AllProductDto) => !!product),
+      tap((product: AllProductDto) => {
+        this.products = product.products;
+        this.productsHighlight = product.products.slice(0, 5);
+      }),
+      takeUntil(this.destroyed$)
+    ).subscribe()
   }
 
-  onSortChange(event : any){
+  onSortChange(event: any) {
     let value = event.value;
-    if (value.indexOf("!") === 0){
+    if (value.indexOf("!") === 0) {
       this.sortOrder = -1;
       this.sortField = value.substring(1, value.length);
     } else {
@@ -73,25 +71,21 @@ export class AllProductComponent extends BaseComponent implements OnInit{
     }
   }
 
-  navigateToDetail(productId : number){
+  navigateToDetail(productId: number) {
     this.detailProductService.setId(productId);
     this.router.navigateByUrl(`/detailProduct/${productId}`);
   }
 
-  addToCart(event : Event){
-    event.stopPropagation();
-  }
-
-  onPageChange(event : any){
-    this.productService.getAllProduct({
-      page: (event.page) + 1,
-      limit : 12
-    }).pipe(
-      filter((product : AllProductDto) => !!product),
-      tap((product : AllProductDto) => {
+  filterPrice() {
+    this.productService.getProductViaPrice(this.priceFilterValue[0] * 500000, this.priceFilterValue[1] * 500000).pipe(
+      filter((product: AllProductDto) => !!product),
+      tap((product: AllProductDto) => {
         this.products = product.products;
       }),
+      catchError((error) => {
+        return of(error);
+      }),
       takeUntil(this.destroyed$)
-    ).subscribe()
+    ).subscribe();
   }
 }

@@ -52,30 +52,12 @@
   
         <div class="sizes mt-4">
           <h6 class="text-uppercase" style="margin-left: 10px;">Size</h6>
-          <label class="radio">
-            <input type="radio" name="size" value="S" checked>
-            <span>S</span>
-          </label>
-  
-          <label class="radio">
-            <input type="radio" name="size" value="M">
-            <span>M</span>
-          </label>
-  
-          <label class="radio">
-            <input type="radio" name="size" value="L">
-            <span>L</span>
-          </label>
-  
-          <label class="radio">
-            <input type="radio" name="size" value="XL">
-            <span>XL</span>
-          </label>
-  
-          <label class="radio">
-            <input type="radio" name="size" value="XXL">
-            <span>XXL</span>
-          </label>
+          @for (item of sizes; track item) {
+            <label class="radio">
+              <input type="radio" name="size" [value]="item" [(ngModel)]="size" checked>
+              <span>{{item}}</span>
+            </label>
+          }
         </div>
   
         <hr>
@@ -89,7 +71,8 @@
             </div>
           </div>
           <div class="product-actions">
-            <button class="btn btn-dark" style="font-size: 18px;">Thêm vào giỏ hàng</button>
+            <p-toast></p-toast>
+            <button (click)="addToCart()" class="btn btn-dark" style="font-size: 18px;">Thêm vào giỏ hàng</button>
             <button class="btn btn-danger" style="font-size: 18px;">Mua ngay</button>
             <i class="pi pi-heart" title="Thêm vào yêu thích"></i>
           </div>

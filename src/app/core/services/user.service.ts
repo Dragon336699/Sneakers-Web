@@ -25,7 +25,7 @@ export class UserService {
   }
 
   getInforUser(token : string | null){
-    return this.httpClient.post<UserDto>(`${this.apiUrl}users/details`,token, {
+    return this.httpClient.get<UserDto>(`${this.apiUrl}users/details`, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`

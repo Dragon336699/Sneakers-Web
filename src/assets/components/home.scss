@@ -103,6 +103,10 @@
   }
 }
 
+.card {
+  position: relative;
+}
+
 .card-body span {
   height: 30px;
   width: 30px;
@@ -132,6 +136,16 @@
   background-color: rgb(217, 4, 4);
   border: none;
   border-radius: 5px;
+}
+
+.card:before {
+  content: "";
+  display: block;
+  width: 80%;
+  height: 40px;
+  position: absolute;
+  bottom: -30px;
+  left: 10%;
 }
 
 .card .card-body button p {

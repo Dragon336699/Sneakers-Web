@@ -45,63 +45,28 @@
 .allProduct-header_right>div>p-dropdown::after {
   content: "Sắp xếp theo giá";
   position: absolute;
-  left: 5px;
-  // left: -100px;
+  left: -110px;
   top: 50%;
-  transform: translateY(-65%);
+  transform: translateY(-70%);
   width: 110px;
-  height: 2px;
   color: #908f8f;
 }
 
-.allProduct-header_right>div>p-dropdown:hover::after {
-  cursor: pointer;
-}
-
-.allProduct-header_right>div>p-dropdown:hover::after .p-dropdown-items-wrapper {
-  display: block;
-}
-
-// p-dropdown.p-element.p-inputwrapper.p-inputwrapper-filled::placeholder {
-//   color: red;
-//   z-index: 100;
-//   transform: translateX(50px);
-// }
-
-// p-dropdown:hover .p-dropdown.p-component.p-inputwrapper.p-inputwrapper-focus {
-//   z-index: 20;
-// }
-
-.p-dropdown.p-component.p-inputwrapper {
-  width: 140px;
-}
-
-.p-dropdown-items-wrapper {
-  margin-top: 5px;
-}
-
-p-dropdown .p-dropdown:not(.p-disabled).p-focus {
-  box-shadow: 0 0 5px 0.2rem #febfbf;
-  border-color: #febfbf;
-}
-
 .p-dropdown-items-wrapper ul {
-  padding-left: 0px;
+  padding: 0px 10px;
   margin-bottom: 0px;
-  border: 1px solid rgb(215, 215, 215);
-  border-radius: 5px;
 }
 
 .p-dropdown-items-wrapper ul p-dropdownitem li {
-  padding: 1px 3px;
-  background-color: white;
-  color: black;
+  margin-top: 10px;
 }
 
-.p-dropdown-items-wrapper ul p-dropdownitem li:hover {
-  background-color: rgb(191, 30, 30);
-  color: rgb(255, 255, 255);
-}
+// fix product img size
+// .p-dataview-content>div div .card .card-body {
+//   width: 156px;
+//   height: 117px;
+//   overflow: hidden;
+// }
 
 .p-dataview-content>div div .card .card-body img {
   max-width: 100%;
@@ -256,6 +221,14 @@ p-dropdown .p-dropdown:not(.p-disabled).p-focus {
   flex-wrap: wrap;
   justify-content: flex-start;
 }
+
+// .allProduct-content-shoes .p-element .p-dataview.p-component.p-dataview-list .p-dataview-content {
+//   height: 1022px !important;
+// }
+
+// .allProduct-content-shoes .p-element .p-dataview.p-component.p-dataview-list .p-dataview-content .row {
+//   height: 100%;
+// }
 
 .userName {
   margin-left: 10px;

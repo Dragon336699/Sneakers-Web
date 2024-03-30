@@ -7,6 +7,10 @@
   margin: 0 auto;
 }
 
+.allProduct-header .container .row .col-lg-3 h3 {
+  font-size: 18px !important;
+}
+
 .allProduct-header_right {
   flex-direction: row !important;
   color: rgb(111, 111, 111);
@@ -29,11 +33,59 @@
   margin-top: 10px;
 }
 
+// css search by price
+.allProduct-header_right {
+  z-index: 100;
+}
+
+.allProduct-header_right>div>p-dropdown {
+  position: relative;
+}
+
+.allProduct-header_right>div>p-dropdown::after {
+  content: "Sắp xếp theo giá";
+  position: absolute;
+  left: -110px;
+  top: 50%;
+  transform: translateY(-70%);
+  width: 110px;
+  color: #908f8f;
+}
+
+.p-dropdown-items-wrapper ul {
+  padding: 0px 10px;
+  margin-bottom: 0px;
+}
+
+.p-dropdown-items-wrapper ul p-dropdownitem li {
+  margin-top: 10px;
+}
+
+// fix product img size
+// .p-dataview-content>div div .card .card-body {
+//   width: 156px;
+//   height: 117px;
+//   overflow: hidden;
+// }
+
+.p-dataview-content>div div .card .card-body img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
 // allProduct shoes content
 .allProduct-content-filter {
   justify-content: flex-start;
-  margin-right: 40px;
   margin-top: 50px;
+}
+
+.allProduct-content-filter h4 {
+  font-size: 16px;
+}
+
+.allProduct-content-filter .range {
+  margin: 20px auto;
 }
 
 .allProduct-content-filter button {
@@ -163,3 +215,104 @@
   background-color: red;
   color: white !important;
 }
+
+.allProduct-content-shoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+// .allProduct-content-shoes .p-element .p-dataview.p-component.p-dataview-list .p-dataview-content {
+//   height: 1022px !important;
+// }
+
+// .allProduct-content-shoes .p-element .p-dataview.p-component.p-dataview-list .p-dataview-content .row {
+//   height: 100%;
+// }
+
+.userName {
+  margin-left: 10px;
+  min-width: 200px;
+}
+
+@media only screen and (max-width: 479px) {
+  .allProduct-content>.container {
+    max-width: 600px;
+  }
+
+  .allProduct-content-left {
+    display: none !important;
+  }
+
+  .allProduct-content-shoes {
+    margin-top: -30px !important;
+  }
+
+  .card-body.py-3 .img-fluid {
+    transform: translateX(0px) !important;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 575px) {
+  .allProduct-content>.container {
+    max-width: 600px;
+  }
+
+  .allProduct-content-left {
+    display: none !important;
+  }
+
+  .allProduct-content-shoes {
+    margin-top: -30px !important;
+  }
+
+  .card-body.py-3 .img-fluid {
+    transform: translateX(40px) !important;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .allProduct-content>.container {
+    max-width: 600px;
+  }
+
+  .container-fluid .row {
+    transform: translateY(-10px);
+  }
+
+  .allProduct-content-left {
+    display: block !important;
+    margin-top: 20px !important;
+    margin-left: 30px;
+  }
+
+  .allProduct-content-product,
+  .allProduct-content-post {
+    display: none;
+  }
+
+  .allProduct-content-shoes {
+    margin-top: -30px !important;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .allProduct-content>.container {
+    max-width: 820px;
+  }
+
+  .allProduct-content-left {
+    margin-top: -20px !important;
+    margin-left: 30px;
+  }
+
+  .allProduct-content-shoes {
+    margin-top: -40px !important;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+
+@media only screen and (min-width: 1200px) and (max-width: 1400px) {}
+
+@media only screen and (min-width: 1401px) and (max-width: 1899px) {}

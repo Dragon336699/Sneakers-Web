@@ -16,14 +16,17 @@
     </div>
   </div>
 
+
+
+
   <!-- content -->
-  <div class="men-content d-flex justify-content-center">
+  <div class="allProduct-content d-flex justify-content-center">
     <div class="container" style="margin: 0; width: 100%; margin-top: -20px;">
       <div class="row justify-content-between align-items-center d-flex flex-wrap">
         <!-- left -->
         <div class=" col-md-3 col-lg-3 d-none d-md-block d-flex allProduct-content-left">
           <!-- price filter -->
-          <div class="men-content-filter">
+          <div class="allProduct-content-filter">
             <h4 style="margin-bottom: -5px;">LỌC THEO GIÁ</h4>
             <div class="range">
               <p-slider [min]="1" [(ngModel)]="priceFilterValue" [range]="true" id="range1"></p-slider>
@@ -35,6 +38,9 @@
               </button>
               <p-slider [hidden]="true" [(ngModel)]="priceFilterValue" [range]="true" id="range1"></p-slider>
 
+
+
+
               <h6 style="margin-top: 8px; text-align: end; font-size: 12px;" class="text-muted">Giá
                 <span class="fw-700 text-dark">{{priceFilterValue[0]*500000 | currency:'VND':'symbol':'1.0-0'}} -
                   {{priceFilterValue[1]*500000 | currency:'VND':'symbol':'1.0-0'}}
@@ -42,6 +48,9 @@
               </h6>
             </div>
           </div>
+
+
+
 
           <!-- product suggestion -->
           <div class="allProduct-content-product my-5">
@@ -58,6 +67,9 @@
                           class="img-fluid" style="margin-left: 10px;">
                       </div>
 
+
+
+
                       <div class="col-8">
                         <p class="lead card-title text-secondary">{{item.name}}</p>
                         <p class="my-2 text-dark fw-bold">{{item.price | currency:'VND':'symbol':'1.0-0'}}</p>
@@ -70,6 +82,9 @@
             </div>
           </div>
 
+
+
+
           <!-- post recommendation -->
           <div class="allProduct-content-post my-5">
             <h4 class="text-dark">BÀI VIẾT MỚI NHẤT</h4>
@@ -81,6 +96,9 @@
                       style="margin-left: 10px; width: 60px; height:60px">
                   </div>
 
+
+
+
                   <div class="col-8">
                     <p class="lead card-title text-secondary allProduct-content-post-item">Cảm xúc từ những tia nắng
                       cuối cùng
@@ -89,11 +107,17 @@
                   </div>
                 </div>
 
+
+
+
                 <div class="row my-2 g-5 align-items-center justify-content-center allProduct-content-post_table-item">
                   <div class="col-4">
                     <img src="../../../../assets/images/post2.jpg" alt="giaycv" class="img-fluid rounded-circle"
                       style="margin-left: 10px; width: 60px; height:60px">
                   </div>
+
+
+
 
                   <div class="col-8">
                     <p class="lead card-title text-secondary allProduct-content-post-item">Đặc biệt, tên gọi khác của
@@ -103,11 +127,17 @@
                   </div>
                 </div>
 
+
+
+
                 <div class="row my-2 g-5 align-items-center justify-content-center allProduct-content-post_table-item">
                   <div class="col-4">
                     <img src="../../../../assets/images/post3.jpg" alt="giaycv" class="img-fluid rounded-circle"
                       style="margin-left: 10px; width: 60px; height:60px">
                   </div>
+
+
+
 
                   <div class="col-8">
                     <p class="lead card-title text-secondary allProduct-content-post-item">Hẳn mọi người đã không mấy xa
@@ -117,11 +147,17 @@
                   </div>
                 </div>
 
+
+
+
                 <div class="row my-2 g-5 align-items-center justify-content-center allProduct-content-post_table-item">
                   <div class="col-4">
                     <img src="../../../../assets/images/post4.jpg" alt="giaycv" class="img-fluid rounded-circle"
                       style="margin-left: 10px; width: 60px; height:60px">
                   </div>
+
+
+
 
                   <div class="col-8">
                     <p class="lead card-title text-secondary allProduct-content-post-item">Hai yếu tố trên phối trộn
@@ -131,11 +167,17 @@
                   </div>
                 </div>
 
+
+
+
                 <div class="row my-2 g-5 align-items-center justify-content-center allProduct-content-post_table-item">
                   <div class="col-4">
                     <img src="../../../../assets/images/post5.jpg" alt="giaycv" class="img-fluid rounded-circle"
                       style="margin-left: 10px; width: 60px; height:60px">
                   </div>
+
+
+
 
                   <div class="col-8">
                     <p class="lead card-title text-secondary allProduct-content-post-item">Chất liệu Corduroy lần đầu
@@ -148,6 +190,9 @@
             </div>
           </div>
         </div>
+
+
+
 
         <!-- right -->
         <div class="col-md-8 col-lg-8 allProduct-content-shoes">
@@ -170,10 +215,10 @@
                       <button class="btn btn-danger" id="btn-addCart">XEM CHI TIẾT</button>
                     </div>
                   </div>
-                  </div>
-                }
                 </div>
-              </ng-template>
+                }
+              </div>
+            </ng-template>
           </p-dataView>
         </div>
       </div>

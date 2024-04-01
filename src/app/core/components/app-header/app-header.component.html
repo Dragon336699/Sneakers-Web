@@ -35,8 +35,8 @@
         <i (click)="op.toggle($event)" class="pi pi-search"></i>
         <p-overlayPanel #op>
           <span class="p-input-icon-right">
-            <i class="pi pi-search"></i>
-            <input type="text" pInputText />
+            <i (click)="sendContentSearch()" class="pi pi-search"></i>
+            <input (keydown.enter)="sendContentSearch()" [(ngModel)]="searchValue" ngDefaultControl type="text" pInputText />
           </span>
         </p-overlayPanel>
         <div class="line-right"></div>

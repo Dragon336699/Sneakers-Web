@@ -44,22 +44,6 @@ export const routes: Routes = [
         path: 'Intro',
         component: IntroductionComponent
       },
-      // {
-      //   path: 'giayNu',
-      //   component: GiayNuComponent
-      // },
-      // {
-      //   path: 'phuKien',
-      //   component: PhuKienComponent
-      // },
-      // {
-      //   path: 'giayNam',
-      //   component: GiayNamComponent
-      // },
-      // {
-      //   path: 'treEm',
-      //   component: TreEmComponent
-      // },
       {
         path: 'news',
         component: NewsComponent

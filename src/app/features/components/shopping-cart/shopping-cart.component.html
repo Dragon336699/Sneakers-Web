@@ -20,71 +20,33 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="p-4">
-                    <div class="media d-flex align-items-center justify-content-between">
-                      <img src="../../../../assets/images/a1.jpg" class="d-block ui-w-40 ui-bordered mr-4" alt="ao1">
-                      <div class="media-body text-end">
-                        <a href="#" class="d-block text-dark">C-Shirt smellent whist</a>
-                        <small>
-                          <span class="text-muted">Size: </span> EU 37 &nbsp;
-                        </small>
+                @for(itemCart of producsInCart; track itemCart){
+                  <tr>
+                    <td class="p-4">
+                      <div class="media d-flex align-items-center justify-content-between">
+                        <img [src]="'http://localhost:8089/api/v1/products/images/' + itemCart.products.thumbnail" class="d-block ui-w-40 ui-bordered mr-4" alt="ao1">
+                        <div class="media-body text-end">
+                          <a href="#" class="d-block text-dark">{{itemCart.products.name}}</a>
+                          <small>
+                            <span class="text-muted">Size: </span>{{itemCart.size}} &nbsp;
+                          </small>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                  <td class="text-right font-weight-semibold align-middle p-4">$57.55</td>
-                  <td class="align-middle p-4"><input type="text" class="form-control text-center" value="2"></td>
-                  <td class="text-right font-weight-semibold align-middle p-4">$115.1</td>
-                  <td class="align-middle p-4"><input type="checkbox" style="width: 20px; height: 20px;"></td>
-                  <!-- <td class="text-center align-middle px-0 bg-danger cart-remove">
-                    <a href="#" class="shop-tooltip close float-none text-light" title="" data-original-title="Remove"
-                      style="text-decoration: none;">X</a>
-                  </td> -->
-                </tr>
-
-                <tr>
-                  <td class="p-4">
-                    <div class="media d-flex align-items-center justify-content-between">
-                      <img src="../../../../assets/images/cv2.jpg" class="d-block ui-w-40 ui-bordered mr-4" alt="giay">
-                      <div class="media-body text-end">
-                        <a href="#" class="d-block text-dark">Nike breakshot G-Shoes</a>
-                        <small>
-                          <span class="text-muted">Size: </span> US 41 &nbsp;
-                        </small>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="text-right font-weight-semibold align-middle p-4">$149.50</td>
-                  <td class="align-middle p-4"><input type="text" class="form-control text-center" value="1"></td>
-                  <td class="text-right font-weight-semibold align-middle p-4">$149.50</td>
-                  <td class="align-middle p-4"><input type="checkbox" style="width: 20px; height: 20px;"></td>
-                  <!-- <td class="text-center align-middle px-0 bg-danger cart-remove">
-                    <a href="#" class="shop-tooltip close float-none text-light" title="" data-original-title="Remove"
-                      style="text-decoration: none;">X</a>
-                  </td> -->
-                </tr>
-
-                <tr>
-                  <td class="p-4">
-                    <div class="media d-flex align-items-center justify-content-between">
-                      <img src="../../../../assets/images/m2.jpg" class="d-block ui-w-40 ui-bordered mr-4" alt="vay">
-                      <div class="media-body text-end">
-                        <a href="#" class="d-block text-dark">Skinal plain cap</a>
-                        <small>
-                          <span class="text-muted">Size: </span> EU 34 &nbsp;
-                        </small>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="text-right font-weight-semibold align-middle p-4">$10.95</td>
-                  <td class="align-middle p-4"><input type="text" class="form-control text-center" value="1"></td>
-                  <td class="text-right font-weight-semibold align-middle p-4">$10.95</td>
-                  <td class="align-middle p-4"><input type="checkbox" style="width: 20px; height: 20px;"></td>
-                  <!-- <td class="text-center align-middle px-0 bg-danger cart-remove">
-                    <a href="#" class="shop-tooltip close float-none text-light" title="" data-original-title="Remove"
-                      style="text-decoration: none;">X</a>
-                  </td> -->
-                </tr>
+                    </td>
+                    <td class="text-right font-weight-semibold align-middle p-4">{{itemCart.products.price | currency:'VND':'symbol':'1.0-0'}}</td>
+                    <td class="align-middle p-4">
+                      <!-- <input [(ngModel)]="itemCart.quanity" [pKeyFilter]="'int'" class="form-control text-center" [value]="itemCart.quanity"> -->
+                      <p-inputNumber [min]="1" [(ngModel)]="itemCart.quantity" buttonLayout="horizontal" inputId="horizontal" [showButtons]="true" decrementButtonClass="p-button-secondary"
+                      incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
+                    </td>
+                    <td class="text-right font-weight-semibold align-middle p-4">$115.1</td>
+                    <td class="align-middle p-4"><input type="checkbox" style="width: 20px; height: 20px;"></td>
+                    <!-- <td class="text-center align-middle px-0 bg-danger cart-remove">
+                      <a href="#" class="shop-tooltip close float-none text-light" title="" data-original-title="Remove"
+                        style="text-decoration: none;">X</a>
+                    </td> -->
+                  </tr>
+                }
 
               </tbody>
             </table>

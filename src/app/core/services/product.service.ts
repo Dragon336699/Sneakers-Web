@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment.development';
 import { ProductDto } from '../dtos/product.dto';
 import { AllProductDto } from '../dtos/AllProduct.dto';
 import { ProductToCartDto } from '../dtos/productToCart.dto';
+import { ProductFromCartDto } from '../dtos/ProductFromCart.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,19 @@ export class ProductService {
 
   addProductToCart(product: ProductToCartDto) {
     return this.httpClient.post(`${this.apiUrl}carts`, product, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.token}`
+      })
+    });
+  }
+
+  searchProduct(content : string){
+    return this.httpClient.get<AllProductDto>(`${this.apiUrl}products/search?keyword=${content}`);
+  }
+
+  getProductFromCart(){
+    return this.httpClient.get<ProductFromCartDto>(`${this.apiUrl}carts`, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: `Bearer ${this.token}`

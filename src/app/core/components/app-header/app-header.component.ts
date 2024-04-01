@@ -10,6 +10,9 @@ import { UserService } from '../../services/user.service';
 import { filter, takeUntil, tap } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { ToastService } from '../../services/toast.service';
+import { DetailProductService } from '../../services/detail-product.service';
+import { FormsModule } from "@angular/forms";
+
 
 @Component({
   selector: 'app-app-header',
@@ -19,7 +22,8 @@ import { ToastService } from '../../services/toast.service';
     RouterModule,
     OverlayPanelModule,
     AvatarModule,
-    MenuModule
+    MenuModule,
+    FormsModule
   ],
   providers: [
     MessageService,
@@ -32,11 +36,13 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
   public token: string | null = null;
   public itemsMenuAvatar: MenuItem[] | undefined;
   public userName : string | undefined;
+  public searchValue : string = "";
   constructor(
     private userService : UserService,
     private router : Router,
     private readonly messageService: MessageService,
     private toastService: ToastService,
+    private detailProductService : DetailProductService
   ) {
     super();
     if (typeof localStorage !== 'undefined') {
@@ -85,5 +91,9 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
 
   goToCart(){
     
+  }
+
+  sendContentSearch(){
+    this.detailProductService.setContent(this.searchValue);
   }
 }

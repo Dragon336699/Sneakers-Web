@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../../core/commonComponent/base.component';
 import { ProductService } from '../../../core/services/product.service';
-import { catchError, filter, of, takeUntil, tap } from 'rxjs';
+import { catchError, filter, of, switchMap, takeUntil, tap } from 'rxjs';
 import { ProductDto } from '../../../core/dtos/product.dto';
 import { DataViewModule } from 'primeng/dataview';
 import { DropdownModule } from 'primeng/dropdown';
@@ -28,7 +28,7 @@ import { SliderModule } from 'primeng/slider';
   templateUrl: './all-product.component.html',
   styleUrl: './all-product.component.scss'
 })
-export class AllProductComponent extends BaseComponent implements OnInit {
+export class AllProductComponent extends BaseComponent implements OnInit, AfterViewInit {
   public products: ProductDto[] = [];
   public sortOptions: MenuItem[] = [];
   public productsHighlight: ProductDto[] = [];
@@ -42,6 +42,21 @@ export class AllProductComponent extends BaseComponent implements OnInit {
     private router: Router
   ) {
     super();
+  }
+  ngAfterViewInit(): void {
+    this.detailProductService.content.pipe(
+      filter((searchContent) => !!searchContent),
+      switchMap((searchContent) => {
+        return this.productService.searchProduct(searchContent).pipe(
+          filter((product : AllProductDto) => !!product),
+          tap((product: AllProductDto) => {
+            this.products = product.products;
+          }),
+          takeUntil(this.destroyed$)
+        )
+      }),
+      takeUntil(this.destroyed$)
+    ).subscribe();
   }
 
   ngOnInit(): void {

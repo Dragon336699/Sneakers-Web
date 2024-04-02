@@ -12,7 +12,9 @@ import { MessageService } from 'primeng/api';
 import { ToastService } from '../../services/toast.service';
 import { DetailProductService } from '../../services/detail-product.service';
 import { FormsModule } from "@angular/forms";
-
+import { ProductService } from '../../services/product.service';
+import { ProductFromCartDto } from '../../dtos/ProductFromCart.dto';
+import { BadgeModule } from 'primeng/badge';
 
 @Component({
   selector: 'app-app-header',
@@ -23,7 +25,8 @@ import { FormsModule } from "@angular/forms";
     OverlayPanelModule,
     AvatarModule,
     MenuModule,
-    FormsModule
+    FormsModule,
+    BadgeModule
   ],
   providers: [
     MessageService,
@@ -37,12 +40,14 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
   public itemsMenuAvatar: MenuItem[] | undefined;
   public userName : string | undefined;
   public searchValue : string = "";
+  public quantityInCart: number = 0;
   constructor(
     private userService : UserService,
     private router : Router,
     private readonly messageService: MessageService,
     private toastService: ToastService,
-    private detailProductService : DetailProductService
+    private detailProductService : DetailProductService,
+    private productService: ProductService
   ) {
     super();
     if (typeof localStorage !== 'undefined') {
@@ -51,6 +56,16 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
   }
 
   ngOnInit(): void {
+    this.detailProductService.quantityProductsInCart.pipe(
+      filter((quantity : number) => !!quantity),
+      tap((quantity : number) => {
+        this.quantityInCart = quantity;
+      }),
+      takeUntil(this.destroyed$)
+    ).subscribe();
+
+
+    
     if (this.token != null){
       this.userService.getInforUser(this.token).pipe(
         filter((userInfo) => !!userInfo),
@@ -59,6 +74,14 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
         }),
         takeUntil(this.destroyed$)
       ).subscribe()
+
+      this.productService.getProductFromCart().pipe(
+        filter((product : ProductFromCartDto) => !!product),
+        tap((product : ProductFromCartDto) => {
+          this.quantityInCart = product.totalCartItems;
+        }),
+        takeUntil(this.destroyed$)
+      ).subscribe();
     }
 
     this.itemsMenuAvatar = [

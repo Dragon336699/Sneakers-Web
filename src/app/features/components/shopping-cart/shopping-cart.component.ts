@@ -8,7 +8,7 @@ import { CurrencyPipe } from '@angular/common';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FormsModule } from '@angular/forms';
 import { KeyFilterModule } from 'primeng/keyfilter';
-
+import { ButtonModule } from 'primeng/button';
 
 
 @Component({
@@ -18,7 +18,8 @@ import { KeyFilterModule } from 'primeng/keyfilter';
     CurrencyPipe,
     InputNumberModule,
     FormsModule,
-    KeyFilterModule
+    KeyFilterModule,
+    ButtonModule
   ],
   templateUrl: './shopping-cart.component.html',
   styleUrl: './shopping-cart.component.scss'
@@ -34,8 +35,6 @@ constructor(
     this.productService.getProductFromCart().pipe(
       filter((product : ProductFromCartDto) => !!product),
       tap((product : ProductFromCartDto) => {
-        console.log(product);
-        
         this.producsInCart = product.carts;
       }),
       takeUntil(this.destroyed$)

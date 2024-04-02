@@ -48,6 +48,15 @@
         cursor: pointer;
       }
     }
+
+    p-menu {
+      .ng-trigger.ng-trigger-overlayAnimation {
+        z-index: 1002 !important;
+        transform-origin: center top !important;
+        top: 60px !important;
+        left: 22px !important;
+      }
+    }
   }
 
   .app-logo-header {

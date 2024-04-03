@@ -35,7 +35,7 @@ constructor(
       filter((product : ProductFromCartDto) => !!product),
       tap((product : ProductFromCartDto) => {
         console.log(product);
-        
+
         this.producsInCart = product.carts;
       }),
       takeUntil(this.destroyed$)

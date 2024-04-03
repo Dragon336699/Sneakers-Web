@@ -5,6 +5,7 @@ import { ProductDto } from '../dtos/product.dto';
 import { AllProductDto } from '../dtos/AllProduct.dto';
 import { ProductToCartDto } from '../dtos/productToCart.dto';
 import { ProductFromCartDto } from '../dtos/ProductFromCart.dto';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +43,7 @@ export class ProductService {
     });
   }
 
-  searchProduct(content : string){
+  searchProduct(content: string){
     return this.httpClient.get<AllProductDto>(`${this.apiUrl}products/search?keyword=${content}`);
   }
 
@@ -55,4 +56,12 @@ export class ProductService {
     });
   }
 
+  deleteProductFromCart(id: number){
+    return this.httpClient.delete(`${this.apiUrl}carts/${id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.token}`
+      })
+    });
+  }
 }

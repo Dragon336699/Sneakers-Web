@@ -48,40 +48,42 @@
       }
     }
   }
-}
 
-.card {
-  border: none !important;
-
-  &:hover {
-    cursor: pointer;
-    border: 1px solid rgb(214, 214, 214) !important;
-    transform: scale(1.1);
-
-    .card-footer p {
-      color: rgb(132, 13, 13) !important;
-    }
-  }
-
-  .card-body {
-    span {
-      .card-body__date {
-        margin-top: 15px;
+  .card {
+    border: none !important;
+  
+    &:hover {
+      cursor: pointer;
+      border: 1px solid rgb(214, 214, 214) !important;
+      transform: scale(1.1);
+  
+      .card-footer p {
+        color: rgb(132, 13, 13) !important;
       }
     }
-  }
-
-  .card-footer {
-    .card-title {
-      font-size: 16px !important;
+  
+    .card-body {
+      span {
+        .card-body__date {
+          margin-top: 15px;
+        }
+      }
     }
-
-    p {
-      font-size: 15px;
+  
+    .card-footer {
+      .card-title {
+        font-size: 16px !important;
+      }
+  
+      p {
+        font-size: 15px;
+      }
     }
+  
   }
-
 }
+
+
 
 // #btn-addCart {
 //   width: 80%;

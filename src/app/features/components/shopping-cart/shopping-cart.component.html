@@ -1,4 +1,5 @@
 <div class="shoppingCart">
+  <p-confirmDialog></p-confirmDialog>
   <div class="container px-3 my-5">
     <!-- Shopping cart table -->
     <div class="card">
@@ -24,10 +25,11 @@
                 <tr>
                   <td class="p-4">
                     <div class="media d-flex align-items-center justify-content-between">
+                      <p-button (click)="deleteProduct(itemCart.id)" icon="pi pi-times"></p-button>
                       <img [src]="'http://localhost:8089/api/v1/products/images/' + itemCart.products.thumbnail"
                         class="d-block ui-w-40 ui-bordered mr-4" alt="ao1">
                       <div class="media-body text-end">
-                        <a href="#" class="d-block text-dark">{{itemCart.products.name}}</a>
+                        <a href="#" class="d-block text-dark product-name">{{itemCart.products.name}}</a>
                         <small>
                           <span class="text-muted">Size: </span>{{itemCart.size}} &nbsp;
                         </small>
@@ -37,18 +39,16 @@
                   <td class="text-right font-weight-semibold align-middle p-4">{{itemCart.products.price |
                     currency:'VND':'symbol':'1.0-0'}}</td>
                   <td class="align-middle p-4">
-                    <!-- <input [(ngModel)]="itemCart.quanity" [pKeyFilter]="'int'" class="form-control text-center" [value]="itemCart.quanity"> -->
-                    <p-inputNumber [min]="1" [(ngModel)]="itemCart.quantity" buttonLayout="horizontal"
-                      inputId="horizontal" [showButtons]="true" decrementButtonClass="p-button-secondary"
-                      incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus"
-                      decrementButtonIcon="pi pi-minus"></p-inputNumber>
+                    <div class="d-flex">
+                      <p-button icon="pi pi-minus" (click)="updateProduct(itemCart.quantity-1,itemCart.id)"></p-button>
+                      <p-inputNumber [(ngModel)]="itemCart.quantity" buttonLayout="horizontal"
+                        inputId="horizontal"></p-inputNumber>
+                      <p-button icon="pi pi-plus" (click)="updateProduct(itemCart.quantity+1,itemCart.id)"></p-button>
+                    </div>
                   </td>
-                  <td class="text-right font-weight-semibold align-middle p-4">$115.1</td>
-                  <td class="align-middle p-4"><input type="checkbox" style="width: 20px; height: 20px;"></td>
-                  <!-- <td class="text-center align-middle px-0 bg-danger cart-remove">
-                      <a href="#" class="shop-tooltip close float-none text-light" title="" data-original-title="Remove"
-                        style="text-decoration: none;">X</a>
-                    </td> -->
+                  <td class="text-center font-weight-semibold align-middle p-4">{{(itemCart.quantity * itemCart.products.price) |
+                    currency:'VND':'symbol':'1.0-0'}}</td>
+                  <td class="align-middle text-center p-4"><input type="checkbox" style="width: 20px; height: 20px;"></td>
                 </tr>
                 }
               </tbody>
@@ -59,8 +59,6 @@
             <button type="button" class="btn btn-lg table-button mt-2 mr-3 text-uppercase text-light">
               <i class="pi pi-arrow-left" style="color: red;"></i>
               Tiếp tục xem sản phẩm</button>
-            <button type=" button" class="btn btn-lg table-button mt-2 text-light fw-semibold">Cập nhật giỏ
-              hàng</button>
           </div>
         </div>
 
@@ -69,21 +67,22 @@
           <hr>
           <div class=" card__right--price d-flex justify-content-between align-items-center">
             <p>Tổng phụ</p>
-            <p><span>1,250,000 ₫</span></p>
+            <p><span>{{totalCost | currency:'VND':'symbol':'1.0-0'}}</span></p>
           </div>
           <hr>
           <div class="card__right--ship d-flex justify-content-between align-items-center">
             <p>Giao hàng</p>
             <div>
-              <p>Giao hàng miễn phí</p>
+              <!-- <p>Giao hàng miễn phí</p>
               <p>Ước tính cho <span class="fw-semibold">Mỹ (US)</span>.</p>
-              <p> Đổi địa chỉ</p>
+              <p> Đổi địa chỉ</p> -->
+              <p>{{shipCost | currency:'VND':'symbol':'1.0-0'}}</p>
             </div>
           </div>
           <hr>
           <div class="card__right--price d-flex justify-content-between align-items-center">
             <p>Tổng</p>
-            <p><span>1,250,000 ₫</span></p>
+            <p><span>{{totalCost + shipCost | currency:'VND':'symbol':'1.0-0'}}</span></p>
           </div>
           <hr>
           <div class="card__right--button my-4">

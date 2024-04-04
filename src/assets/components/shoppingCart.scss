@@ -4,20 +4,33 @@
   .container {
     .card {
       box-shadow: 0 1px 15px 1px rgba(52, 40, 104, .08);
+      border: none;
+      // &:hover {
+      //   border: none !important;
 
-      &:hover {
-        border: none !important;
-
-        div button.btn {
-          display: block;
-          transform: translate(0, 0) !important;
-          animation: none;
-        }
-      }
+      //   div button.btn {
+      //     display: block;
+      //     transform: translate(0, 0) !important;
+      //     animation: none;
+      //   }
+      // }
 
       .card-body {
         .col-12.col-lg-8 {
           .table-responsive {
+            .product-name {
+              text-decoration: none;
+              text-align: left;
+            }
+            .p-button {
+              background: transparent;
+              color: #070707;
+              border: none;
+            }
+            .p-inputtext {
+              width: 60px;
+              text-align: center;
+            }
             table {
               border-collapse: collapse;
               border: none !important;
@@ -140,10 +153,18 @@
   height: auto;
 }
 
-.media-body>a {
-  font-weight: 500;
+.media-body {
+  margin-left: 12px;
+  flex: 1;
+  >a {
+    font-weight: 500;
+  }
+  small {
+    text-align: left;
+    display: block;
+    width: 100%;
+  }
 }
-
 
 .ui-product-color {
   display: inline-block;

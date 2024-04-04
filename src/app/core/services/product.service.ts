@@ -6,6 +6,7 @@ import { AllProductDto } from '../dtos/AllProduct.dto';
 import { ProductToCartDto } from '../dtos/productToCart.dto';
 import { ProductFromCartDto } from '../dtos/ProductFromCart.dto';
 import { Observable } from 'rxjs';
+import { PutProductDto } from '../dtos/PutProductDto.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +50,15 @@ export class ProductService {
 
   getProductFromCart(){
     return this.httpClient.get<ProductFromCartDto>(`${this.apiUrl}carts`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.token}`
+      })
+    });
+  }
+
+  updateProductFromCart(idCart: number, product: PutProductDto){
+    return this.httpClient.put(`${this.apiUrl}carts/${idCart}`, product, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: `Bearer ${this.token}`

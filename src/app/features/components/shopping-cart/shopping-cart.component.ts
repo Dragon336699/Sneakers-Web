@@ -10,9 +10,9 @@ import { FormsModule } from '@angular/forms';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { ButtonModule } from 'primeng/button';
 import { CommonService } from '../../../core/services/common.service';
-import { PutProductDto } from '../../../core/dtos/PutProductDto.dto';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { ProductToCartDto } from '../../../core/dtos/productToCart.dto';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -71,7 +71,7 @@ constructor(
 
   updateProduct(quantity: number, id: number){
     let quantiyTemp;
-    let updateProduct!: PutProductDto;
+    let updateProduct!: ProductToCartDto;
     this.producsInCart.forEach((product) => {
       if (product.id == id){
         if (quantity === 0){

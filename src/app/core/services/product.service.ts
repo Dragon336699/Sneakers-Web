@@ -56,6 +56,15 @@ export class ProductService {
     });
   }
 
+  updateProductFromCart(idCart: number, product: ProductToCartDto){
+    return this.httpClient.put(`${this.apiUrl}carts/${idCart}`, product, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.token}`
+      })
+    });
+  }
+
   deleteProductFromCart(id: number){
     return this.httpClient.delete(`${this.apiUrl}carts/${id}`, {
       headers: new HttpHeaders({

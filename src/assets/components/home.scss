@@ -154,6 +154,73 @@
       }
     }
   }
+  .card {
+    position: relative;
+  
+    .card-body {
+      span {
+        height: 30px;
+        width: 30px;
+      }
+  
+      button {
+        display: none;
+        padding: 5px 10px;
+        position: absolute;
+        top: calc(100% + 40px);
+        left: 50%;
+        background-color: rgb(217, 4, 4);
+        border: none;
+        border-radius: 5px;
+  
+        p {
+          color: white;
+          text-transform: uppercase;
+          font-size: 10px;
+          line-height: 20px;
+          margin-bottom: 0;
+          font-weight: 500;
+        }
+  
+      }
+    }
+  
+    .card-footer {
+      background-color: white !important;
+  
+      >p {
+        font-size: 18px;
+      }
+  
+      .card-title {
+        font-size: 16px !important;
+        font-weight: 500 !important;
+      }
+    }
+  
+    &:hover {
+      cursor: pointer;
+      transform: scale(1) !important;
+      border: none !important;
+      position: relative;
+  
+      div button {
+        display: block;
+        transform: translate(-50%, -50%);
+        animation: buttonShowUp 0.3s ease-in-out;
+      }
+    }
+  
+    &:before {
+      content: "";
+      display: block;
+      width: 80%;
+      height: 40px;
+      position: absolute;
+      bottom: -30px;
+      left: 10%;
+    }
+  }
 }
 
 .product-header,
@@ -173,73 +240,7 @@
   padding: 5px 30px 0px 30px;
 }
 
-.card {
-  position: relative;
 
-  .card-body {
-    span {
-      height: 30px;
-      width: 30px;
-    }
-
-    button {
-      display: none;
-      padding: 5px 10px;
-      position: absolute;
-      top: calc(100% + 40px);
-      left: 50%;
-      background-color: rgb(217, 4, 4);
-      border: none;
-      border-radius: 5px;
-
-      p {
-        color: white;
-        text-transform: uppercase;
-        font-size: 10px;
-        line-height: 20px;
-        margin-bottom: 0;
-        font-weight: 500;
-      }
-
-    }
-  }
-
-  .card-footer {
-    background-color: white !important;
-
-    >p {
-      font-size: 18px;
-    }
-
-    .card-title {
-      font-size: 16px !important;
-      font-weight: 500 !important;
-    }
-  }
-
-  &:hover {
-    cursor: pointer;
-    transform: scale(1) !important;
-    border: none !important;
-    position: relative;
-
-    div button {
-      display: block;
-      transform: translate(-50%, -50%);
-      animation: buttonShowUp 0.3s ease-in-out;
-    }
-  }
-
-  &:before {
-    content: "";
-    display: block;
-    width: 80%;
-    height: 40px;
-    position: absolute;
-    bottom: -30px;
-    left: 10%;
-  }
-}
 
 @keyframes buttonShowUp {
   from {

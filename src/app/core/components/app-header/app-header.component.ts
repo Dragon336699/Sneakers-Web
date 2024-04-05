@@ -89,15 +89,7 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
         catchError((err) => of(err))
       ).subscribe()
 
-      this.productService.getProductFromCart().pipe(
-        filter((product : ProductFromCartDto) => !!product),
-        tap((product : ProductFromCartDto) => {
-          this.quantityInCart = product.totalCartItems;
-          this.products = product.carts;
-        }),
-        takeUntil(this.destroyed$),
-        catchError((err) => of(err))
-      ).subscribe();
+      this.getCart().subscribe();
     }
 
     this.itemsMenuAvatar = [
@@ -122,15 +114,7 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
   ngAfterViewInit(): void {
     this.commonService.intermediateObservable.pipe(
       switchMap(() => {
-        return this.productService.getProductFromCart().pipe(
-          filter((product : ProductFromCartDto) => !!product),
-          tap((product : ProductFromCartDto) => {
-            this.quantityInCart = product.totalCartItems;
-            this.products = product.carts;
-          }),
-          takeUntil(this.destroyed$),
-          catchError((err) => of(err))
-        )
+        return this.getCart();
       }),
       takeUntil(this.destroyed$)
     ).subscribe();
@@ -149,16 +133,8 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
     event.stopPropagation();
     this.productService.deleteProductFromCart(id).pipe(
       switchMap(() => {
-        return this.productService.getProductFromCart().pipe(
-          filter((product : ProductFromCartDto) => !!product),
-          tap((product : ProductFromCartDto) => {
-            this.quantityInCart = product.totalCartItems;
-            this.products = product.carts;
-            this.commonService.intermediateObservable.next(true);
-          }),
-          takeUntil(this.destroyed$),
-          catchError((err) => of(err))
-        )
+        this.commonService.intermediateObservable.next(true);
+        return this.getCart();
       }),
       takeUntil(this.destroyed$),
       catchError((err) => {
@@ -166,5 +142,17 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
         return of(err);
       })
     ).subscribe();
+  }
+
+  getCart(){
+    return this.productService.getProductFromCart().pipe(
+      filter((product : ProductFromCartDto) => !!product),
+      tap((product : ProductFromCartDto) => {
+        this.quantityInCart = product.totalCartItems;
+        this.products = product.carts;
+      }),
+      takeUntil(this.destroyed$),
+      catchError((err) => of(err))
+    )
   }
 }

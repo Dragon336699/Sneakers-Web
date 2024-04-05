@@ -7,12 +7,21 @@ import { AvatarModule } from 'primeng/avatar';
 import { MenuItem } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
 import { UserService } from '../../services/user.service';
-import { filter, takeUntil, tap } from 'rxjs';
+import { catchError, filter, of, switchMap, takeUntil, tap } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { ToastService } from '../../services/toast.service';
 import { DetailProductService } from '../../services/detail-product.service';
 import { FormsModule } from "@angular/forms";
-
+import { ProductService } from '../../services/product.service';
+import { ProductFromCartDto } from '../../dtos/ProductFromCart.dto';
+import { BadgeModule } from 'primeng/badge';
+import { ProductsInCartDto } from '../../dtos/productsInCart.dto';
+import { CurrencyPipe } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
+import { CommonModule } from '@angular/common';
+import { DataViewModule } from 'primeng/dataview';
+import { ToastModule } from 'primeng/toast';
+import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'app-app-header',
@@ -23,7 +32,13 @@ import { FormsModule } from "@angular/forms";
     OverlayPanelModule,
     AvatarModule,
     MenuModule,
-    FormsModule
+    FormsModule,
+    BadgeModule,
+    CurrencyPipe,
+    ButtonModule,
+    CommonModule,
+    DataViewModule,
+    ToastModule
   ],
   providers: [
     MessageService,
@@ -37,12 +52,17 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
   public itemsMenuAvatar: MenuItem[] | undefined;
   public userName : string | undefined;
   public searchValue : string = "";
+  public quantityInCart: number = 0;
+  public products: ProductsInCartDto[] = [];
+  public showPreview: boolean = false;
   constructor(
     private userService : UserService,
     private router : Router,
     private readonly messageService: MessageService,
     private toastService: ToastService,
-    private detailProductService : DetailProductService
+    private detailProductService : DetailProductService,
+    private productService: ProductService,
+    private commonService: CommonService
   ) {
     super();
     if (typeof localStorage !== 'undefined') {
@@ -51,14 +71,33 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
   }
 
   ngOnInit(): void {
+    this.detailProductService.quantityProductsInCart.pipe(
+      filter((quantity : number) => !!quantity),
+      tap((quantity : number) => {
+        this.quantityInCart = quantity;
+      }),
+      takeUntil(this.destroyed$)
+    ).subscribe();
+
     if (this.token != null){
       this.userService.getInforUser(this.token).pipe(
         filter((userInfo) => !!userInfo),
         tap((userInfo) => {
           this.userName = userInfo.fullname;
         }),
-        takeUntil(this.destroyed$)
+        takeUntil(this.destroyed$),
+        catchError((err) => of(err))
       ).subscribe()
+
+      this.productService.getProductFromCart().pipe(
+        filter((product : ProductFromCartDto) => !!product),
+        tap((product : ProductFromCartDto) => {
+          this.quantityInCart = product.totalCartItems;
+          this.products = product.carts;
+        }),
+        takeUntil(this.destroyed$),
+        catchError((err) => of(err))
+      ).subscribe();
     }
 
     this.itemsMenuAvatar = [
@@ -81,7 +120,20 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
   }
 
   ngAfterViewInit(): void {
-    
+    this.commonService.intermediateObservable.pipe(
+      switchMap(() => {
+        return this.productService.getProductFromCart().pipe(
+          filter((product : ProductFromCartDto) => !!product),
+          tap((product : ProductFromCartDto) => {
+            this.quantityInCart = product.totalCartItems;
+            this.products = product.carts;
+          }),
+          takeUntil(this.destroyed$),
+          catchError((err) => of(err))
+        )
+      }),
+      takeUntil(this.destroyed$)
+    ).subscribe();
   }
   
   signOut(){
@@ -89,11 +141,30 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
     window.location.reload();
   }
 
-  goToCart(){
-    
-  }
-
   sendContentSearch(){
     this.detailProductService.setContent(this.searchValue);
+  }
+
+  deleteProduct(event: any, id: number){
+    event.stopPropagation();
+    this.productService.deleteProductFromCart(id).pipe(
+      switchMap(() => {
+        return this.productService.getProductFromCart().pipe(
+          filter((product : ProductFromCartDto) => !!product),
+          tap((product : ProductFromCartDto) => {
+            this.quantityInCart = product.totalCartItems;
+            this.products = product.carts;
+            this.commonService.intermediateObservable.next(true);
+          }),
+          takeUntil(this.destroyed$),
+          catchError((err) => of(err))
+        )
+      }),
+      takeUntil(this.destroyed$),
+      catchError((err) => {
+        this.toastService.fail("Xóa sản phẩm thất bại");
+        return of(err);
+      })
+    ).subscribe();
   }
 }

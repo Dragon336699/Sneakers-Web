@@ -48,7 +48,7 @@ export class AllProductComponent extends BaseComponent implements OnInit, AfterV
       filter((searchContent) => !!searchContent),
       switchMap((searchContent) => {
         return this.productService.searchProduct(searchContent).pipe(
-          filter((product: AllProductDto) => !!product),
+          filter((product : AllProductDto) => !!product),
           tap((product: AllProductDto) => {
             this.products = product.products;
           }),

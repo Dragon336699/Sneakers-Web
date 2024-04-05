@@ -11,6 +11,8 @@ import { CurrencyPipe } from '@angular/common';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ToastService } from '../../../core/services/toast.service';
+import { DetailProductService } from '../../../core/services/detail-product.service';
+import { CommonService } from '../../../core/services/common.service';
 
 @Component({
   selector: 'app-detail-product',
@@ -42,7 +44,9 @@ export class DetailProductComponent extends BaseComponent implements OnInit {
     private productService : ProductService,
     private router : ActivatedRoute,
     private readonly messageService: MessageService,
-    private toastService : ToastService
+    private toastService : ToastService,
+    private detailProductService: DetailProductService,
+    private commonService: CommonService
   ) {
     super();
   }
@@ -84,6 +88,8 @@ export class DetailProductComponent extends BaseComponent implements OnInit {
     }).pipe(
       tap(() => {
         this.toastService.success("Thêm sản phẩm vào giỏ hàng thành công");
+        this.detailProductService.setQuantity();
+        this.commonService.intermediateObservable.next(true);
       }),
       catchError((error) => {
         this.toastService.fail("Thêm sản phẩm vào giỏ hàng thất bại");

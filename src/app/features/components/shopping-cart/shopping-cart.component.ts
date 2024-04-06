@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../../core/commonComponent/base.component';
 import { ProductService } from '../../../core/services/product.service';
-import { catchError, debounceTime, filter, of, switchMap, take, takeUntil, tap } from 'rxjs';
+import { Subject, catchError, debounceTime, filter, map, of, switchMap, take, takeUntil, tap } from 'rxjs';
 import { ProductsInCartDto } from '../../../core/dtos/productsInCart.dto';
 import { ProductFromCartDto } from '../../../core/dtos/ProductFromCart.dto';
 import { CurrencyPipe } from '@angular/common';
@@ -11,8 +11,11 @@ import { KeyFilterModule } from 'primeng/keyfilter';
 import { ButtonModule } from 'primeng/button';
 import { CommonService } from '../../../core/services/common.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { ProductToCartDto } from '../../../core/dtos/productToCart.dto';
+import { ToastService } from '../../../core/services/toast.service';
+import { ToastModule } from 'primeng/toast';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -23,9 +26,14 @@ import { ProductToCartDto } from '../../../core/dtos/productToCart.dto';
     FormsModule,
     KeyFilterModule,
     ButtonModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    ToastModule
   ],
-  providers:[ConfirmationService],
+  providers:[
+    ConfirmationService,
+    ToastService,
+    MessageService
+  ],
   templateUrl: './shopping-cart.component.html',
   styleUrl: './shopping-cart.component.scss'
 })
@@ -33,10 +41,19 @@ export class ShoppingCartComponent extends BaseComponent implements OnInit, Afte
   public producsInCart : ProductsInCartDto[] = [];
   public totalCost: number = 0;
   public shipCost: number = 30000;
+  public updateProductSubject = new Subject<{
+    id: number,
+    quantity: number
+  }>();
+  public productToOrder: ProductsInCartDto[] =[];
+  
 constructor(
   private productService: ProductService,
   private commonService: CommonService,
-  private confirmationService: ConfirmationService
+  private confirmationService: ConfirmationService,
+  private readonly messageService: MessageService,
+  private toastService: ToastService,
+  private router: Router
 ) {
   super();
 }
@@ -67,30 +84,44 @@ constructor(
       takeUntil(this.destroyed$),
       catchError((err) => of(err))
     ).subscribe();
-  }
 
-  updateProduct(quantity: number, id: number){
-    let quantiyTemp;
-    let updateProduct!: ProductToCartDto;
-    this.producsInCart.forEach((product) => {
-      if (product.id == id){
-        if (quantity === 0){
-          this.confirm(product.id);
-          return;
-        } else {
-          product.quantity = quantity;
-          quantiyTemp = quantity;
-          updateProduct = {
-            product_id : product.products.id,
-            quantity : product.quantity,
-            size : product.size
+    this.updateProductSubject.pipe(
+      map((productInfo: {
+        id: number,
+        quantity: number,
+      }) => {
+        let updateProduct!: ProductToCartDto;
+        this.producsInCart.forEach((product) => {
+          if (product.id == productInfo.id){
+            if (productInfo.quantity === 0){
+              this.confirmDelete(product.id);
+              return;
+            } else {
+              product.quantity = productInfo.quantity;
+              updateProduct = {
+                product_id : product.products.id,
+                quantity : product.quantity,
+                size : product.size
+              }
+              this.resetTotalCost();
+            }
           }
-          this.resetTotalCost();
-        }
-      }
-    })
-
-    this.productService.updateProductFromCart(id, updateProduct).pipe(
+        })
+        return { id: productInfo.id, updateProduct: updateProduct };
+       }
+      ),
+      debounceTime(1000),
+      switchMap((product) => {
+        return this.productService.updateProductFromCart(product.id, product.updateProduct).pipe(
+          tap(() => {
+            this.commonService.intermediateObservable.next(true);
+          }),
+          takeUntil(this.destroyed$),
+          catchError((err) => {
+            return of(err);
+          })
+        )
+      }),
       takeUntil(this.destroyed$),
       catchError((err) => {
         return of(err);
@@ -98,7 +129,7 @@ constructor(
     ).subscribe();
   }
 
-  confirm(id: number) {
+  confirmDelete(id: number) {
     this.confirmationService.confirm({
         message: 'Bạn chắc chắn muốn bỏ sản phẩm này?',
         header: 'Xác nhận',
@@ -126,6 +157,24 @@ constructor(
           ).subscribe();
         },
         reject: () => {
+        }
+    });
+  }
+
+  confirmChangeOrder() {
+    this.confirmationService.confirm({
+        message: 'Bạn đang có sản phẩm chưa thanh toán, có muốn thay thế không?',
+        header: 'Xác nhận',
+        icon: 'pi pi-exclamation-triangle',
+        acceptIcon:"none",
+        rejectIcon:"none",
+        rejectButtonStyleClass:"p-button-text",
+        accept: () => {
+          localStorage.setItem("productOrder",JSON.stringify(this.productToOrder));
+          this.router.navigate(['/order']);
+        },
+        reject: () => {
+          
         }
     });
   }
@@ -158,4 +207,33 @@ constructor(
     ).subscribe();
   }
 
+  onCheckboxChange(event : any, cartId: number){
+    if (event.target.checked){
+      this.producsInCart.forEach((item) => {
+        if (item.id === cartId){
+          this.productToOrder.push(item);
+          return;
+        }
+      })
+    } else {
+      this.productToOrder = this.productToOrder.filter((item) => item.id !== cartId);
+    }
+  }
+
+  sendProductToOrder(){
+    if (this.productToOrder.length === 0){
+      this.toastService.fail("Vui lòng chọn sản phẩm để thanh toán");
+    } else {
+      if (localStorage.getItem("productOrder") == null){
+        localStorage.setItem("productOrder",JSON.stringify(this.productToOrder));
+        this.router.navigate(['/order']);
+      } else {
+        this.confirmChangeOrder();
+      }
+    }
+  }
+
+  backToAll(){
+    this.router.navigate(['/allProduct']);
+  }
 }

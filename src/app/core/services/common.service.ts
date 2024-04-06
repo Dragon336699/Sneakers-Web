@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { ProductsInCartDto } from '../dtos/productsInCart.dto';
 
 @Injectable({
   providedIn: 'root'

@@ -16,6 +16,7 @@ import { ContactComponent } from './features/components/contact/contact.componen
 import { loginGuard } from './features/auth/authInterceptor/login.guard';
 import { AllProductComponent } from './features/components/all-product/all-product.component';
 import { OrderComponent } from './features/components/order/order.component';
+import { OrderDetailComponent } from './features/components/order-detail/order-detail.component';
 
 export const routes: Routes = [
   {
@@ -69,6 +70,11 @@ export const routes: Routes = [
       {
         path: 'order',
         component: OrderComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'order-detail',
+        component: OrderDetailComponent,
         canActivate: [AuthGuard]
       }
     ]

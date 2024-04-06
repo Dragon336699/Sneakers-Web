@@ -122,6 +122,7 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
   
   signOut(){
     localStorage.removeItem("token");
+    localStorage.removeItem("productOrder");
     window.location.reload();
   }
 

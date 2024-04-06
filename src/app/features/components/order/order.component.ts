@@ -9,6 +9,12 @@ import { ProductsInCartDto } from '../../../core/dtos/productsInCart.dto';
 import { catchError, of, takeUntil, tap } from 'rxjs';
 import { CurrencyPipe } from '@angular/common';
 import { DropdownModule } from 'primeng/dropdown';
+import { ToastService } from '../../../core/services/toast.service';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { OrderService } from '../../../core/services/order.service';
+import { OrderDto } from '../../../core/dtos/Order.dto';
+import { ProductToCartDto } from '../../../core/dtos/productToCart.dto';
 
 @Component({
   selector: 'app-order',
@@ -20,7 +26,12 @@ import { DropdownModule } from 'primeng/dropdown';
     FormsModule,
     ReactiveFormsModule,
     CurrencyPipe,
-    DropdownModule
+    DropdownModule,
+    ToastModule
+  ],
+  providers: [
+    ToastService,
+    MessageService
   ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss'
@@ -28,6 +39,7 @@ import { DropdownModule } from 'primeng/dropdown';
 export class OrderComponent extends BaseComponent implements OnInit,AfterViewInit {
   public inforShipForm: FormGroup;
   public productToOrder!: ProductsInCartDto[];
+  public productOrder: ProductToCartDto[] = [];
   public totalCost: number = 0;
   public methodShipping!: {
     name: string,
@@ -46,7 +58,10 @@ export class OrderComponent extends BaseComponent implements OnInit,AfterViewIni
   ];
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private messageService: MessageService,
+    private toastService: ToastService,
+    private orderService: OrderService
   ) {
     super();
     this.inforShipForm = this.fb.group({
@@ -60,6 +75,13 @@ export class OrderComponent extends BaseComponent implements OnInit,AfterViewIni
 
   ngOnInit(): void {
     this.productToOrder = JSON.parse(localStorage.getItem("productOrder")!); 
+    this.productToOrder.forEach((item) => {
+      this.productOrder.push({
+        product_id: item.products.id,
+        quantity: item.quantity,
+        size: item.size
+      })
+    })
 
     this.productToOrder.forEach((item) => {
       this.totalCost += item.products.price * item.quantity
@@ -79,6 +101,19 @@ export class OrderComponent extends BaseComponent implements OnInit,AfterViewIni
   }
 
   order(){
-
+    if (this.inforShipForm.invalid){
+      this.toastService.fail("Vui lòng nhập đầy đủ thông tin giao hàng");
+    } else {
+      this.orderService.postOrder({
+        fullname: this.inforShipForm.value.fullName,
+        email: this.inforShipForm.value.email,
+        phone_number: this.inforShipForm.value.phoneNumber,
+        address: this.inforShipForm.value.address,
+        note: this.inforShipForm.value.note,
+        shipping_method: this.methodShippingValue.name,
+        payment_method: this.selectedPayMethod.name,
+        cart_items: this.productOrder
+      });
+    }
   }
 }

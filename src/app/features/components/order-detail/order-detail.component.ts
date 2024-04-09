@@ -50,6 +50,19 @@ export class OrderDetailComponent extends BaseComponent implements OnInit {
             this.orderInfor = orderInfor;
             this.productOrderd = orderInfor.order_details;
             this.notion = orderInfor.note;
+            switch (orderInfor.shipping_method) {
+              case "Tiêu chuẩn":
+                this.shipCost = 30000;
+                break;
+              case "Nhanh":
+                this.shipCost = 40000;
+                break;
+              case "Tiêu chuẩn":
+                this.shipCost = 60000;
+                break;
+              default:
+                break;
+            }
           }),
           tap(() => {
             this.productOrderd.forEach((item) => {

@@ -4,10 +4,6 @@ import { HomeComponent } from './features/components/home/home.component';
 import { LoginComponent } from './features/auth/components/login/login.component';
 import { RegisterComponent } from './features/register/register.component';
 import { IntroductionComponent } from './features/components/introduction/introduction.component';
-// import { GiayNuComponent } from './features/components/giay-nu/giay-nu.component';
-// import { PhuKienComponent } from './features/components/phu-kien/phu-kien.component';
-// import { GiayNamComponent } from './features/components/giay-nam/giay-nam.component';
-// import { TreEmComponent } from './features/components/tre-em/tre-em.component';
 import { NewsComponent } from './features/components/news/news.component';
 import { ShoppingCartComponent } from './features/components/shopping-cart/shopping-cart.component';
 import { DetailProductComponent } from './features/components/detail-product/detail-product.component';
@@ -17,6 +13,7 @@ import { loginGuard } from './features/auth/authInterceptor/login.guard';
 import { AllProductComponent } from './features/components/all-product/all-product.component';
 import { OrderComponent } from './features/components/order/order.component';
 import { OrderDetailComponent } from './features/components/order-detail/order-detail.component';
+import { HistoryOrderComponent } from './features/components/history-order/history-order.component';
 
 export const routes: Routes = [
   {
@@ -73,8 +70,13 @@ export const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
-        path: 'order-detail',
+        path: 'order-detail/:id',
         component: OrderDetailComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'history',
+        component: HistoryOrderComponent,
         canActivate: [AuthGuard]
       }
     ]

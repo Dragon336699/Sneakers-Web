@@ -8,55 +8,59 @@
       </div>
       <div class="card-body row d-flex justify-content-between">
         <div class="col-12 col-lg-8">
-          <div class="table-responsive">
-            <table class="table m-0">
-              <thead>
-                <tr>
-                  <th class="text-center py-3 px-4" style="min-width: 200px;">Product Name &amp; Details</th>
-                  <th class="text-center py-3 px-4" style="width: 100px;">Price</th>
-                  <th class="text-center py-3 px-4" style="width: 120px;">Quantity</th>
-                  <th class="text-center py-3 px-4" style="width: 100px;">Total</th>
-                  <th class="text-center py-3 px-4 choose" style="width: 10px;">Buy</th>
-                  <!-- <th class="text-center align-middle py-3 px-0" style="width: 60px;">x</th> -->
-                </tr>
-              </thead>
-              <tbody>
-                @for(itemCart of producsInCart; track itemCart){
-                <tr>
-                  <td class="p-4">
-                    <div class="media d-flex align-items-center justify-content-between">
-                      <p-button (click)="deleteProduct(itemCart.id)" icon="pi pi-times"></p-button>
-                      <img [src]="'http://localhost:8089/api/v1/products/images/' + itemCart.products.thumbnail"
-                        class="d-block ui-w-40 ui-bordered mr-4" alt="ao1">
-                      <div class="media-body text-end">
-                        <a href="#" class="d-block text-dark product-name">{{itemCart.products.name}}</a>
-                        <small>
-                          <span class="text-muted">Size: </span>{{itemCart.size}} &nbsp;
-                        </small>
+          @if(producsInCart.length > 0) {
+            <div class="table-responsive">
+              <table class="table m-0">
+                <thead>
+                  <tr>
+                    <th class="text-center py-3 px-4" style="min-width: 200px;">Product Name &amp; Details</th>
+                    <th class="text-center py-3 px-4" style="width: 100px;">Price</th>
+                    <th class="text-center py-3 px-4" style="width: 120px;">Quantity</th>
+                    <th class="text-center py-3 px-4" style="width: 100px;">Total</th>
+                    <th class="text-center py-3 px-4 choose" style="width: 10px;">Buy</th>
+                    <!-- <th class="text-center align-middle py-3 px-0" style="width: 60px;">x</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  @for(itemCart of producsInCart; track itemCart){
+                  <tr>
+                    <td class="p-4">
+                      <div class="media d-flex align-items-center justify-content-between">
+                        <p-button (click)="deleteProduct(itemCart.id)" icon="pi pi-times"></p-button>
+                        <img [src]="'http://localhost:8089/api/v1/products/images/' + itemCart.products.thumbnail"
+                          class="d-block ui-w-40 ui-bordered mr-4" alt="ao1">
+                        <div class="media-body text-end">
+                          <a href="#" class="d-block text-dark product-name">{{itemCart.products.name}}</a>
+                          <small>
+                            <span class="text-muted">Size: </span>{{itemCart.size}} &nbsp;
+                          </small>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                  <td class="text-right font-weight-semibold align-middle p-4">{{itemCart.products.price |
-                    currency:'VND':'symbol':'1.0-0'}}</td>
-                  <td class="align-middle p-4">
-                    <div class="d-flex">
-                      <p-button icon="pi pi-minus" (click)="updateProductSubject.next({quantity: itemCart.quantity-1, id: itemCart.id})"></p-button>
-                      <p-inputNumber [(ngModel)]="itemCart.quantity" buttonLayout="horizontal"
-                        inputId="horizontal"></p-inputNumber>
-                      <p-button icon="pi pi-plus" (click)="updateProductSubject.next({quantity: itemCart.quantity+1, id: itemCart.id})"></p-button>
-                    </div>
-                  </td>
-                  <td class="text-center font-weight-semibold align-middle p-4">{{(itemCart.quantity * itemCart.products.price) |
-                    currency:'VND':'symbol':'1.0-0'}}</td>
-                  <td class="align-middle text-center p-4">
-                    <input (change)="onCheckboxChange($event,itemCart.id)" type="checkbox" style="width: 20px; height: 20px;">
-                  </td>
-                </tr>
-                }
-              </tbody>
-            </table>
-          </div>
-
+                    </td>
+                    <td class="text-right font-weight-semibold align-middle p-4">{{itemCart.products.price |
+                      currency:'VND':'symbol':'1.0-0'}}</td>
+                    <td class="align-middle p-4">
+                      <div class="d-flex">
+                        <p-button icon="pi pi-minus" (click)="updateProductSubject.next({quantity: itemCart.quantity-1, id: itemCart.id})"></p-button>
+                        <p-inputNumber [(ngModel)]="itemCart.quantity" buttonLayout="horizontal"
+                          inputId="horizontal"></p-inputNumber>
+                        <p-button icon="pi pi-plus" (click)="updateProductSubject.next({quantity: itemCart.quantity+1, id: itemCart.id})"></p-button>
+                      </div>
+                    </td>
+                    <td class="text-center font-weight-semibold align-middle p-4">{{(itemCart.quantity * itemCart.products.price) |
+                      currency:'VND':'symbol':'1.0-0'}}</td>
+                    <td class="align-middle text-center p-4">
+                      <input (change)="onCheckboxChange($event,itemCart.id)" type="checkbox" style="width: 20px; height: 20px;">
+                    </td>
+                  </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          }
+          @else {
+            <h3>Chưa có sản phẩm nào trong giỏ hàng</h3>
+          }
           <div class="d-flex flex-row justify-content-around align-items-center my-3">
             <button (click)="backToAll()" type="button" class="btn btn-lg table-button mt-2 mr-3 text-uppercase text-light">
               <i class="pi pi-arrow-left" style="color: red;"></i>

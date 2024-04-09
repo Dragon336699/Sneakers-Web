@@ -7,6 +7,7 @@ import { ProductsInCartDto } from '../dtos/productsInCart.dto';
 })
 export class CommonService {
   public intermediateObservable = new Subject<boolean>();
+  public orderId = new BehaviorSubject<number>(0);
   constructor() { }
 
 }

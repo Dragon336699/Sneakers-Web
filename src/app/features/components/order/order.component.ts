@@ -6,8 +6,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { FormBuilder, FormGroup, FormsModule, Validators, ReactiveFormsModule } from "@angular/forms";
 import { CommonService } from '../../../core/services/common.service';
 import { ProductsInCartDto } from '../../../core/dtos/productsInCart.dto';
-import { catchError, of, takeUntil, tap } from 'rxjs';
-import { CurrencyPipe } from '@angular/common';
+import { BehaviorSubject, catchError, concatMap, forkJoin, from, of, switchMap, takeUntil, tap } from 'rxjs';
+import { CurrencyPipe, AsyncPipe } from '@angular/common';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToastService } from '../../../core/services/toast.service';
 import { MessageService } from 'primeng/api';
@@ -15,6 +15,10 @@ import { ToastModule } from 'primeng/toast';
 import { OrderService } from '../../../core/services/order.service';
 import { OrderDto } from '../../../core/dtos/Order.dto';
 import { ProductToCartDto } from '../../../core/dtos/productToCart.dto';
+import { Router } from '@angular/router';
+import { ProductService } from '../../../core/services/product.service';
+import { BlockUIModule } from 'primeng/blockui';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
   selector: 'app-order',
@@ -27,7 +31,10 @@ import { ProductToCartDto } from '../../../core/dtos/productToCart.dto';
     ReactiveFormsModule,
     CurrencyPipe,
     DropdownModule,
-    ToastModule
+    ToastModule,
+    BlockUIModule,
+    ProgressSpinnerModule,
+    AsyncPipe
   ],
   providers: [
     ToastService,
@@ -41,6 +48,10 @@ export class OrderComponent extends BaseComponent implements OnInit,AfterViewIni
   public productToOrder!: ProductsInCartDto[];
   public productOrder: ProductToCartDto[] = [];
   public totalCost: number = 0;
+  private productOrderLocalStorage: ProductsInCartDto[] = [];
+  public blockedUi: boolean = false;
+  private orderId: number = 0;
+
   public methodShipping!: {
     name: string,
     code: string,
@@ -61,7 +72,10 @@ export class OrderComponent extends BaseComponent implements OnInit,AfterViewIni
     private fb: FormBuilder,
     private messageService: MessageService,
     private toastService: ToastService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private commonService: CommonService,
+    private router: Router,
+    private productService: ProductService
   ) {
     super();
     this.inforShipForm = this.fb.group({
@@ -72,7 +86,6 @@ export class OrderComponent extends BaseComponent implements OnInit,AfterViewIni
       note:[]
     })
   }
-
   ngOnInit(): void {
     this.productToOrder = JSON.parse(localStorage.getItem("productOrder")!); 
     this.productToOrder.forEach((item) => {
@@ -104,6 +117,7 @@ export class OrderComponent extends BaseComponent implements OnInit,AfterViewIni
     if (this.inforShipForm.invalid){
       this.toastService.fail("Vui lòng nhập đầy đủ thông tin giao hàng");
     } else {
+      this.blockUi();
       this.orderService.postOrder({
         fullname: this.inforShipForm.value.fullName,
         email: this.inforShipForm.value.email,
@@ -112,8 +126,35 @@ export class OrderComponent extends BaseComponent implements OnInit,AfterViewIni
         note: this.inforShipForm.value.note,
         shipping_method: this.methodShippingValue.name,
         payment_method: this.selectedPayMethod.name,
-        cart_items: this.productOrder
-      });
+        cart_items: this.productOrder,
+        total_money: this.totalCost
+      }).pipe(
+        tap((orderInfor: any) => {
+          this.orderId = orderInfor.id;
+          this.commonService.orderId.next(orderInfor.id); 
+        }),
+        switchMap(() => {
+          this.productOrderLocalStorage = JSON.parse(localStorage.getItem("productOrder")!);
+          const fncDel = this.productOrderLocalStorage.map((po) => this.productService.deleteProductFromCart(po.id))
+          return forkJoin(fncDel);
+        }),
+        tap(() => {
+          this.commonService.intermediateObservable.next(true);
+          localStorage.removeItem("productOrder");
+          this.blockUi();
+          this.router.navigate([`/order-detail/${this.orderId}`]);
+        }),
+        catchError((err) => {
+          this.blockUi();
+          this.toastService.fail("Đặt hàng không thành công");
+          return of(err);
+        }),
+        takeUntil(this.destroyed$)
+      ).subscribe();
     }
+  }
+
+  blockUi() {
+    this.blockedUi = !this.blockedUi;
   }
 }

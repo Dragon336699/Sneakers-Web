@@ -94,12 +94,15 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
 
     this.itemsMenuAvatar = [
       {
-        label: 'Your Profile',
+        label: 'Hồ sơ',
         icon: 'pi pi-user'
       },
       {
-        label: 'Setting',
-        icon: 'pi pi-cog'
+        label: 'Lịch sử mua',
+        icon: 'pi pi-history',
+        command: () => {
+          this.goToHistory();
+        }
       },
       {
         label: 'Sign out',
@@ -155,5 +158,9 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
       takeUntil(this.destroyed$),
       catchError((err) => of(err))
     )
+  }
+
+  goToHistory(){
+    this.router.navigate(['/history']);
   }
 }

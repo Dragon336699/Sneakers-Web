@@ -8,5 +8,6 @@ export interface OrderDto {
     note: string,
     shipping_method: string,
     payment_method: string,
+    total_money: number,
     cart_items: ProductToCartDto[];
 }

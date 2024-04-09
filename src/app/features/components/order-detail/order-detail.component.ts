@@ -66,7 +66,7 @@ export class OrderDetailComponent extends BaseComponent implements OnInit {
           }),
           tap(() => {
             this.productOrderd.forEach((item) => {
-              this.totalMoney += item.price * item.numberOfProducts;
+              this.totalMoney += item.totalMoney;
             })
           }),
           catchError((err) => {

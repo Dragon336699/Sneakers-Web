@@ -27,7 +27,7 @@
                     <td class="p-4">
                       <div class="media d-flex align-items-center justify-content-between">
                         <p-button (click)="deleteProduct(itemCart.id)" icon="pi pi-times"></p-button>
-                        <img [src]="'http://localhost:8089/api/v1/products/images/' + itemCart.products.thumbnail"
+                        <img [src]="apiImage + itemCart.products.thumbnail"
                           class="d-block ui-w-40 ui-bordered mr-4" alt="ao1">
                         <div class="media-body text-end">
                           <a href="#" class="d-block text-dark product-name">{{itemCart.products.name}}</a>

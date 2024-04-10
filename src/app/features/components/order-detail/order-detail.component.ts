@@ -8,6 +8,7 @@ import { ProductDto } from '../../../core/dtos/product.dto';
 import { OrderDetailDto } from '../../../core/dtos/OrderDetail.dto';
 import { CurrencyPipe,DatePipe,NgSwitch,NgSwitchCase } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-order-detail',
@@ -28,6 +29,7 @@ export class OrderDetailComponent extends BaseComponent implements OnInit {
   public shipCost: number = 0;
   public notion!: string;
   public id!: string;
+  public apiImage: string = environment.apiImage;
 
   constructor(
     private commonService: CommonService,

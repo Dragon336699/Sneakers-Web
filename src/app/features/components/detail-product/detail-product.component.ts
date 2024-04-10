@@ -13,6 +13,7 @@ import { MessageService } from 'primeng/api';
 import { ToastService } from '../../../core/services/toast.service';
 import { DetailProductService } from '../../../core/services/detail-product.service';
 import { CommonService } from '../../../core/services/common.service';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-detail-product',
@@ -39,6 +40,7 @@ export class DetailProductComponent extends BaseComponent implements OnInit {
   public quantity : number = 1;
   public sizes : number[] = [36,37,38,39,40,41,42,43,44];
   public size : number = this.sizes[0];
+  public apiImage: string = environment.apiImage;
 
   constructor(
     private productService : ProductService,

@@ -11,12 +11,12 @@
         <p-galleria [value]="images" [numVisible]="5" [circular]="true" [showItemNavigators]="true"
           [responsiveOptions]="responsiveOptions" [containerStyle]="{ 'max-width': '640px' }">
           <ng-template pTemplate="item" let-item>
-            <img [src]="'http://localhost:8089/api/v1/products/images/' + item.image_url"
+            <img [src]="apiImage + item.image_url"
               style="width: 100%; display: block;" />
           </ng-template>
           <ng-template pTemplate="thumbnail" let-item>
             <div class="grid grid-nogutter justify-content-center">
-              <img [src]="'http://localhost:8089/api/v1/products/images/' + item.image_url"
+              <img [src]="apiImage + item.image_url"
                 style="display: block; width: 80%" />
             </div>
           </ng-template>

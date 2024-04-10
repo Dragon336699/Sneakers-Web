@@ -22,6 +22,7 @@ import { CommonModule } from '@angular/common';
 import { DataViewModule } from 'primeng/dataview';
 import { ToastModule } from 'primeng/toast';
 import { CommonService } from '../../services/common.service';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-app-header',
@@ -55,6 +56,8 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
   public quantityInCart: number = 0;
   public products: ProductsInCartDto[] = [];
   public showPreview: boolean = false;
+  public apiImage: string = environment.apiImage;
+
   constructor(
     private userService : UserService,
     private router : Router,

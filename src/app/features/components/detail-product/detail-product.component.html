@@ -28,9 +28,9 @@
     <div class="col-md-6 details">
       <div class="mt-4 mb-3 position-relative">
         <h2 class="text-uppercase fw-bold my-4">{{mainProduct.name}}</h2>
-        <p class="my-4">Mã sản phẩm: <span class="text-dark fw-bold">AV00152</span></p>
+        <p class="my-4">Mã sản phẩm: <span class="text-dark fw-bold">{{mainProduct.id}}</span></p>
         <p class="my-4 position-absolute" style="top:27%; left: 60%">Tình trạng:
-          <span class="text-dark fw-bold">New Arival</span>
+          <span class="text-dark fw-bold">Còn hàng</span>
         </p>
         <div class="d-flex price-wrapper">
           <h2 class="text-danger my-4">{{mainProduct.price | currency:'VND':'symbol':'1.0-0'}}</h2>

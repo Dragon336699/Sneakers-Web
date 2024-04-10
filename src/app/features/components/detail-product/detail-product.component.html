@@ -32,9 +32,13 @@
         <p class="my-4 position-absolute" style="top:27%; left: 60%">Tình trạng:
           <span class="text-dark fw-bold">New Arival</span>
         </p>
-        <h2 class="text-danger my-4">{{mainProduct.price | currency:'VND':'symbol':'1.0-0'}}</h2>
+        <div class="d-flex price-wrapper">
+          <h2 class="text-danger my-4">{{mainProduct.price| currency:'VND':'symbol':'1.0-0'}}</h2>
+          @if(mainProduct.discount){
+            <h2 class="my-4 old-price">{{mainProduct.price / (1-mainProduct.discount/100) | currency:'VND':'symbol':'1.0-0'}}</h2>
+          }
+        </div>
       </div>
-
       <hr>
 
       <h2 class="my-4">Thông tin chi tiết sản phẩm</h2>

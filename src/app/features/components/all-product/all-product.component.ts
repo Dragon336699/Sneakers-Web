@@ -14,6 +14,7 @@ import { AllProductDto } from '../../../core/dtos/AllProduct.dto';
 import { CurrencyPipe } from '@angular/common';
 import { SliderModule } from 'primeng/slider';
 import { environment } from '../../../../environments/environment.development';
+import { BadgeModule } from 'primeng/badge';
 
 @Component({
   selector: 'app-all-product',
@@ -24,7 +25,8 @@ import { environment } from '../../../../environments/environment.development';
     FormsModule,
     PaginatorModule,
     CurrencyPipe,
-    SliderModule
+    SliderModule,
+    BadgeModule
   ],
   templateUrl: './all-product.component.html',
   styleUrl: './all-product.component.scss'

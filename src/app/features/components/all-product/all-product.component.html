@@ -2,7 +2,7 @@
   <!-- header -->
   <div class="allProduct-header">
     <div class="container">
-      <div class="row justify-content-between align-items-center">
+      <div style="margin-bottom: 60px;" class="row justify-content-between align-items-center">
         <div class="col-lg-3 col-md-4">
           <h3> <span style="color: #c4c2c2">TRANG CHỦ / </span>TẤT CẢ SẢN PHẨM</h3>
         </div>
@@ -155,17 +155,23 @@
             <ng-template let-products pTemplate="list">
               <div class="row my-5 d-flex align-items-start justify-content-start g-5">
                 @for (item of products; track item) {
+                
                 <div (click)="navigateToDetail(item.id)" class="col-lg-3 col-6 col-sm-4">
                   <div>
                     <div class="card">
                       <div class="card-body py-3">
+                        @if(item.discount){
+                          <p-badge [value]="-item.discount + '%'" severity="danger"></p-badge>
+                        }
                         <img [src]="apiImage + item.thumbnail" alt="giaycv"
                           class="img-fluid">
                       </div>
                       <div class="card-footer text-center tw-bold border-0">
                         <p class="lead card-title text-secondary">{{item.name}}</p>
-                        <p class="my-2 text-danger fw-semibold" style="font-size: 15px;">{{item.price |
-                          currency:'VND':'symbol':'1.0-0'}}</p>
+                        <p class="my-2 text-danger fw-semibold" style="font-size: 15px;">{{item.price | currency:'VND':'symbol':'1.0-0'}}</p>
+                        @if (item.discount){
+                          <p class="my-2 fw-semibold old-price" style="font-size: 15px;">{{item.price / (1-item.discount/100) | currency:'VND':'symbol':'1.0-0'}}</p>
+                        }
                       </div>
                       <button class="btn btn-danger" id="btn-addCart">XEM CHI TIẾT</button>
                     </div>

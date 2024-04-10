@@ -33,7 +33,7 @@
           <span class="text-dark fw-bold">New Arival</span>
         </p>
         <div class="d-flex price-wrapper">
-          <h2 class="text-danger my-4">{{mainProduct.price| currency:'VND':'symbol':'1.0-0'}}</h2>
+          <h2 class="text-danger my-4">{{mainProduct.price | currency:'VND':'symbol':'1.0-0'}}</h2>
           @if(mainProduct.discount){
             <h2 class="my-4 old-price">{{mainProduct.price / (1-mainProduct.discount/100) | currency:'VND':'symbol':'1.0-0'}}</h2>
           }
@@ -84,54 +84,20 @@
 
     <div class="container-lg">
       <div class="row my-4 align-items-center justify-content-center g-5">
-
-        <div class="col-8 col-lg-3">
-          <div class="card border-0">
-            <div class="card-body py-3">
-              <img src="../../../../assets/images/cv1.jpg" alt="giaycv" class="img-fluid">
-            </div>
-            <div class="card-footer text-center tw-bold border-0">
-              <p class="lead card-title text-secondary">Vintas Public Public - Med Top</p>
-              <p class="my-2 text-danger fw-semibold" style="font-size: 15px;">430.000 VND</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-8 col-lg-3">
-          <div class="card border-0">
-            <div class="card-body py-3">
-              <img src="../../../../assets/images/van3.jpg" alt="giaycv" class="img-fluid">
-            </div>
-            <div class="card-footer text-center tw-bold border-0">
-              <p class="lead card-title text-secondary">Vintas Soda Pop - Low Top</p>
-              <p class="my-2 text-danger fw-semibold" style="font-size: 15px;">730.000 VND</p>
+        @for(product of relatedProducts; track product){
+          <div (click)="goToDetail(product.id)" class="col-8 col-lg-3">
+            <div class="card border-0">
+              <div class="card-body py-3">
+                <img [src]="apiImage + product.thumbnail" alt="giaycv" class="img-fluid">
+              </div>
+              <div class="card-footer text-center tw-bold border-0">
+                <p class="lead card-title text-secondary">{{product.name}}</p>
+                <p class="my-2 text-danger fw-semibold" style="font-size: 15px;">{{product.price | currency:'VND':'symbol':'1.0-0'}}</p>
+              </div>
             </div>
           </div>
-        </div>
+        }
 
-        <div class="col-8 col-lg-3">
-          <div class="card border-0">
-            <div class="card-body py-3">
-              <img src="../../../../assets/images/van2.jpg" alt="giayvan" class="img-fluid">
-            </div>
-            <div class="card-footer text-center tw-bold border-0">
-              <p class="lead card-title text-secondary">Vintas Public 2000s - Low Top</p>
-              <p class="my-2 text-danger fw-semibold" style="font-size: 15px;">980.000 VND</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-8 col-lg-3">
-          <div class="card border-0">
-            <div class="card-body py-3">
-              <img src="../../../../assets/images/cv2.jpg" alt="giayvan" class="img-fluid">
-            </div>
-            <div class="card-footer text-center tw-bold border-0">
-              <p class="lead card-title text-secondary">Track 6 2.Blues - Low Top</p>
-              <p class="my-2 text-danger fw-semibold" style="font-size: 15px;">780.000 VND</p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>

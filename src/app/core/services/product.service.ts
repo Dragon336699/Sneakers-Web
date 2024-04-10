@@ -82,4 +82,8 @@ export class ProductService {
       })
     });
   }
+
+  getRelatedProduct(id: string){
+    return this.httpClient.get<AllProductDto>(`${this.apiUrl}products/related/${id}`)
+  }
 }

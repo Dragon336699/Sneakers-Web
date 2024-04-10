@@ -25,41 +25,19 @@
 
     <div class="container-lg">
       <div class="row my-5 align-items-center justify-content-center gx-4 gx-lg-5 gx-xl-5">
-        <div class="col-6 col-lg-3 col-xl-4 banner-content--item">
-          <div class="card border-0">
-            <!-- <div class="card-header text-primary text-center">CONVERSE</div> -->
-            <div class="card-body py-4">
-              <img src="../../../../assets/images/cv3.jpg" alt="giay-converse" class="img-fluid thumbnail">
-              <button>
-                <p>Xem sản phẩm</p>
-              </button>
+        @for(product of productsHighlight; track product){
+          <div (click)="navigateToDetail(product.id)" class="col-6 col-lg-3 col-xl-4 banner-content--item">
+            <div class="card border-0">
+              <div class="card-body py-4">
+                <img [src]="apiImage + product.thumbnail" alt="giay-converse" class="img-fluid thumbnail">
+                <h3 class="product-highlight-name">{{product.name}}</h3>
+                <button>
+                  <p>Xem sản phẩm</p>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="col-6 col-lg-3 col-xl-4 banner-content--item">
-          <div class="card border-0">
-            <!-- <div class="card-header text-primary text-center">VANS</div> -->
-            <div class="card-body py-5">
-              <img src="../../../../assets/images/van1.jpg" alt="giay-converse" class="img-fluid thumbnail">
-              <button>
-                <p>Xem sản phẩm</p>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-6 col-lg-3 col-xl-4 banner-content--item">
-          <div class="card border-0">
-            <!-- <div class="card-header text-primary text-center">CONVERSE</div> -->
-            <div class="card-body py-4">
-              <img src="../../../../assets/images/cv2.jpg" alt="giay-converse" class="img-fluid thumbnail">
-              <button>
-                <p>Xem sản phẩm</p>
-              </button>
-            </div>
-          </div>
-        </div>
+        }
       </div>
     </div>
   </section>
@@ -70,78 +48,25 @@
       <div class="product-header-item bg-light text-secondary text-center text-uppercase active">
         <p>Sản phẩm mới</p>
       </div>
-      <div class="product-header-item bg-light text-secondary text-center text-uppercase"
-        style="border-left: 4px #f4f4f4 solid; border-right: 4px #f4f4f4 solid;">
-        <p>Sản phẩm bán chạy</p>
-      </div>
-      <div class="product-header-item bg-light text-secondary text-center text-uppercase">
-        <p>Sản phẩm phổ biến</p>
-      </div>
     </div>
 
     <div class="product-content">
       <div class="container-lg">
         <div class="row my-5 align-items-center justify-content-center g-5">
-
-          <div class="col-6 col-lg-3 product-content--item">
-            <div class="card border-0">
-              <div class="card-body py-3">
-                <img src="../../../../assets/images/cv1.jpg" alt="giaycv" class="img-fluid">
-                <button>
-                  <p>Thêm vào giỏ</p>
-                </button>
-              </div>
-              <div class="card-footer text-center tw-bold border-0">
-                <p class="lead card-title text-secondary">Vintas Public 2000s - Low Top</p>
-                <p class="my-2 text-danger fw-bold">620.000 VND</p>
+          @for(product of productNewest; track product){
+            <div (click)="navigateToDetail(product.id)" class="col-6 col-lg-3 product-content--item">
+              <div class="card border-0">
+                <div class="card-body py-3">
+                  <img [src]="apiImage + product.thumbnail" alt="giaycv" class="img-fluid">
+                </div>
+                <div class="card-footer text-center tw-bold border-0">
+                  <p class="lead card-title text-secondary">{{product.name}}</p>
+                  <p class="my-2 text-danger fw-bold">{{product.price | currency:'VND':'symbol':'1.0-0'}}</p>
+                </div>
               </div>
             </div>
-          </div>
+          }
 
-          <div class="col-6 col-lg-3 product-content--item">
-            <div class="card border-0">
-              <div class="card-body py-3">
-                <img src="../../../../assets/images/van3.jpg" alt="giaycv" class="img-fluid">
-                <button>
-                  <p>Thêm vào giỏ</p>
-                </button>
-              </div>
-              <div class="card-footer text-center tw-bold border-0">
-                <p class="lead card-title text-secondary">Track 6 2.Blues - Low Top</p>
-                <p class="my-2 text-danger fw-bold">650.000 VND</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-6 col-lg-3 product-content--item">
-            <div class="card border-0">
-              <div class="card-body py-3">
-                <img src="../../../../assets/images/van2.jpg" alt="giayvan" class="img-fluid">
-                <button>
-                  <p>Thêm vào giỏ</p>
-                </button>
-              </div>
-              <div class="card-footer text-center tw-bold border-0">
-                <p class="lead card-title text-secondary">Urbas Corluray Mix - High Top</p>
-                <p class="my-2 text-danger fw-bold">830.000 VND</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-6 col-lg-3 product-content--item">
-            <div class="card border-0">
-              <div class="card-body py-3">
-                <img src="../../../../assets/images/cv2.jpg" alt="giayvan" class="img-fluid">
-                <button>
-                  <p>Thêm vào giỏ</p>
-                </button>
-              </div>
-              <div class="card-footer text-center tw-bold border-0">
-                <p class="lead card-title text-secondary">Chuck taylor classic</p>
-                <p class="my-2 text-danger fw-bold">510.000 VND</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -168,160 +93,24 @@
       <div class="discount-product-content">
         <div class="container-lg">
           <div class="row my-5 align-items-center justify-content-center g-5">
-            <div class="col-6 col-lg-3">
-              <div class="card border-0">
-                <div class="card-body py-3">
-                  <img src="../../../../assets/images/m3.jpg" alt="giaycv" class="img-fluid">
-                  <button>
-                    <p>Thêm vào giỏ</p>
-                  </button>
-                  <span class="position-absolute top-10 start-20 translate-middle badge rounded-pill bg-danger">
-                    <p style="transform: translate(-5px, 5px);">-30%</p>
-                  </span>
-                </div>
-                <div class="card-footer text-center tw-bold border-0">
-                  <p class="lead card-title text-secondary">Track 6 2.Blues - Low Top</p>
-                  <p class="my-2 text-danger fw-bold" style="font-size: 16px;"><s>999.000VND </s></p>
-                  <p class="my-2 text-danger fw-bold">780.000 VND</p>
+            @for(product of productsDiscount; track product){
+              <div (click)="navigateToDetail(product.id)" class="col-6 col-lg-3">
+                <div class="card border-0">
+                  <div class="card-body py-3">
+                    <p-badge [value]="-product.discount + '%'" severity="danger"></p-badge>
+                    <img [src]="apiImage + product.thumbnail" alt="giaycv" class="img-fluid">
+                  </div>
+                  <div class="card-footer text-center tw-bold border-0">
+                    <p class="lead card-title text-secondary">{{product.name}}</p>
+                    <p class="my-2 text-danger fw-bold" style="font-size: 16px;"><s>{{product.price / (1-product.discount/100) | currency:'VND':'symbol':'1.0-0'}}</s></p>
+                    <p class="my-2 text-danger fw-bold">{{product.price | currency:'VND':'symbol':'1.0-0'}}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            }
 
-            <div class="col-6 col-lg-3">
-              <div class="card border-0">
-                <div class="card-body py-3">
-                  <img src="../../../../assets/images/v1.jpg" alt="giaycv" class="img-fluid">
-                  <button>
-                    <p>Thêm vào giỏ</p>
-                  </button>
-                  <span class="position-absolute top-10 start-20 translate-middle badge rounded-pill bg-danger">
-                    <p style="transform: translate(-5px, 5px);">-30%</p>
-                  </span>
-                </div>
-                <div class="card-footer text-center tw-bold border-0">
-                  <p class="lead card-title text-secondary">Mid-Length Skirt</p>
-                  <p class="my-2 text-danger fw-bold" style="font-size: 16px;"><s>999.000VND </s></p>
-                  <p class="my-2 text-danger fw-bold">720.000 VND</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6 col-lg-3">
-              <div class="card border-0">
-                <div class="card-body py-3">
-                  <img src="../../../../assets/images/q1.jpg" alt="giayvan" class="img-fluid">
-                  <button>
-                    <p>Thêm vào giỏ</p>
-                  </button>
-                  <span class="position-absolute top-10 start-20 translate-middle badge rounded-pill bg-danger">
-                    <p style="transform: translate(-5px, 5px);">-30%</p>
-                  </span>
-                </div>
-                <div class="card-footer text-center tw-bold border-0">
-                  <p class="lead card-title text-secondary">Doomerica pants</p>
-                  <p class="my-2 text-danger fw-bold" style="font-size: 16px;"><s>999.000VND </s></p>
-                  <p class="my-2 text-danger fw-bold">390.000 VND</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6 col-lg-3">
-              <div class="card border-0">
-                <div class="card-body py-3">
-                  <img src="../../../../assets/images/q2.jpg" alt="giayvan" class="img-fluid">
-                  <button>
-                    <p>Thêm vào giỏ</p>
-                  </button>
-                  <span class="position-absolute top-10 start-20 translate-middle badge rounded-pill bg-danger">
-                    <p style="transform: translate(-5px, 5px);">-30%</p>
-                  </span>
-                </div>
-                <div class="card-footer text-center tw-bold border-0">
-                  <p class="lead card-title text-secondary">Doomerica pants</p>
-                  <p class="my-2 text-danger fw-bold" style="font-size: 16px;"><s>999.000VND </s></p>
-                  <p class="my-2 text-danger fw-bold">500.000 VND</p>
-                </div>
-              </div>
-            </div>
           </div>
 
-          <div class="row my-5 align-items-center justify-content-center g-5">
-            <div class="col-6 col-lg-3">
-              <div class="card border-0">
-                <div class="card-body py-3">
-                  <img src="../../../../assets/images/bl3.jpg" alt="giaycv" class="img-fluid">
-                  <button>
-                    <p>Thêm vào giỏ</p>
-                  </button>
-                  <span class="position-absolute top-10 start-20 translate-middle badge rounded-pill bg-danger">
-                    <p style="transform: translate(-5px, 5px);">-30%</p>
-                  </span>
-                </div>
-                <div class="card-footer text-center tw-bold border-0">
-                  <p class="lead card-title text-secondary">Hip Pack - Ananas Global Goal</p>
-                  <p class="my-2 text-danger fw-bold" style="font-size: 16px;"><s>999.000VND </s></p>
-                  <p class="my-2 text-danger fw-bold">780.000 VND</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6 col-lg-3">
-              <div class="card border-0">
-                <div class="card-body py-3">
-                  <img src="../../../../assets/images/q3.jpg" alt="giaycv" class="img-fluid">
-                  <button>
-                    <p>Thêm vào giỏ</p>
-                  </button>
-                  <span class="position-absolute top-10 start-20 translate-middle badge rounded-pill bg-danger">
-                    <p style="transform: translate(-5px, 5px);">-30%</p>
-                  </span>
-                </div>
-                <div class="card-footer text-center tw-bold border-0">
-                  <p class="lead card-title text-secondary">Doomerica pantsc</p>
-                  <p class="my-2 text-danger fw-bold" style="font-size: 16px;"><s>999.000VND </s></p>
-                  <p class="my-2 text-danger fw-bold">840.000 VND</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6 col-lg-3">
-              <div class="card border-0">
-                <div class="card-body py-3">
-                  <img src="../../../../assets/images/m4.jpg" alt="giayvan" class="img-fluid">
-                  <button>
-                    <p>Thêm vào giỏ</p>
-                  </button>
-                  <span class="position-absolute top-10 start-20 translate-middle badge rounded-pill bg-danger">
-                    <p style="transform: translate(-5px, 5px);">-30%</p>
-                  </span>
-                </div>
-                <div class="card-footer text-center tw-bold border-0">
-                  <p class="lead card-title text-secondary">Vintas Nauda EXT - High Top</p>
-                  <p class="my-2 text-danger fw-bold" style="font-size: 16px;"><s>999.000VND </s></p>
-                  <p class="my-2 text-danger fw-bold">290.000 VND</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6 col-lg-3">
-              <div class="card border-0">
-                <div class="card-body py-3">
-                  <img src="../../../../assets/images/t2.jpg" alt="giayvan" class="img-fluid">
-                  <button>
-                    <p>Thêm vào giỏ</p>
-                  </button>
-                  <span class="position-absolute top-10 start-20 translate-middle badge rounded-pill bg-danger">
-                    <p style="transform: translate(-5px, 5px);">-30%</p>
-                  </span>
-                </div>
-                <div class="card-footer text-center tw-bold border-0">
-                  <p class="lead card-title text-secondary">Crossbody bag</p>
-                  <p class="my-2 text-danger fw-bold" style="font-size: 16px;"><s>999.000VND </s></p>
-                  <p class="my-2 text-danger fw-bold">780.000 VND</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

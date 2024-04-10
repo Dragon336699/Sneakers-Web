@@ -22,6 +22,7 @@ import { CommonModule } from '@angular/common';
 import { DataViewModule } from 'primeng/dataview';
 import { ToastModule } from 'primeng/toast';
 import { CommonService } from '../../services/common.service';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-app-header',
@@ -55,6 +56,8 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
   public quantityInCart: number = 0;
   public products: ProductsInCartDto[] = [];
   public showPreview: boolean = false;
+  public apiImage: string = environment.apiImage;
+
   constructor(
     private userService : UserService,
     private router : Router,
@@ -94,12 +97,15 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
 
     this.itemsMenuAvatar = [
       {
-        label: 'Your Profile',
+        label: 'Hồ sơ',
         icon: 'pi pi-user'
       },
       {
-        label: 'Setting',
-        icon: 'pi pi-cog'
+        label: 'Lịch sử mua',
+        icon: 'pi pi-history',
+        command: () => {
+          this.goToHistory();
+        }
       },
       {
         label: 'Sign out',
@@ -122,6 +128,7 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
   
   signOut(){
     localStorage.removeItem("token");
+    localStorage.removeItem("productOrder");
     window.location.reload();
   }
 
@@ -154,5 +161,9 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
       takeUntil(this.destroyed$),
       catchError((err) => of(err))
     )
+  }
+
+  goToHistory(){
+    this.router.navigate(['/history']);
   }
 }

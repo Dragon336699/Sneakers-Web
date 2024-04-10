@@ -1,5 +1,9 @@
 <div class="order-page">
+    <p-toast></p-toast>
     <div class="container">
+        <p-blockUI [blocked]="blockedUi">
+            <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
+        </p-blockUI>
         <div class="row">
             <div class="col-6 col-lg-6">
                 <form class="order-page-form d-flex" [formGroup]="inforShipForm">

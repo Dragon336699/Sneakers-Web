@@ -16,6 +16,7 @@ import { ProductToCartDto } from '../../../core/dtos/productToCart.dto';
 import { ToastService } from '../../../core/services/toast.service';
 import { ToastModule } from 'primeng/toast';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -46,6 +47,7 @@ export class ShoppingCartComponent extends BaseComponent implements OnInit, Afte
     quantity: number
   }>();
   public productToOrder: ProductsInCartDto[] =[];
+  public apiImage: string = environment.apiImage;
   
 constructor(
   private productService: ProductService,

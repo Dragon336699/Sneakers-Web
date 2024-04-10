@@ -4,8 +4,9 @@ export interface ProductDto {
     price : number,
     thumbnail : string,
     description: string,
+    discount: number,
     product_images: {
         id: number;
         imageUrl: string;
-    }[]
+    }[],
 }

@@ -13,6 +13,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { AllProductDto } from '../../../core/dtos/AllProduct.dto';
 import { CurrencyPipe } from '@angular/common';
 import { SliderModule } from 'primeng/slider';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-all-product',
@@ -35,6 +36,7 @@ export class AllProductComponent extends BaseComponent implements OnInit, AfterV
   public sortOrder!: number;
   public sortField!: string;
   public priceFilterValue: number[] = [1, 100];
+  public apiImage: string = environment.apiImage;
 
   constructor(
     private productService: ProductService,

@@ -200,6 +200,24 @@
     }
   }
 
+  .card {
+    min-height: 335px;
+    max-height: 375px;
+    .card-body {
+      display: flex;
+      .p-element {
+        position: absolute;
+      }
+    }
+    .card-footer {
+      .old-price {
+        text-decoration: line-through;
+        font-size: 12px!important;
+        color: #797979;
+      }
+    }
+  }
+
   .page-item a {
     border-radius: 18px;
     margin: 0px 10px

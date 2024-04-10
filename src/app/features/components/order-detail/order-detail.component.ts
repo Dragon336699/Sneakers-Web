@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../../core/commonComponent/base.component';
 import { CommonService } from '../../../core/services/common.service';
-import { catchError, filter, map, of, switchMap, takeUntil, tap } from 'rxjs';
+import { catchError, filter, of, switchMap, tap } from 'rxjs';
 import { OrderService } from '../../../core/services/order.service';
 import { InfoOrderDto } from '../../../core/dtos/InfoOrder.dto';
-import { ProductDto } from '../../../core/dtos/product.dto';
 import { OrderDetailDto } from '../../../core/dtos/OrderDetail.dto';
 import { CurrencyPipe,DatePipe,NgSwitch,NgSwitchCase } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
@@ -59,7 +58,7 @@ export class OrderDetailComponent extends BaseComponent implements OnInit {
               case "Nhanh":
                 this.shipCost = 40000;
                 break;
-              case "Tiêu chuẩn":
+              case "Hỏa tốc":
                 this.shipCost = 60000;
                 break;
               default:

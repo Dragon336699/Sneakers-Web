@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { OrderDto } from '../dtos/Order.dto';
 import { InfoOrderDto } from '../dtos/InfoOrder.dto';
+import { HistoryOrderDto } from '../dtos/HistoryOrder.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,15 @@ export class OrderService {
 
   getOrderInfor(id: number){
     return this.httpClient.get<InfoOrderDto>(`${this.apiUrl}orders/user/${id}`,{
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.token}`
+      })
+    });
+  }
+
+  getHistoryOrder(){
+    return this.httpClient.get<HistoryOrderDto[]>(`${this.apiUrl}orders/user`,{
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: `Bearer ${this.token}`

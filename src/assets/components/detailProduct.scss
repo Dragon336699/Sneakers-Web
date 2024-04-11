@@ -64,6 +64,13 @@
         }
 
       }
+      .price-wrapper {
+        .old-price {
+          text-decoration: line-through;
+          color: #797979;
+          margin-left: 24px;
+        }
+      }
     }
 
     .product-details {

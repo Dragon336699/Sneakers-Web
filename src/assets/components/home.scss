@@ -44,6 +44,7 @@
         .banner-content--item {
           .card {
             .card-body {
+              position: relative;
               button {
                 top: 50%;
                 background-color: black;
@@ -52,6 +53,12 @@
                   margin-bottom: 5px;
                   font-size: 17px;
                 }
+              }
+              .product-highlight-name {
+                text-align: center;
+              }
+              .p-element {
+                position: absolute;
               }
             }
           }
@@ -158,10 +165,6 @@
     position: relative;
   
     .card-body {
-      span {
-        height: 30px;
-        width: 30px;
-      }
   
       button {
         display: none;

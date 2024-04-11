@@ -4,7 +4,7 @@ import { CanActivate, RouterStateSnapshot, ActivatedRouteSnapshot, Router } from
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class OrderGuard implements CanActivate {
 
   constructor(private router: Router) {}
 
@@ -12,10 +12,9 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('token') !== null) {
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('productOrder') !== null) {
       return true; 
     } else {
-      // this.router.navigate(['/auth-login']);
       return false;
     }
   }

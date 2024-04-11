@@ -43,6 +43,15 @@ export class ProductService {
     });
   }
 
+  removeProductFromCart(id: number){
+    return this.httpClient.post(`${this.apiUrl}carts/${id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.token}`
+      })
+    });
+  }
+
   searchProduct(content: string){
     return this.httpClient.get<AllProductDto>(`${this.apiUrl}products/search?keyword=${content}`);
   }
@@ -72,5 +81,9 @@ export class ProductService {
         Authorization: `Bearer ${this.token}`
       })
     });
+  }
+
+  getRelatedProduct(id: string){
+    return this.httpClient.get<AllProductDto>(`${this.apiUrl}products/related/${id}`)
   }
 }

@@ -14,7 +14,9 @@
           <div class="header-avtar-icon">
             <span class="pi pi-user"></span>
           </div>
-          <span class="userName">{{userName}}</span>
+          <span class="userName">
+            <p>{{userName}}</p>
+          </span>
 
           <div class="header-avtar-name"></div>
         </p-avatar>
@@ -61,8 +63,8 @@
             <p-button (click)="deleteProduct($event,item.id)" icon="pi pi-times" severity="danger"
               [outlined]="true"></p-button>
             <div class="wrapper__image">
-              <img [src]="'http://localhost:8089/api/v1/products/images/' + item.products.thumbnail"
-                [alt]="item.products.name" class="w-4rem shadow-2 flex-shrink-0 border-round" />
+              <img [src]="apiImage + item.products.thumbnail" [alt]="item.products.name"
+                class="w-4rem shadow-2 flex-shrink-0 border-round" />
               <div class="wrapper-info">
                 <span>Size: {{ item.size }}</span>
                 <span class="font-bold text-900">{{ item.products.price | currency:'VND':'symbol':'1.0-0'}}</span>

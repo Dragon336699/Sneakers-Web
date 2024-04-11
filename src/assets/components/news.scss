@@ -6,6 +6,7 @@
     .container {
       width: 100%;
       margin: 0 auto;
+      max-width: 90%;
     }
   }
 
@@ -51,17 +52,17 @@
 
   .card {
     border: none !important;
-  
+
     &:hover {
       cursor: pointer;
       border: 1px solid rgb(214, 214, 214) !important;
       transform: scale(1.1);
-  
+
       .card-footer p {
         color: rgb(132, 13, 13) !important;
       }
     }
-  
+
     .card-body {
       span {
         .card-body__date {
@@ -69,69 +70,33 @@
         }
       }
     }
-  
+
     .card-footer {
       .card-title {
         font-size: 16px !important;
       }
-  
+
       p {
         font-size: 15px;
       }
     }
-  
   }
 }
 
+@media only screen and (max-width: 575px) {
+  .news-content-post {
+    display: none !important;
+  }
+}
 
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .news-content-post {
+    display: none !important;
+  }
+}
 
-// #btn-addCart {
-//   width: 80%;
-//   margin: 0 auto;
-//   margin-bottom: 20px;
-//   margin-top: -5px;
-//   font-weight: 500;
-// }
-
-// #range1 {
-//   -webkit-appearance: none;
-//   appearance: none;
-//   width: 100%;
-//   cursor: pointer;
-//   outline: none;
-//   overflow: hidden;
-//   border-radius: 16px;
-//   margin: 20px 0px;
-// }
-
-// #range1::-webkit-slider-runnable-track {
-//   height: 15px;
-//   background: #ccc;
-//   border-radius: 16px;
-// }
-
-// #range1::-moz-range-track {
-//   height: 15px;
-//   background: #ccc;
-//   border-radius: 16px;
-// }
-
-// #range1::-webkit-slider-thumb {
-//   -webkit-appearance: none;
-//   appearance: none;
-//   height: 15px;
-//   width: 15px;
-//   background-color: #fff;
-//   border-radius: 50%;
-//   border: 2px solid #f50;
-//   box-shadow: -407px 0 0 400px #f50;
-// }
-
-// #range1::-moz-range-thumb {
-//   height: 15px;
-//   width: 15px;
-//   background-color: #fff;
-//   border-radius: 50%;
-//   border: 1px solid #f50;
-//   box-shadow: -407px 0 0 400px #f50;
-// }
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .news-content-post {
+    display: none !important;
+  }
+}

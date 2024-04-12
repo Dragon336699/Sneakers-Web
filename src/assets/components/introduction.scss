@@ -14,7 +14,7 @@
       height: 100%;
       background-color: rgba(0, 0, 0, 0.5);
 
-      > h1 {
+      >h1 {
         font-size: 45px;
         position: absolute;
         top: 40%;
@@ -22,7 +22,7 @@
         transform: translate(-50%, -50%);
       }
 
-      > h3 {
+      >h3 {
         font-size: 30px;
         position: absolute;
         top: 65%;
@@ -34,17 +34,15 @@
 
   .intro-features {
     margin-top: 10px !important;
-    .container {
-      max-width: 90%;
-      h3 {
-        color: rgb(48, 6, 6);
-        font-size: 20px;
-        font-weight: 600;
 
-        span {
-          color: red;
-          font-weight: 600;
-        }
+    h3 {
+      color: rgb(48, 6, 6);
+      font-size: 20px;
+      font-weight: 600;
+
+      span {
+        color: red;
+        font-weight: 600;
       }
     }
   }
@@ -73,26 +71,5 @@
     position: absolute;
     top: -8px;
     left: 50%;
-  }
-}
-
-@media only screen and (max-width: 575px) {
-  .sep-border:after,
-  .sep-border::before {
-    top: 0px;
-  }
-}
-
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-  .sep-border:after,
-  .sep-border::before {
-    top: 0px;
-  }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  .sep-border:after,
-  .sep-border::before {
-    top: 20px;
   }
 }

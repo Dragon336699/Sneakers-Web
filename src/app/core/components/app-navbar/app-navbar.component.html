@@ -1,11 +1,7 @@
 <nav class="navbar navbar-expand-sm bg-secondary navbar-dark">
   <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-      <ul class="navbar-nav  me-auto mb-2 mb-lg-0">
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+      <ul class="navbar-nav">
         <!-- <div class="navbar-collapse d-flex justify-content-center align-items-center"
                     id="collapsibleNavbar">
                     <ul class="navbar-nav text-uppercase fw-bold"> -->
@@ -33,15 +29,3 @@
     </div>
   </div>
 </nav>
-<script>
-  const navbarToggler = document.querySelector('.navbar-toggler');
-
-  // Get the collapse element
-  const collapseElement = document.querySelector('.collapse.navbar-collapse.justify-content-center');
-
-  // Add an event listener for when the navbar-toggler button is clicked
-  navbarToggler.addEventListener('click', function () {
-    // Toggle the 'show' class on the collapse element
-    collapseElement.classList.toggle('show');
-  });
-</script>

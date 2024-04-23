@@ -63,8 +63,6 @@ constructor(
     this.productService.getProductFromCart().pipe(
       filter((product : ProductFromCartDto) => !!product),
       tap((product : ProductFromCartDto) => {
-        console.log(product);
-
         this.producsInCart = product.carts;
         this.resetTotalCost();
       }),

@@ -15,6 +15,7 @@ import { OrderComponent } from './features/components/order/order.component';
 import { OrderDetailComponent } from './features/components/order-detail/order-detail.component';
 import { HistoryOrderComponent } from './features/components/history-order/history-order.component';
 import { OrderGuard } from './features/auth/authInterceptor/order.guard';
+import { UploadProductComponent } from './features/components/upload-product/upload-product.component';
 
 export const routes: Routes = [
   {
@@ -78,6 +79,11 @@ export const routes: Routes = [
       {
         path: 'history',
         component: HistoryOrderComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'uploadProduct',
+        component: UploadProductComponent,
         canActivate: [AuthGuard]
       }
     ]

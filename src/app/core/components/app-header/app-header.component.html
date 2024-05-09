@@ -10,14 +10,14 @@
       }
       @else {
       <div class="header-avtar-container">
-        <p-avatar (click)="menu.toggle($event)">
+        <div (click)="menu.toggle($event)" class="avatar-name-wrapper">
           <div class="header-avtar-icon">
             <span class="pi pi-user"></span>
           </div>
-          <span class="userName">{{userName}}</span>
-
-          <div class="header-avtar-name"></div>
-        </p-avatar>
+        <div class="header-avtar-name">
+          <p class="userName">{{userName}}</p>
+        </div>
+      </div>
         <p-menu #menu [model]="itemsMenuAvatar" [popup]="true"></p-menu>
       </div>
       }
@@ -42,7 +42,7 @@
         <div class="line-right"></div>
       </div>
     </div>
-    @if(roleId == 1){
+    @if(roleId == 1 || !roleId){
       <div class="col-lg-2 col-md-2 col-sm-1 col-6 text-right header-cart-container-wrapper">
         <div class="header-cart-container" [routerLink]="['/shoppingCart']">
           <p class="header-cart-text">Giỏ hàng</p>
@@ -70,10 +70,10 @@
                   <div class="flex-1 flex flex-column gap-2">
                       <span class="font-bold">{{ item.products.name }}</span>
                   </div>
-              </li>
-            }
-          </ul>
-        </div>
+                </li>
+              }
+            </ul>
+          </div>
       </div>
     }
   </div>

@@ -24,8 +24,8 @@ import { UserDto } from '../../dtos/user.dto';
   styleUrl: './app-navbar.component.scss'
 })
 export class AppNavbarComponent extends BaseComponent implements OnInit {
-  public roleId!: number;
-  private token: string | null = null;
+  public roleId: number = 100;
+  public token: string | null = null;
   categories: MenuItem[] = [];
   constructor(
     private categoriesService: CategoriesService,
@@ -35,6 +35,7 @@ export class AppNavbarComponent extends BaseComponent implements OnInit {
     super();
     if (typeof localStorage != 'undefined'){
       this.token = localStorage.getItem("token");
+      // this.roleId = parseInt(JSON.parse(localStorage.getItem("userInfor") || '{"role_id": "0"}').role_id || '0');
     }
   }
 

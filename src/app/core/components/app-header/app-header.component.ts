@@ -51,7 +51,7 @@ import { UserDto } from '../../dtos/user.dto';
 })
 export class AppHeaderComponent extends BaseComponent implements AfterViewInit,OnInit{
   public token: string | null = null;
-  public roleId!: number;
+  public roleId: number = 100;
   public itemsMenuAvatar: MenuItem[] | undefined;
   public userName : string | undefined;
   public searchValue : string = "";
@@ -72,6 +72,7 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
     super();
     if (typeof localStorage !== 'undefined') {
       this.token = localStorage.getItem('token');
+      this.roleId = parseInt(JSON.parse(localStorage.getItem("userInfor") || '{"role_id": "0"}').role_id || '0');
     }
   }
 
@@ -131,8 +132,10 @@ export class AppHeaderComponent extends BaseComponent implements AfterViewInit,O
   
   signOut(){
     localStorage.removeItem("token");
+    localStorage.removeItem("roleId");
+    localStorage.removeItem("userInfor");
     localStorage.removeItem("productOrder");
-    window.location.reload();
+    window.location.href = "/Home";
   }
 
   sendContentSearch(){

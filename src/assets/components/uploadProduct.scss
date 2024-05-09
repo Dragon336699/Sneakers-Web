@@ -28,5 +28,18 @@
         border-radius: 4px;
       }
     }
-    
+    .dropdown-wrapper {
+      ul {
+        padding: 0;
+      } 
+      li {
+        height: 32px;
+        display: flex;
+        align-items: center;
+        &:hover {
+          background-color: #bf1e1e ;
+          color: #fff;
+        }
+      }
+    }
 }

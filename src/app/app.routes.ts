@@ -16,6 +16,10 @@ import { OrderDetailComponent } from './features/components/order-detail/order-d
 import { HistoryOrderComponent } from './features/components/history-order/history-order.component';
 import { OrderGuard } from './features/auth/authInterceptor/order.guard';
 import { UploadProductComponent } from './features/components/upload-product/upload-product.component';
+import { RoleGuard } from './features/auth/authInterceptor/role.guard';
+import { CategoryManageComponent } from './features/components/category-manage/category-manage.component';
+import { UserManageComponent } from './features/components/user-manage/user-manage.component';
+import { OrderManageComponent } from './features/components/order-manage/order-manage.component';
 
 export const routes: Routes = [
   {
@@ -84,7 +88,22 @@ export const routes: Routes = [
       {
         path: 'uploadProduct',
         component: UploadProductComponent,
-        canActivate: [AuthGuard]
+        canActivate: [RoleGuard]
+      },
+      {
+        path: 'categoryManage',
+        component: CategoryManageComponent,
+        canActivate: [RoleGuard]
+      },
+      {
+        path: 'userManage',
+        component: UserManageComponent,
+        canActivate: [RoleGuard]
+      },
+      {
+        path: 'orderManage',
+        component: OrderManageComponent,
+        canActivate: [RoleGuard]
       }
     ]
   }

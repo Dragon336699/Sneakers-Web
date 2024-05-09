@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../../core/commonComponent/base.component';
 import { ProductService } from '../../../core/services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, filter, of, take, takeUntil, tap } from 'rxjs';
+import { catchError, filter, finalize, of, switchMap, take, takeUntil, tap } from 'rxjs';
 import { ProductDto } from '../../../core/dtos/product.dto';
 import { GalleriaModule } from 'primeng/galleria';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { FormBuilder, FormGroup, FormsModule, Validators,ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CurrencyPipe } from '@angular/common';
 import { ToastModule } from 'primeng/toast';
-import { MenuItem, MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService,MenuItem } from 'primeng/api';
 import { ToastService } from '../../../core/services/toast.service';
 import { DetailProductService } from '../../../core/services/detail-product.service';
 import { CommonService } from '../../../core/services/common.service';
@@ -23,7 +23,9 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ButtonModule } from 'primeng/button';
 import { CategoriesService } from '../../../core/services/categories.service';
 import { CategoriesDto } from '../../../core/dtos/categories.dto';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DropdownModule } from 'primeng/dropdown';
+import { LoadingService } from '../../../core/services/loading.service';
 
 @Component({
   selector: 'app-detail-product',
@@ -39,18 +41,20 @@ import { DropdownModule } from 'primeng/dropdown';
     InputTextareaModule,
     FileUploadModule,
     ButtonModule,
-    DropdownModule
+    DropdownModule,
+    ConfirmDialogModule
   ],
   providers: [
     MessageService,
-    ToastService
+    ToastService,
+    ConfirmationService
   ],
   templateUrl: './detail-product.component.html',
   styleUrl: './detail-product.component.scss'
 })
-export class DetailProductComponent extends BaseComponent implements OnInit {
+export class DetailProductComponent extends BaseComponent implements OnInit,AfterViewInit {
   public productForm: FormGroup;
-  public roleId!: number;
+  public roleId: number = 100;
   private categoryId: number = 1;
   private token: string | null = null;
   private id !: string ;
@@ -64,7 +68,8 @@ export class DetailProductComponent extends BaseComponent implements OnInit {
   public apiImage: string = environment.apiImage;
   private myFiles: File[] = [];
   public categoriesOptions: MenuItem[] = [];
-
+  public categoryNameOfProduct!: string;
+  
   constructor(
     private readonly fb: FormBuilder,
     private productService : ProductService,
@@ -75,11 +80,14 @@ export class DetailProductComponent extends BaseComponent implements OnInit {
     private detailProductService: DetailProductService,
     private commonService: CommonService,
     private userService: UserService,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private confirmationService: ConfirmationService,
+    private loadingService: LoadingService
   ) {
     super();
     if (typeof localStorage != 'undefined'){
       this.token = localStorage.getItem("token");
+      this.roleId = parseInt(JSON.parse(localStorage.getItem("userInfor") || '{"role_id": "0"}').role_id || '0');
     }
     this.productForm = this.fb.group({
       productName: [, Validators.required],
@@ -88,8 +96,18 @@ export class DetailProductComponent extends BaseComponent implements OnInit {
       discount: [, Validators.required]
     })
   }
+  ngAfterViewInit(): void {
+    if (this.token != null){
+      this.userService.getInforUser(this.token).pipe(
+        filter((userInfo: UserDto) => !!userInfo),
+        tap((userInfo: UserDto) => {
+          this.roleId = userInfo.role.id;
+        }),
+        takeUntil(this.destroyed$),
+        catchError((err) => of(err))
+      ).subscribe()
 
-  ngOnInit(): void {
+    }
     if (this.token != null){
       this.userService.getInforUser(this.token).pipe(
         filter((userInfo: UserDto) => !!userInfo),
@@ -151,6 +169,9 @@ export class DetailProductComponent extends BaseComponent implements OnInit {
       ).subscribe();
     }
   }
+  ngOnInit(): void {
+    
+  }
 
   addToCart(){
     this.productService.addProductToCart({
@@ -181,5 +202,33 @@ export class DetailProductComponent extends BaseComponent implements OnInit {
 
   onCategoryChange(event: any){
     this.categoryId = event.value;
+  }
+  confirmDelete() {
+    this.confirmationService.confirm({
+        message: 'Bạn chắc chắn muốn bỏ sản phẩm này?',
+        header: 'Xác nhận',
+        icon: 'pi pi-exclamation-triangle',
+        acceptIcon:"none",
+        rejectIcon:"none",
+        rejectButtonStyleClass:"p-button-text",
+        accept: () => {
+          this.productService.deleteProduct(this.id).pipe(
+            switchMap(() => {
+              return this.productService.deleteProduct(this.id).pipe(
+                tap((res: any) => {
+                  this.router.navigate(["/allProduct"]);
+                }),
+                catchError((err) => of(err))
+              )
+            }),
+            takeUntil(this.destroyed$),
+            catchError((err) => {
+              return of(err);
+            })
+          ).subscribe();
+        },
+        reject: () => {
+        }
+    });
   }
 }

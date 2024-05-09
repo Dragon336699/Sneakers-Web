@@ -86,7 +86,6 @@ export class AllProductComponent extends BaseComponent implements OnInit, AfterV
         })
       ).subscribe();
     }
-
     this.categoriesService.getCategories().pipe(
       tap((categories) => {
         this.categoriesOptions = categories.map((item: CategoriesDto) => {

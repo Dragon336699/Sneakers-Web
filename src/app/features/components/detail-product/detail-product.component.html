@@ -105,6 +105,8 @@
 }
 @else if (mainProduct && roleId == 2) {
   <div class="container detail-admin">
+    <p-toast></p-toast>
+    <p-confirmDialog></p-confirmDialog>
     <div class="row">
       <div class="col-8 col-lg-8 offset-lg-2">
         <form class="form-group" [formGroup]="productForm">
@@ -117,15 +119,15 @@
             <p-inputNumber inputId="price" formControlName="price"></p-inputNumber>
           </div>
           <div class="wrapper">
-            <label class="font-bold" for="discount">Giảm giá (%)</label>
-            <p-inputNumber inputId="discount" formControlName="discount"></p-inputNumber>
+            <label class="font-bold" for="sale">Giảm giá (%)</label>
+            <p-inputNumber inputId="sale" formControlName="sale"></p-inputNumber>
           </div>
-          <div class="wrapper">
-            <p-dropdown [options]="categoriesOptions" placeholder="Danh mục"
-            (onChange)="onCategoryChange($event)"></p-dropdown> 
+          <div class="wrapper dropdown-wrapper">
+            <p-dropdown [options]="categoriesOptions" [placeholder]="categoryNameOfProduct"
+              (onChange)="onCategoryChange($event)"></p-dropdown> 
           </div>
           <div class="wrapper upload-wrapper">
-            <label class="font-bold">Tải lên ảnh</label>
+            <label class="font-bold" for="discount">Tải lên ảnh</label>
             <p-fileUpload [multiple]="true" mode="basic" chooseLabel="Choose" name="myFile[]" url="https://www.primefaces.org/cdn/api/upload.php" [auto]="true" accept="image/*" (onUpload)="onUpload($event)"></p-fileUpload>
           </div>
           <div class="wrapper">
@@ -135,7 +137,7 @@
         </form>
         <div class="button-wrapper">
           <p-button class="update-button" label="Cập nhật sản phẩm"></p-button>
-          <p-button severity="danger" label="Xóa sản phẩm"></p-button>
+          <p-button (click)="confirmDelete()" severity="danger" label="Xóa sản phẩm"></p-button>
         </div>
         
       </div>
@@ -143,3 +145,4 @@
     </div>
   </div>
 }
+@else if (mainProduct && roleId == 100) {}

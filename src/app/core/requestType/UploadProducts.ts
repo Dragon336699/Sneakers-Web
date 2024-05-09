@@ -3,5 +3,5 @@ export interface ProductUploadReq {
     price : number,
     category_id : number,
     description: string,
-    sale: number,
+    discount: number,
 }

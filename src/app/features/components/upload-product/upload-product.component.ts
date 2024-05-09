@@ -57,7 +57,7 @@ export class UploadProductComponent extends BaseComponent implements OnInit {
       productName: [, Validators.required],
       description: [, Validators.required],
       price:[, Validators.required],
-      sale:[, Validators.required]
+      discount:[, Validators.required]
     })
   }
   ngOnInit(): void {
@@ -99,7 +99,7 @@ export class UploadProductComponent extends BaseComponent implements OnInit {
         name: this.productForm.value.productName,
         price: this.productForm.value.price,
         description: this.productForm.value.description,
-        sale: this.productForm.value.sale,
+        discount: this.productForm.value.discount,
         category_id: parseInt(this.categoryId)
       }).pipe(
         switchMap((res: {productId: number, message: string}) => {

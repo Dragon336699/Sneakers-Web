@@ -93,6 +93,8 @@ export class LoginComponent extends BaseComponent implements AfterViewInit {
             window.location.href = '/Home';
           }),
           catchError((error) => {
+            console.log(error);
+            
             this.toastService.fail(error.error.message);
             return of();
           })

@@ -96,12 +96,12 @@ export class CategoryManageComponent extends BaseComponent implements OnInit{
   }
 
   updateCategory(id: number, name: string){
-    let categoryExist = this.categoriesOptions.find(res => res.name === name);
+    // let categoryExist = this.categoriesOptions.find(res => res.name === name);
 
-    if (categoryExist){
-      this.toastService.fail("Danh mục đã tồn tại");
-      return;
-    }
+    // if (categoryExist){
+    //   this.toastService.fail("Danh mục đã tồn tại");
+    //   return;
+    // }
     this.categoriesService.updateCategory({name: name}, id).pipe(
       tap((res: {categories: CategoriesDto[],message: string}) => {
         this.categoriesOptions = res.categories;
